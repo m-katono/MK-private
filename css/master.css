@@ -7,7 +7,10 @@
  	}
 .menu   {color:#000000;
          background-color: rgba(62, 130, 156, 0.6);
-        }
+	 width:90%;
+         background-color: rgba(62, 130, 156, 0.6);}
+
+        
 body    {color: #000000;
 	 word-wrap:break-word;
          background-image: url(../photo/rover.jpg);
@@ -16,9 +19,6 @@ body    {color: #000000;
 h1      {
          color: #000000;
          background-color: rgb(62, 130, 156);}
-p       {width:90%;
-         color: #000000;
-         background-color: rgba(62, 130, 156, 0.6);}
 
 img,iframe{
 	max-width:90%;

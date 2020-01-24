@@ -7,16 +7,11 @@
  	}
 .menu   {color:#000000;
          background-color: rgba(62, 130, 156, 0.8);
-<<<<<<< HEAD
 	     width:90%;
      }
 .coding-env {
          border:2px black dashed;
         }
-=======
-	 width:90%;
-         background-color: rgba(62, 130, 156, 0.8);}
->>>>>>> 4a3e166c0019e3f7b8fb3b7d121450d967213512
 
 ul	{
        	 background: rgb(62, 130, 156);

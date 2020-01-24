@@ -9,22 +9,23 @@
         <body>
             <div class="top">
             <h1><a href="https://shangyuanyezhengju.wixsite.com/mkpage"><img src="./photo/icon.jpg" alt="" width="80px" height="80px"></a>MK-private</h1>
-            <div class="menu"><b>〜目的〜</b><br>
+            <div class="menu"><h2>〜目的〜</h2>
+		<p>
                 　最終的にはpython3でcgiをいくつか書いて動かしてみたい。初心者なのでhtml、cssを学習しながら環境づくりをする。<br>
-                　せっかくraspberrypi zeroを使っているので、webサーバーも自前で立ち上げる。<br>
-                <br>
-                <b>〜環境〜</b><br>
-                コーディング<br>
+                　せっかくraspberrypi zeroを使っているので、webサーバーも自前で立ち上げる。</p>
+                <h3>〜環境〜</h3>
+		<p>
+		<h4>コーディング</h4>
                 PC：MacBook Air Mid2013(Cor-i5 4250U,4GB)<br>
                 エディタ：ATOM (v1.43.0)<br>
-                OS：Mac OS X Catalina(v10.15.2)<br>
-                <br>
-                サーバー<br>
+                OS：Mac OS X Catalina(v10.15.2)</p>
+                <p>
+		<h4>サーバー</h4>
                 OS：Raspbian buster Lite(Raspberry pi zero wh)<br>
                 Webサーバー：Apache2(v2.4.38)
-                <br>
-                <br>
-                <u>＊　DNSサーバーを利用していない上に動的グローバルIPアドレスなので、不定期でアドレスが変わる可能性あり。</u>
+                </p>
+                <p>
+		<u>＊　DNSサーバーを利用していない上に動的グローバルIPアドレスなので、不定期でアドレスが変わる可能性あり。</u></p>
             </div>
 
             <div class="menu" id="menu">
@@ -40,22 +41,26 @@
 	    <div class="menu"><img src="./photo/xt250.jpg" alt="serrow" width="600px" oncontextmenu="return false;"></div>
 
             <div class="menu"  id="i1">
-            <b>エディタを選ぶ</b><br>
-            　エディタの選択肢はたくさんあり、どれにして良いのか全然わからなかった。ネット上にはたくさんの情報があってどれも良し悪しがあるみたいなので、重視したのは２点。<br>
-            ・（動作が）軽そうなもの<br>
-            ・マルチプラットフォームなもの<br>
-            <br>
-            　最近中古で買ったMacBookAirを使いたかったがRAMが4GBしかないので重いやつは避けたい。UbuntuとWindows10の環境ではVimかIntellijを使っているので、HTMLならVimでも良いが（IntellijはJava,Kotlin,Rustに使っている）、せっかくだから新しいのを試してみたくなった。<br>
-            <br>
-            　最低限の機能として言語ごとにシンタックスカラーリングしてくれてタブ機能があれば良いのだが、そんなの今時どれでも付いてる。候補としてはVSCode、Atom、やっぱりVimあたりが目に止まった。VSCodeはなんだか重そうなきがする。VimはCUIのイメージだし自分が使いやすい環境まで仕上げるのが大変そう。Atomはプラグインで簡単にカスタマイズできそうで、GitHubが公開しているエディタということでなんとなく印象が良い。そんな感じでAtomにしてみた。<br>
-            <br>
-            　使ってみた感じとしては「かなり良い感じ」。とても無料とは思えない。いろいろな言語で使えるようだが、とりあえずHTML・CSSを学習しながらコツコツ書くには使いやすいと思う。プラグインは以下のものを入れている。<br>
-            ・japanese-menu（日本語化）
-            ・color-picker（カラーピッカー）
-            ・atom-html-preview（Webページをプレビュー）
-            ・vim-mode-plus（操作をVim風に）<br>
-            <br>
-            日本語化した場合は「環境設定ーインストール」からプラグイン名で検索すると簡単にインストールできる。<br>
+            <h3>エディタを選ぶ</h3><p>
+	    　エディタの選択肢はたくさんあり、どれにして良いのか全然わからなかった。ネット上にはたくさんの情報があってどれも良し悪しがあるみたいなので、重視したのは２点。</p>
+	    <ul>
+	    <li>（動作が）軽そうなもの</li>
+	    <li>マルチプラットフォームなもの</li>
+	    </ul>
+            <p>
+            　最近中古で買ったMacBookAirを使いたかったがRAMが4GBしかないので重いやつは避けたい。UbuntuとWindows10の環境ではVimかIntellijを使っているので、HTMLならVimでも良いが（IntellijはJava,Kotlin,Rustに使っている）、せっかくだから新しいのを試してみたくなった。</p>
+            <p>
+            　最低限の機能として言語ごとにシンタックスカラーリングしてくれてタブ機能があれば良いのだが、そんなの今時どれでも付いてる。候補としてはVSCode、Atom、やっぱりVimあたりが目に止まった。VSCodeはなんだか重そうなきがする。VimはCUIのイメージだし自分が使いやすい環境まで仕上げるのが大変そう。Atomはプラグインで簡単にカスタマイズできそうで、GitHubが公開しているエディタということでなんとなく印象が良い。そんな感じでAtomにしてみた。</p>
+            <p>
+            　使ってみた感じとしては「かなり良い感じ」。とても無料とは思えない。いろいろな言語で使えるようだが、とりあえずHTML・CSSを学習しながらコツコツ書くには使いやすいと思う。プラグインは以下のものを入れている。</p>
+	    <ul> 
+	    <li>japanese-menu（日本語化）</li>
+	    <li>color-picker（カラーピッカー）</li>
+	    <li>atom-html-preview（Webページをプレビュー）</li>
+	    <li>vim-mode-plus（操作をVim風に）</li>
+	    </ul>
+            <p>
+            日本語化した場合は「環境設定ーインストール」からプラグイン名で検索すると簡単にインストールできる。</p>
             <a href="https://atom.io/">Atomダウンロードサイト</a><br>
             <a href="#menu">目次へ戻る</a>
             </div>

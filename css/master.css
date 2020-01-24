@@ -10,7 +10,10 @@
 	 width:90%;
          background-color: rgba(62, 130, 156, 0.6);}
 
-        
+ul	{
+       	 background: rgb(62, 130, 156);
+ 	}
+
 body    {color: #000000;
 	 word-wrap:break-word;
          background-image: url(../photo/rover.jpg);

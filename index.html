@@ -39,6 +39,7 @@
                 <li><a href="#i1">エディタを選ぶ</a>
                 <li><a href="#i2">Raspberry pi zero側の準備</a>
                 <li><a href="#i3">https対応</a>
+                <li><a href="#i4">https成功！</a>
             </div>
 
         <div class="menu">写真を貼ってみるテスト。スマホで表示した時のサイズ感とかを調整。<img src="./photo/beer.jpg" alt="Beer" width="600px" oncontextmenu="return false;">
@@ -116,6 +117,32 @@
             気を取り直して、次回はパソコンがある環境で改めてチャレンジしてみようと思う。
             </p>
             <a href="#menu">目次に戻る</a>
+            </div>
+<!--https成功！-->
+            <div class="menu" id="i4">
+            <h3>https成功！</h3>26/Jan/2020
+            <p>
+            　なんだかやる気が出てきたので、さっそくPCに向かって昨日の続きをやってみた。昨日は元に戻して終わったのでまずはphpやcertbot、それに忘れていたphp_mbstringをインストールするところから始める。一度やった作業なのでかなりスムーズ。<br>
+            <br>
+            sudo apt install php_mbstring<br>
+            <br>
+            やっぱりaptは便利。そして<a href="https://github.com/disco-v8/DirectEdit/">昨日のサイト</a>を参考にダウンロード→unzip→cerbotコマンドと続けるが、またエラー。。。今度は落ち着いてエラーの内容を読むと、何やらacmeがダメです的なエラー。ログファイルを見るとやっぱりacmeなんちゃらで404と出ていた。ということはサバーに接続できないエラーのようなのでｃertbotを実行した時の長いオプションの中にあるurlが怪しいと思って確認したら、directoryをderectoryと打っていた。くだらない。<br>
+            　ドキドキしながらもう一度certbotコマンドを実行したらやっとSSL証明書の作成に成功した。これで今日の目的は達成したも同然と思いapache2を再起動してhttps://で<a href="https://m-katono.mydns.jp">自分のサイト</a>にアクセスしてみたがまた繋がらなかった。ブラウザに表示される「保護されていない通信」がやっと消えると思ったのにガックリ。<br>
+            　気を取り直して最初から手順を確認してみたらまずルーターのポート転送をしていなかった。ポートの設定をして一応再起動したら「インターネットの接続を確認してください」から「接続が拒否されました」に変わったので一歩前進した。今のところhttp://では繋がるがhttps://だとダメなので443ポートを読んでいない可能性が高い。次はapache2.conf→conf.d内→sites-avairable内という感じで順番に設定を確認して行ったが問題なさそう。ちゃんとListen443とかSSLEngin onとか書いてある。でもnetstat -lnしてみてもListen443してない。なんだこりゃ。
+            </p>
+            <img src="./photo/error.png" alt="Beer" width="600px" oncontextmenu="return false;">
+            <p>
+            　もう一度apache2の設定ファイルを順番に確認していたらsites-enableの中になければならないはずのSSL関係のファイルが無いみたい。ここにはsites-avairableからシンボリックリンクを置けば良いらしいので、ln -sでリンクを置いてみたところ、意外なことにダメだった。途方に暮れてグーグル先生に頼っていたらa2ensiteっていう見慣れないコマンドが出てきたのでダメ元で使ってみた。sites-avairable移動して、<br>
+            <br>
+            sudo a2ensite default-ssl.conf<br>
+            <br>
+            これで<br>
+            <br>
+            これで<br>
+            やっと<br>
+            できた。。。午前２時９分。。。おやすみなさい
+            </p>
+            <a href="#menu">目次へ戻る</a>
             </div>
         </div>
     </body>

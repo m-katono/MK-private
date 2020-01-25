@@ -14,7 +14,7 @@
                 　最終的にはpython3でcgiをいくつか書いて動かしてみたい。初心者なのでhtml、cssを学習しながら環境づくりをする。<br>
                 　せっかくraspberrypi zeroを使っているので、webサーバーの使い方なんかも練習してみる。。</p>
                 ＊問題のあるリンク等があればご連絡ください。すぐに削除します。<br>
-                jj1kmf＠jarl.com（＠は半角）
+                "jj1kmf＠jarl.com"（＠は半角）
                 <div class="coding-env">
                 <h3>環境</h3>
 		<p>
@@ -38,14 +38,14 @@
             <ol class="menu-class">
                 <li><a href="#i1">エディタを選ぶ</a>
                 <li><a href="#i2">Raspberry pi zero側の準備</a>
-                <li>
+                <li><a href="#i3">https対応</a>
             </div>
 
         <div class="menu">写真を貼ってみるテスト。スマホで表示した時のサイズ感とかを調整。<img src="./photo/beer.jpg" alt="Beer" width="600px" oncontextmenu="return false;">
 
 	    <img src="./photo/xt250.jpg" alt="serrow" width="600px" oncontextmenu="return false;"></div>
-
-            <div class="menu"  id="i1">
+<!--エディタを選ぶ-->
+        <div class="menu"  id="i1">
             <h3>エディタを選ぶ</h3>22/Jan/2020
         <p>
 	    　エディタの選択肢はたくさんあり、どれにして良いのか全然わからなかった。ネット上にはたくさんの情報があってどれも良し悪しがあるみたいなので、重視したのは２点。</p>
@@ -71,7 +71,7 @@
             <a href="https://atom.io/">Atomダウンロードサイト</a><br>
             <a href="#menu">目次へ戻る</a>
             </div>
-
+<!--ラズパイzeroの準備-->
             <div class="menu" id="i2">
             <h3>Raspberrypi zero whの準備</h3>24/Jan/2020
             <p>
@@ -94,6 +94,28 @@
             </p>
             <a href="https://www.mydns.jp/">MyDNSのサイト</a><br>
             <a href="#menu">目次へ戻る</a>
+            </div>
+<!--https対応-->
+            <div class="menu" id="i3">
+            <h3>https対応（に失敗）</h3>25/Jan/2020
+            <p>
+            　Webサーバー構築の記事をネットで色々見ていたら「https」の話がたくさん出ていた。そういえば何年か前からhttps://から始まるサイトが多いと思っていたけれどそんなに気にしていなかった。よくよく調べるとhttpsの「s」はセキュアの「s」らしいので、「このご時世、結構大事じゃん」と思うようになった。たまたま外出中だったが「思い立ったが吉日」主義なので、スマホで作業を始めた。（のは失敗だった。）
+            </p>
+            <p>
+            基本的には<a href="https://github.com/disco-v8/DirectEdit/">ココ</a>の通りにやれば良いらしいが、他の方の親切なサイトも参考にさせていただいた。幸いMyDNSでhttpsする記事はいくつも見つかる。残念ながらSSLもPHPも使ったことないので書いてある手順通りに進める。まずはPHPとcertbotが必要だと書いてあるのでインストール。<br>
+            <br>
+            sudo apt install php<br>
+            sudo apt install certbot<br>
+            <br>
+            　aptは本当に便利。その後は手順通りに進めたがcertbotを実行したところでエラーが出て進めなくなってしまった。スマホだから画面が小さいしキーボードもないので解決策をしっかり検討する気になれず、テキトーにいじっていたらApacheの動きが怪しくなってきた。もう全部めんどくさくなったのでインストールした物たちをアンインストールして元に戻そうと思ったが、ついにこのサイトを表示することもできなくなってしまった。
+            　しかたないのでApache2を再インストールしたり、ファイルのパーミッションを変えてみたりしたけどサイトにアクセスできず、３０分格闘した挙句にDirectoryの設定がちょっと違っていたことに気づき、やっと元に戻った。
+            </p>
+            <p>
+            　自分には向いていないのでもうやめようとも思ったが、思い出して見るとエラーの内容はファイルの読み書き系のものとか何かの関数が実行できないような類の、PHPのエラーだった気がする。しかも、スマホの画面だったので見落としていたけどREADMEの最初の方にphp_mbstringが必要なことが書いてあるのにインストールした記憶はない。<br>
+            <br>
+            気を取り直して、次回はパソコンがある環境で改めてチャレンジしてみようと思う。
+            </p>
+            <a href="#menu">目次に戻る</a>
             </div>
         </div>
     </body>

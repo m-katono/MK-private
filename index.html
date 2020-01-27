@@ -3,6 +3,28 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
+        <!-- jQuery.jsの読み込み -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+<!-- スムーズスクロール部分の記述 -->
+<script>
+$(function(){
+   // #で始まるアンカーをクリックした場合に処理
+   $('a[href^=#]').click(function() {
+      // スクロールの速度
+      var speed = 400; // ミリ秒
+      // アンカーの値取得
+      var href= $(this).attr("href");
+      // 移動先を取得
+      var target = $(href == "#" || href == "" ? 'html' : href);
+      // 移動先を数値で取得
+      var position = target.offset().top;
+      // スムーススクロール
+      $('body,html').animate({scrollTop:position}, speed, 'swing');
+      return false;
+   });
+});
+</script>
         <link rel="stylesheet" href="./css/master.css" type="text/css">
         <title>MK-private</title>
     </head>
@@ -10,6 +32,7 @@
             <div class="top">
             <h1><a href="https://shangyuanyezhengju.wixsite.com/mkpage" target="_blank"><img src="./photo/icon.jpg" alt="" width="80px" height="80px"></a>MK-private</h1>
             <div class="menu"><h2>〜目的〜</h2>
+                2020年１月２２日から運用
 		<p>
                 　最終的にはpython3でcgiをいくつか書いて動かしてみたい。初心者なのでhtml、cssを学習しながら環境づくりをする。<br>
                 　せっかくraspberrypi zeroを使っているので、webサーバーの使い方なんかも練習してみる。。</p>
@@ -17,31 +40,42 @@
                 "jj1kmf＠jarl.com"（＠は半角）
                 <div class="coding-env">
                 <h3>環境</h3>
-		<p>
-		<h4>コーディング</h4>
-                PC：MacBook Air Mid2013(Cor-i5-4250U,4GB)<br>
-                エディタ：ATOM (v1.43.0)<br>
-                OS：Mac OS X Catalina(v10.15.2)</p>
-                <p>
-		<h4>サーバー</h4>
-                OS：Raspbian buster Lite(Raspberry pi zero wh)<br>
-                Webサーバー：Apache2(v2.4.38)
-                </p>
+		                <p>
+	                            <h4>コーディング</h4>
+                                PC：MacBook Air Mid2013(Cor-i5-4250U,4GB)<br>
+                                エディタ：ATOM (v1.43.0)<br>
+                                OS：Mac OS X Catalina(v10.15.2)</p>
+                        <p>
+		                        <h4>サーバー</h4>
+                                OS：Raspbian buster Lite(Raspberry pi zero wh)<br>
+                                Webサーバー：Apache2(v2.4.38)
+                        </p>
             </div>
                 <p>
 		        <s>＊　DNSサーバーを利用していない上に動的グローバルIPアドレスなので、不定期でアドレスが変わる可能性あり。</s><br>
                 やっぱり毎回グローバルIPアドレスだとめんどくさいので、DDNSサービス（MyDNS)を利用することにした。</p>
             </div>
+<!--
+        ここからメニュー
+        全ページの「目次へ戻る」は
+        ここへリンクさせている。
 
+-->
+        <p>
             <div class="menu" id="menu">
             <h2>目次</h2>
             <ol class="menu-class">
-                <li><a href="#i1">エディタを選ぶ</a>
-                <li><a href="#i2">Raspberry pi zero側の準備</a>
-                <li><a href="#i3">https対応</a>
-                <li><a href="#i4">https成功！</a>
+                <li><a href="#i1">エディタを選ぶ 22/Jan/2020</a>
+                <li><a href="#i2">Raspberry pi zero側の準備 24/Jan/2020</a>
+                <li><a href="#i3">https対応 25/Jan/2020</a>
+                <li><a href="#i4">https成功！ 26/Jan/2020</a>
+                <li><a href="#i5">Raspberry pi zeroのSDカードをバックアップ 27/Jan/2020</a>
+                <li><a href="./second-page.html#i6">Webページを微調整 28/Jan/2020</a></li>
+            </ol>
+            ページ 1 <a href="./second-page.html">2</a>
             </div>
-
+        </p>
+<!--写真の幅なんかを調整して見る-->
         <div class="menu">写真を貼ってみるテスト。スマホで表示した時のサイズ感とかを調整。<img src="./photo/beer.jpg" alt="Beer" width="600px" oncontextmenu="return false;">
 
 	    <img src="./photo/xt250.jpg" alt="serrow" width="600px" oncontextmenu="return false;"></div>
@@ -77,19 +111,19 @@
             <h3>Raspberrypi zero whの準備</h3>24/Jan/2020
             <p>
             　Raspberrypi zero whはネットショッピングで購入した。GPIOピンが半田付け済みで16GBのマイクロSDカードがセットになったやつにした。（→<a href="https://www.amazon.co.jp/Raspberry-GPIO%E3%83%94%E3%83%B3%E3%83%98%E3%83%83%E3%83%80%E3%83%BC-%E3%83%8F%E3%83%B3%E3%83%80%E4%BB%98%E3%81%91%E6%B8%88%E3%81%BF-Wi-Fi-Bluetooth%E4%BD%9C%E5%8B%95%E7%A2%BA%E8%AA%8D%E6%B8%88%EF%BC%88%E3%83%92%E3%83%BC%E3%83%88%E3%82%B7%E3%83%B3%E3%82%AF%E3%80%81%EF%BC%B3%EF%BC%A4%E3%82%AB%E3%83%BC%E3%83%89%E4%BB%98%E3%81%8D/dp/B07PHPK8CP/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&keywords=raspberry+pi+zero+wh&qid=1579869523&sr=8-1" target="_blank">こんなやつ</a>）    GUI環境だとマシンスペックが不足だしどうせターミナルばっかり使うのでCUIのみの「Lite」にした。付属のSDカードにはNOOBSというインストーラーが入っていたが、容量がもったいないので消した。不要な物は無い方が気分が良い。モニターとキーボードを繋がずにセットアップするには下準備がいくつか必要になるが今回は割愛する。なんとなくの流れは「OSイメージを<a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank">ダウンロード</a>→SDカードをフォーマット→ddコマンドでOSイメージを書き込む→.sshディレクトリを作る→Wi-Fiの接続設定を書き込む」までやってからラズパイにSDカードを差して起動し、SSHで他のPCから初期設定する。日本語フォントを入れたりもする。
-            </p>
-            <p>
-            sudo apt install apache2<br>
-            <br>
+            <pre class="coding-env"><code>
+$sudo apt install apache2
+            </code></pre>
+
             　Webサーバーは定番のApache2をインストールした。/etc/apache2/apache2.confの中のディレクトリのアクセス制限をググった情報を元に書き足したりしたが、ほとんどそのままで大丈夫そうだった。cgiを使う時にはちょっと変更が必要そう。
             </p>
             <p>
             　忘れないようにこの段階でファイアーウォールの設定をしておく。ufwが簡単そうだったのでインストールした。<br>
-            <br>
-            sudo apt install ufw<br>
-            sudo ufw allow '許可するポートの番号'<br>
-            sudo ufw status<br>
-            <br>
+            <pre class="coding-env"><coke>
+$sudo apt install ufw
+$sudo ufw allow '許可するポートの番号'
+$sudo ufw status
+        </code></pre>
             みたいな感じ。ルーターの方のポート開放もしないとWAN側からアクセスできないので必ず設定しておく。自分の学習用のサイトなのでずっとIPアドレスでアクセスしていても良かったが、DNSというのも使ってみたくなってMyDNSを利用することにした。登録は思ったよりも簡単で、一通りの設定を終えたらすぐにドメイン名でアクセスできるようになった。ちょっと感動。<br>
             　動的なグローバルIPアドレスは不意にアドレスが変わってしまうことがあるので、いつでもアクセスできるようにするには別途対策が必要。あとでIPアドレスをMyDNSに通知するシェルスクリプトを作ってcronに登録しておこうと思う。
             </p>
@@ -103,11 +137,11 @@
             　Webサーバー構築の記事をネットで色々見ていたら「https」の話がたくさん出ていた。そういえば何年か前からhttps://から始まるサイトが多いと思っていたけれどそんなに気にしていなかった。よくよく調べるとhttpsの「s」はセキュアの「s」らしいので、「このご時世、結構大事じゃん」と思うようになった。たまたま外出中だったが「思い立ったが吉日」主義なので、スマホで作業を始めた。（のは失敗だった。）
             </p>
             <p>
-            基本的には<a href="https://github.com/disco-v8/DirectEdit/" target="_blank">ココ</a>の通りにやれば良いらしいが、他の方の親切なサイトも参考にさせていただいた。幸いMyDNSでhttpsする記事はいくつも見つかる。残念ながらSSLもPHPも使ったことないので書いてある手順通りに進める。まずはPHPとcertbotが必要だと書いてあるのでインストール。<br>
-            <br>
-            sudo apt install php<br>
-            sudo apt install certbot<br>
-            <br>
+            　基本的には<a href="https://github.com/disco-v8/DirectEdit/" target="_blank">ココ</a>の通りにやれば良いらしいが、他の方の親切なサイトも参考にさせていただいた。幸いMyDNSでhttpsする記事はいくつも見つかる。残念ながらSSLもPHPも使ったことないので書いてある手順通りに進める。まずはPHPとcertbotが必要だと書いてあるのでインストール。<br>
+            <pre class="coding-env"><code>
+$sudo apt install php
+$sudo apt install certbot
+            </code></pre>
             　aptは本当に便利。その後は手順通りに進めたがcertbotを実行したところでエラーが出て進めなくなってしまった。スマホだから画面が小さいしキーボードもないので解決策をしっかり検討する気になれず、テキトーにいじっていたらApacheの動きが怪しくなってきた。もう全部めんどくさくなったのでインストールした物たちをアンインストールして元に戻そうと思ったが、ついにこのサイトを表示することもできなくなってしまった。
             　しかたないのでApache2を再インストールしたり、ファイルのパーミッションを変えてみたりしたけどサイトにアクセスできず、３０分格闘した挙句にDirectoryの設定がちょっと違っていたことに気づき、やっと元に戻った。
             </p>
@@ -123,27 +157,66 @@
             <h3>https成功！</h3>26/Jan/2020
             <p>
             　なんだかやる気が出てきたので、さっそくPCに向かって昨日の続きをやってみた。昨日は元に戻して終わったのでまずはphpやcertbot、それに忘れていたphp_mbstringをインストールするところから始める。一度やった作業なのでかなりスムーズ。<br>
-            <br>
-            sudo apt install php_mbstring<br>
-            <br>
+            <pre class="coding-env"><code>
+$sudo apt install php_mbstring
+            </code></pre>
             やっぱりaptは便利。そして<a href="https://github.com/disco-v8/DirectEdit/" target="_blank">昨日のサイト</a>を参考にダウンロード→unzip→cerbotコマンドと続けるが、またエラー。。。今度は落ち着いてエラーの内容を読むと、何やらacmeがダメです的なエラー。ログファイルを見るとやっぱりacmeなんちゃらで404と出ていた。ということはサバーに接続できないエラーのようなのでｃertbotを実行した時の長いオプションの中にあるurlが怪しいと思って確認したら、directoryをderectoryと打っていた。くだらない。<br>
-            　ドキドキしながらもう一度certbotコマンドを実行したらやっとSSL証明書の作成に成功した。これで今日の目的は達成したも同然と思いapache2を再起動してhttps://で<a href="https://m-katono.mydns.jp" target="_blank">自分のサイト</a>にアクセスしてみたがまた繋がらなかった。ブラウザに表示される「保護されていない通信」がやっと消えると思ったのにガックリ。<br>
+            　ドキドキしながらもう一度certbotコマンドを実行したらやっとSSL証明書の作成に成功した。これで今日の目的は達成したも同然と思いapache2を再起動してhttps://で<a href="https://m-katono.mydns.jp" target="_blank">自分のサイト</a>にアクセスしてみたがまた繋がらなかった。ブラウザに表示される「保護されていない通信」がやっと消えると思ったのにガックリ。</p>
+            <p>
             　気を取り直して最初から手順を確認してみたらまずルーターのポート転送をしていなかった。ポートの設定をして一応再起動したら「インターネットの接続を確認してください」から「接続が拒否されました」に変わったので一歩前進した。今のところhttp://では繋がるがhttps://だとダメなので443ポートを読んでいない可能性が高い。次はapache2.conf→conf.d内→sites-avairable内という感じで順番に設定を確認して行ったが問題なさそう。ちゃんとListen443とかSSLEngin onとか書いてある。でもnetstat -lnしてみてもListen443してない。なんだこりゃ。
             </p>
             <img src="./photo/error.png" alt="Beer" width="600px" oncontextmenu="return false;">
             <p>
             　もう一度apache2の設定ファイルを順番に確認していたらsites-enableの中になければならないはずのSSL関係のファイルが無いみたい。ここにはsites-avairableからシンボリックリンクを置けば良いらしいので、ln -sでリンクを置いてみたところ、意外なことにダメだった。途方に暮れてグーグル先生に頼っていたらa2ensiteっていう見慣れないコマンドが出てきたのでダメ元で使ってみた。sites-avairable移動して、<br>
-            <br>
-            sudo a2ensite default-ssl.conf<br>
-            <br>
-            これで<br>
-            <br>
+            <pre class="coding-env"><code>
+$sudo a2ensite default-ssl.conf
+            </code></pre>
             これで<br>
             やっと<br>
             できた。。。午前２時９分。。。おやすみなさい
             </p>
             <a href="#menu">目次へ戻る</a>
             </div>
+<!--ラズパイのSDカードをバックアップ-->
+            <div class="menu" id="i5">
+            <h3>Raspberry pi zeroのSDカードをバックアップ</h3>
+            27/Jan/2020
+            <p>
+            　SDカードの寿命は思うよりも短くて、あっという間に壊れてしまうので、バックアップをとることにした。Windows上でOSのイメージファイルを書き込めるソフトを利用するのが一番簡単だが使用頻度が少ないソフトをインストールしたくないので、今回はUbuntuを使うことにした。
+            <ul>
+                <h4>作業環境</h4>
+                <li>Ubuntu18.04</li>
+                <li>DELL Inspiron11 3162</li>
+                <h4>バックアップ対象</h4>
+                <li>Raspbian buster</li>
+                <li>メーカー不明SDカード（16GB）</li>
+            </ul>
+            　DELLのPCはWindows10homeがインストールされていたがUbuntu18.04をクリーンインストールして使っている。内蔵のSDカードリーダーやWebカメラも問題なく動作している。記憶領域が32GB-eMMC、メモリがDDR3-4GB、CPU-Celeron-N3060という超ロースペックマシンだがファンレスで静かなところが気に入っている。<br>
+            　SDカードは初めからSanDiskとかTransendとかの安くて信頼性が高そうなメーカーの物を使えば良かったが、何も考えずに付属のノーブランド品を使ってしまったのでいつまで保つかわからない。とりあえずRaspberry pi zeroをシャットダウンしてカードを取り出す。sudo shutdown -h nowより短いコマンドがある。
+            <pre class="coding-env"><code>
+$sudo poweroff
+            </code></pre>
+            　ラズパイからカードを抜いてPCに挿入し、どのように認識されているか調べる。
+            <pre class="coding-env"><code>
+$sudo fdisk -l
+〜省略〜
+ディスク /dev/sda: 15.8GiB, 15836643328 バイト, 30930944 セクタ
+単位: セクタ（1 * 512 = 512 バイト）
+セクタサイズ (論理 / 物理): 512 バイト / 512 バイト
+I/O サイズ (最小 / 推奨): 512 バイト / 512 バイト
+ディスクラベルのタイプ: gpt
+ディスク識別子: 0x00000000
+〜省略〜
+            </code></pre>
+            こんな感じで/dev/sdaなことが分かるので、ddコマンドでバックアップする。
+            <pre class="coding-env"><code>
+$dd if=/dev/sda of=/'ディレクトリ名'/raspberrypi-backup.img bs=1M
+            </code></pre>
+            　好きなディレクトリに好きなファイル名で保存すれば良い。今回は一度PC上に保存して、あとでRaspberry pi 3B+に繋いでいる500GBのHDに移した。sambaを介してスマホやWindowsPCからも読み書きできるのでかなり便利。
+            </p>
+            <a href="#menu">目次へ戻る</a>
+            </div>
+<!--全体のdivの終わり-->
         </div>
     </body>
 </html>

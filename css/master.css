@@ -10,7 +10,9 @@
 	     width:90%;
      }
 .coding-env {
-         border:2px black dashed;
+         color: #ffffff;
+         background-color: #000000;
+         overflow: scroll;
         }
 
 ul	{

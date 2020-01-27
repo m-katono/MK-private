@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <!-- jQuery.jsの読み込み -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+<!-- スムーズスクロール部分の記述 -->
+<script>
+$(function(){
+   // #で始まるアンカーをクリックした場合に処理
+   $('a[href^=#]').click(function() {
+      // スクロールの速度
+      var speed = 400; // ミリ秒
+      // アンカーの値取得
+      var href= $(this).attr("href");
+      // 移動先を取得
+      var target = $(href == "#" || href == "" ? 'html' : href);
+      // 移動先を数値で取得
+      var position = target.offset().top;
+      // スムーススクロール
+      $('body,html').animate({scrollTop:position}, speed, 'swing');
+      return false;
+   });
+});
+</script>
+        <link rel="stylesheet" href="./css/master.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+        <div class="top" id="top">
+        <h1><a href="https://shangyuanyezhengju.wixsite.com/mkpage" target="_blank"><img src="./photo/icon.jpg" alt="" width="80px" height="80px"></a>MK-private/second-page</h1>
+        <div class="menu"><h2>２ページ目</h2>
+            <a href="./index.html#menu">目次へ戻る</a><br>
+            ページ <a href="./index.html">1</a> 2
+            <p>
+                コードが長くなるとスクロールが大変なので、５個記事を書いたら違うページに移動することにした。
+            </p>
+        </div>
+            <div class="menu" id="i6">
+                <h3>Webページを微調整</h3>27/Jan/2020
+                <p>
+                　コツコツと記事を書いているとだんだんコードが縦長になってきてスクロールするのが大変なので、２ページ目に進めることにした。それに合わせていくつかの微調整をしたので記録。
+                </p>
+                <h4>アイコン画像を作成</h4>
+                <p>
+                    　ブラウザのタブやステータスバー、ブックマークに使用されるアイコン画像を作成した。何も置かないとブラウザ標準の画像（Chromeだと地球のマーク）が表示される。「ファビコン」と言って、サイトのルートディレクトリに「favicon.ico」のファイルを置いておけば良いらしい。.icoの拡張子のファイルはほぼ.pngのような物だが、作成できるソフトが限られているとのこと。いくつかのWebサービスやフリーソフトがあるらしいが、自分は全てのパソコンに<a href="https://www.gimp.org/" target="_blank">GIMP</a>をインストールしていて、それが.icoファイルの作成に対応していた。GIMPはPhotoShopに並ぶ高性能なソフトを無料で使えるということで人気のソフト。高機能すぎて使い方がわからないくらい。ただ、Linux上だとサクサク動くのにWindows上だと激重、Macだとその中間と言った感じ。
+                </p>
+                <h4>リンク先へスクロール</h4>
+                <p>
+                    　目次からそれぞれの記事へリンクを貼っているが、最近はカッコよくスクロールするサイトが多いので真似してみた。でもJavascriptはあまり知らないので、<a href="http://kyasper.com/jquery-tips/" target="_blank">こちらのサイト</a>から丸パクリさせていただいた。ありがとうございます。jQueryを読み込んで動きを指定するコードを書けば良いみたい。そのうちjQueryを使って動きのあるメニューなんかも作ってみたい。
+                </p>
+                <h4>httpsへリダイレクト</h4>
+                <p>
+                    　せっかくhttpsが使えるようになったので、httpへのアクセスをhttpsへリダイレクトすることにした。自分の場合は個人で学習・日記目的で運用しているサイトだし、今まで長らくhttpで運用していたわけでも無いので正直不要だが、やってみたかった。やり方としては「.htaccess」というファイルをサイトのルートディレクトリに入れておくらしく、<a href="https://keywordfinder.jp/blog/seo/http-https-redirect/" target="_blank">こちらのサイト</a>を参考にさせていただいた。ありがとうございます。内容はシンプル。
+                </p>
+                    <pre class="coding-env"><code>
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+                    </code></pre>
+                <p>
+                    この内容を.htaccessに書いてアップロードしておけば良いが、Windows上だと「.」から始まるファイル名は保存できないので、アップロードしてからファイル名を変更する。またはLinuxかMacで作った方が早い。
+                </p>
+                <h4>コード部分を見やすくする</h4>
+                <p>
+                    　ターミナル上で実行するコマンドやhtmlのコードは、コードっぽく見えるようにそれらしいスタイルにしたい。それには&lt;pre&gt;タグと&lt;code&gt;タグで囲む。
+                </p>
+                <pre class="coding-env"><code>
+htmlのコード
+&lt;pre class="pretag"&gt;&lt;code&gt;
+ここにコードを書く。
+スペースやTABもそのまま表現される。
+＜＞＆などはエスケープ文字で書く。
+&lt;/code&gt;&lt;/pre&gt;
+                </code></pre>
+                <p>
+                    preタグの中に「class="pretag"」と書いたので、それを使ってスタイルシートでスタイルを書く。
+                </p>
+                <pre class="coding-env"><code>
+cssのコード
+.pretag    {
+            color: #ffffff;  文字色、whiteでもいい
+            background-color: #000000;  背景色、blackでもいい
+            overflow: scroll; 飛び出る場合はスクロールを可能にする
+}
+                </code></pre>
+                <p>
+                    シンタックスハイライトなんかもできるみたいだけど、それはまた今度にしようと思う。
+                </p>
+                <a href="./index.html#menu">目次へ戻る</a><br>
+                <a href="./second-page.html#top">ページの先頭へ</a>
+            </div>
+<!--ここまで全体のスタイルを適用-->
+        </div>
+    </body>
+</html>

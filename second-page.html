@@ -120,6 +120,60 @@ cssのコード
                 <a href="./index.html#menu">目次へ戻る</a><br>
                 <a href="#top">ページの先頭へ</a>
             </div>
+<!--Chromeでスクロールが変-->
+            <div class="menu" id="i8">
+                <h3>Chromeでスクロールがおかしい</h3>28/Jan/2020
+                <p>
+                    先日ページ内でスクロールのアニメーションをするためにjQueryを使った。最初はスマホで気付いたのだが、ブラウザによってはちゃんとスクロールするものの、Chromeだとちゃんと動かなかった。「キャッシュが残ってるからかな？」くらいに思っていたが、PCでもChromeでは動かなかったので対策することにした。<br>今までのコードはこんな感じ。
+                </p>
+                <pre class="coding-env"><code>
+1 &lt;!DOCTYPE html>
+2 &lt;html lang="ja" dir="ltr">
+3     &lt;head>
+4         &lt;meta charset="utf-8">
+5         &lt;meta name="viewport" content="width=device-width,initial-scale=1">
+6         &lt;!-- jQuery.jsの読み込み -->
+7         &lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js">
+8         &lt;/script>
+9
+10         &lt;!-- スムーズスクロール部分の記述 -->
+11         &lt;script>
+12         $(function(){
+13            // #で始まるアンカーをクリックした場合に処理
+14            $('a[href^=#]').click(function() {
+15           // デフォルトのイベントをキャンセル
+16               event.preventDefault();
+17               // スクロールの速度
+18               var speed = 800; // ミリ秒
+19               // アンカーの値取得
+20               var href= $(this).attr("href");
+21              // 移動先を取得
+22              var target = $(href == "#" || href == "" ? 'html' : href);
+23              // 移動先を数値で取得
+24              var position = target.offset().top;
+25              // スムーススクロール
+26              $('body,html').animate({scrollTop:position}, speed, 'swing');
+27              return false;
+28               });
+29        });
+30        &lt;/script>
+〜省略〜
+                </code></pre>
+                <p>
+                    こんな感じのコードだった。どこが悪いのか分からなかったのでChromeのデベロッパーツールで表示したところ、二つのエラーが出ていた。<br>
+                    <ul>
+                        <li>$ is not denied →12行目の$のこと</li>
+                        <li>Mixed content →混合コンテンツ</li>
+                    </ul>
+                    リンク先へスクロールさせるためにまずは７行目でjQueryをインポートするのだが、「httpsの中でhttpを読み込んじゃダメ」っていうのが「Mixed content」らしい。そのせいでjQueryを読み込めないから11行目移行を認識できず、$がエラーになる。<br>
+                    7行目のurlを「https://ajax〜」にしたら解決した。
+                </p>
+                <p>
+                    ちなみに&lt;pre>タグの中にhtmlのコードを書くコツが分かってきた。htmlとして認識されちゃうと表示されなかったり文字化けしたりするので、htmlとかmetaとかscriptの最初のカッコだけエスケープ文字で書けば問題ないみたい。
+                </p>
+                <a href="./index.html#menu">目次へ戻る</a><br>
+                <a href="#top">ページの先頭へ</a>
+            </div>
 <!--ここまで全体のスタイルを適用-->
         </div>
     </body>

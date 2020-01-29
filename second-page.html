@@ -187,17 +187,17 @@ cssのコード
                 </p>
                 <pre class="coding-env"><code>
 # /etc/apache2/conf-availalble/serve-cgi-bin.confの一部を編集。
-    10     <IfDefine ENABLE_USR_LIB_CGI_BIN>
+    10     &lt;IfDefine ENABLE_USR_LIB_CGI_BIN>
             # ↓ScriptAlias /URL上のディレクトリ/ /実際のディレクトリ/   ←最後に/
     11         ScriptAlias /cgi-bin/ /PATH/TO/cgi-bin/
             # ↓Directory "実際のディレクトリ"    ←最後に/なし
-    12         <Directory "/PATH/TO/cgi-bin">
+    12         &lt;Directory "/PATH/TO/cgi-bin">
     13             AddHandler cgi-script .cgi .py   ←cgiとして動かす拡張子を登録
     14             AllowOverride None
     15             Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
     16             Require all granted
-    17         </Directory>
-    18     </IfDefine>
+    17         &lt;/Directory>
+    18     &lt;/IfDefine>
 
 # cgidを動かすコマンドを実行（シンボリックリンクを作るらしい）
 # そしてapache2を再起動

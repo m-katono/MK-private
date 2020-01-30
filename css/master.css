@@ -13,7 +13,21 @@
          color: #ffffff;
          background-color: #000000;
          overflow: scroll;
+	 border-radius: 10px;
         }
+
+.button	{
+	 color: #fff;
+	 text-decoration: none;
+	 font-size: 1em;
+	 background-color: #00BCD4;
+	 width: 100px;
+	 display: block;
+	 text-align: center;
+	 padding: 5px;
+	 border-radius: 10px;
+	 box-shadow: 0 2px 10px 0 #9E9E9E;
+}
 
 ul	{
        	 background: rgb(62, 130, 156);
@@ -26,7 +40,9 @@ body    {color: #000000;
          background-attachment: fixed;}
 h1      {
          color: #000000;
-         background-color: rgb(62, 130, 156);}
+         background-color: rgb(62, 130, 156);
+ 	 border-radius: 10px;
+ }
 
 img,iframe{
 	max-width:90%;

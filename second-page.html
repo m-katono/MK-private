@@ -8,19 +8,21 @@
 
 <!-- スムーズスクロール部分の記述 -->
 <script type="text/javascript" src="./javascript/scroll.js"></script>
-        <link rel="stylesheet" href="./css/master.css" type="text/css">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
         <title>MK-private</title>
     </head>
     <body>
         <div class="top" id="top">
         <h1><a href="https://shangyuanyezhengju.wixsite.com/mkpage" target="_blank"><img src="./photo/icon.jpg" alt="" width="80px" height="80px"></a>MK-private</h1>
-        <div class="menu"><h2>２ページ目</h2>
+        <div class="menu"><h2>Page 2</h2>
             <a href="./index.html#menu" class="button">目次へ戻る</a><br>
-            ページ <a href="./index.html" class="pagenum">1</a> 2
+            Page <a href="./index.html" class="pagenum">1</a> 2 <a href="./third-page.html" class="pagenum">3</a>
             <p>
                 コードが長くなるとスクロールが大変なので、５個記事を書いたら違うページに移動することにした。
             </p>
         </div>
+<!--ここから記事-->
             <div class="menu" id="i6">
                 <h3>Webページを微調整</h3>27/Jan/2020
                 <p>
@@ -32,7 +34,7 @@
                 </p>
                 <h4>リンク先へスクロール</h4>
                 <p>
-                    　目次からそれぞれの記事へリンクを貼っているが、最近はカッコよくスクロールするサイトが多いので真似してみた。でもJavascriptはあまり知らないので、<a href="http://kyasper.com/jquery-tips/" target="_blank">こちらのサイト</a>から丸パクリさせていただいた。ありがとうございます。jQueryを読み込んで動きを指定するコードを書けば良いみたい。そのうちjQueryを使って動きのあるメニューなんかも作ってみたい。
+                    　目次からそれぞれの記事へリンクを貼っているが、最近はカッコよくスクロールするサイトが多いので真似してみた。でもJavascriptはあまり知らないので、<a href="http://kyasper.com/jquery-tips/" target="_blank">こちらのサイト</a>から丸パクリさせていただいた。ありがとうございます。<mark>jQuery</marK>を読み込んで動きを指定するコードを書けば良いみたい。そのうちjQueryを使って動きのあるメニューなんかも作ってみたい。
                 </p>
                 <h4>httpsへリダイレクト</h4>
                 <p>
@@ -200,7 +202,7 @@ cssのコード
                 <p>
                 Sample：入力した文字を別ページで表示する<br>
                 <form action="/cgi-bin/test.py" method="POST">
-                    <input type="text" name="text" value="value"/>
+                    <input type="text" name="text" value="Input here"/>
                     <input type="submit" name="submit"/>
                 </form>
                 <br>
@@ -211,7 +213,7 @@ cssのコード
             <div class="menu" id="i10">
                 <h3>アクセスカウンタを設置する</h3>31/Jan/2020
                 <p>
-                    　python3でcgiを動かす練習の一環として、アクセスカウンタを作って見ることにした。python2系での資料がネット上にたくさんあるので、まずはそれを参考に作ってみた。まずは単純にアクセス数の数字だけを表示する目的で、テキストファイルを用意して読み書きするようにした。<br>
+                    　<mark>python3でcgiを動かす</mark>練習の一環として、アクセスカウンタを作って見ることにした。python2系での資料がネット上にたくさんあるので、まずはそれを参考に作ってみた。まずは単純にアクセス数の数字だけを表示する目的で、テキストファイルを用意して読み書きするようにした。<br>
                     プログラムの流れとしては、
                     <ol>
                         <li>fcntlとcgiのモジュールをimportする</li>

@@ -18,9 +18,9 @@
             <div class="menu"><h2>〜目的〜</h2>
                 2020年１月２２日から運用
 	    <object data="/dat/count.dat" type="text/plain" width="100" height="10"></object>
-		<p>
-                　最終的にはpython3でcgiをいくつか書いて動かしてみたい。初心者なのでhtml、cssを学習しながら環境づくりをする。<br>
-                　せっかくraspberrypi zeroを使っているので、webサーバーの使い方なんかも練習してみる。。</p>
+		        <p>
+                    　Webサーバーの使い方を勉強しながら、自分の備忘録的な記事を不定期で書いてゆくつもりです。cgiをPython3で書いてみたり、データベースなんかも使ってみたいと考えています。データベースを何に使うかが決まっていないので、まずは「作りたいもの」を考えます。
+                </p>
                 ＊問題のあるリンク等があればご連絡ください。すぐに削除します。<br>
                 "jj1kmf＠jarl.com"（＠は半角）
                 <div class="coding-env">
@@ -62,8 +62,12 @@
                 <li><a href="./second-page.html#i8">#8-Chromeでスクロールがおかしい 28/Jan/2020</a></li>
                 <li><a href="./second-page.html#i9">#9-python3とapache2でcgiを動かしてみる 29/Jan/2020</a></li>
                 <li><a href="./second-page.html#i10">#10-アクセスカウンタを設置する 31/Jan/2020</a></li>
+        <h3>Page 3</h3>
             </ol>
-            ページ 1 <a href="./second-page.html" class="pagenum">2</a>
+            Page 1 <a href="./second-page.html" class="pagenum">2</a> <a href="./third-page.html" class="pagenum">3</a>
+            <p>
+                ＊今のところは、Topページの目次から各記事にリンクする形です。そのうち不便になってきたらメニューを作るかもしれません。
+            </p>
             </div>
         </p>
 <!--写真の幅なんかを調整して見る-->
@@ -84,7 +88,7 @@
             <p>
             　最近中古で買ったMacBookAirを使いたかったがRAMが4GBしかないので重いやつは避けたい。UbuntuとWindows10の環境ではVimかIntellijを使っているので、HTMLならVimでも良いが（IntellijはJava,Kotlin,Rustに使っている）、せっかくだから新しいのを試してみたくなった。</p>
             <p>
-	    　最低限の機能として言語ごとにシンタックスカラーリングしてくれてタブ機能があれば良いのだが、そんなの今時どれでも付いてる。候補としてはVSCode、Atom、やっぱりVimあたりが目に止まった。VSCodeはなんだか重そうなきがする。VimはCUIのイメージだし自分が使いやすい環境まで仕上げるのが大変そう。Atomはプラグインで簡単にカスタマイズできそうで、<strong>GitHubが公開しているエディタ</strong>ということでなんとなく印象が良い。そんな感じでAtomにしてみた。</p>
+	    　最低限の機能として言語ごとにシンタックスカラーリングしてくれてタブ機能があれば良いのだが、そんなの今時どれでも付いてる。候補としてはVSCode、Atom、やっぱりVimあたりが目に止まった。VSCodeはなんだか重そうなきがする。VimはCUIのイメージだし自分が使いやすい環境まで仕上げるのが大変そう。Atomはプラグインで簡単にカスタマイズできそうで、<strong>GitHubが公開しているエディタ</strong>ということでなんとなく印象が良い。そんな感じで<mark>Atom</mark>にしてみた。</p>
             <img src="./photo/atom.png" alt="Beer" width="600px" oncontextmenu="return false;">
             <p>
             　使ってみた感じとしては「かなり良い感じ」。とても無料とは思えない。いろいろな言語で使えるようだが、とりあえずHTML・CSSを学習しながらコツコツ書くには使いやすいと思う。プラグインは以下のものを入れている。</p>
@@ -129,7 +133,7 @@ $sudo ufw status
             <div class="menu" id="i3">
             <h3>https対応（に失敗）</h3>25/Jan/2020
             <p>
-            　Webサーバー構築の記事をネットで色々見ていたら「https」の話がたくさん出ていた。そういえば何年か前からhttps://から始まるサイトが多いと思っていたけれどそんなに気にしていなかった。よくよく調べるとhttpsの「s」はセキュアの「s」らしいので、「このご時世、結構大事じゃん」と思うようになった。たまたま外出中だったが「思い立ったが吉日」主義なので、スマホで作業を始めた。（のは失敗だった。）
+            　Webサーバー構築の記事をネットで色々見ていたら<mark>「https」</mark>の話がたくさん出ていた。そういえば何年か前からhttps://から始まるサイトが多いと思っていたけれどそんなに気にしていなかった。よくよく調べるとhttpsの「s」はセキュアの「s」らしいので、「このご時世、結構大事じゃん」と思うようになった。たまたま外出中だったが「思い立ったが吉日」主義なので、スマホで作業を始めた。（のは失敗だった。）
             </p>
             <p>
             　基本的には<a href="https://github.com/disco-v8/DirectEdit/" target="_blank">ココ</a>の通りにやれば良いらしいが、他の方の親切なサイトも参考にさせていただいた。幸いMyDNSでhttpsする記事はいくつも見つかる。残念ながらSSLもPHPも使ったことないので書いてある手順通りに進める。まずはPHPとcertbotが必要だと書いてあるのでインストール。<br>
@@ -155,7 +159,7 @@ $sudo apt install certbot
             <pre class="coding-env"><code>
 $sudo apt install php_mbstring
             </code></pre>
-            やっぱりaptは便利。そして<a href="https://github.com/disco-v8/DirectEdit/" target="_blank">昨日のサイト</a>を参考にダウンロード→unzip→cerbotコマンドと続けるが、またエラー。。。今度は落ち着いてエラーの内容を読むと、何やらacmeがダメです的なエラー。ログファイルを見るとやっぱりacmeなんちゃらで404と出ていた。ということはサバーに接続できないエラーのようなのでｃertbotを実行した時の長いオプションの中にあるurlが怪しいと思って確認したら、directoryをderectoryと打っていた。くだらない。<br>
+            やっぱりaptは便利。そして<a href="https://github.com/disco-v8/DirectEdit/" target="_blank" oncontextmenu="return false;">昨日のサイト</a>を参考にダウンロード→unzip→cerbotコマンドと続けるが、またエラー。。。今度は落ち着いてエラーの内容を読むと、何やらacmeがダメです的なエラー。ログファイルを見るとやっぱりacmeなんちゃらで404と出ていた。ということはサバーに接続できないエラーのようなのでｃertbotを実行した時の長いオプションの中にあるurlが怪しいと思って確認したら、directoryをderectoryと打っていた。くだらない。<br>
             　ドキドキしながらもう一度certbotコマンドを実行したらやっとSSL証明書の作成に成功した。これで今日の目的は達成したも同然と思いapache2を再起動してhttps://で<a href="https://m-katono.mydns.jp" target="_blank">自分のサイト</a>にアクセスしてみたがまた繋がらなかった。ブラウザに表示される「保護されていない通信」がやっと消えると思ったのにガックリ。</p>
             <p>
             　気を取り直して最初から手順を確認してみたらまずルーターのポート転送をしていなかった。ポートの設定をして一応再起動したら「インターネットの接続を確認してください」から「接続が拒否されました」に変わったので一歩前進した。今のところhttp://では繋がるがhttps://だとダメなので443ポートを読んでいない可能性が高い。次はapache2.conf→conf.d内→sites-avairable内という感じで順番に設定を確認して行ったが問題なさそう。ちゃんとListen443とかSSLEngin onとか書いてある。でもnetstat -lnしてみてもListen443してない。なんだこりゃ。

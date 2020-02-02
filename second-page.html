@@ -40,11 +40,13 @@
                 <p>
                     　せっかくhttpsが使えるようになったので、httpへのアクセスをhttpsへリダイレクトすることにした。自分の場合は個人で学習・日記目的で運用しているサイトだし、今まで長らくhttpで運用していたわけでも無いので正直不要だが、やってみたかった。やり方としては「.htaccess」というファイルをサイトのルートディレクトリに入れておくらしく、<a href="https://keywordfinder.jp/blog/seo/http-https-redirect/" target="_blank">こちらのサイト</a>を参考にさせていただいた。ありがとうございます。内容はシンプル。
                 </p>
-                    <pre class="coding-env"><code>
-RewriteEngine on
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-                    </code></pre>
+		<blockquote>
+			<p>
+			RewriteEngine on<br>
+			RewriteCond %{HTTPS} off<br>
+			RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]<br>
+			</p>
+		</blockquote>
                 <p>
                     この内容を.htaccessに書いてアップロードしておけば良いが、Windows上だと「.」から始まるファイル名は保存できないので、アップロードしてからファイル名を変更する。またはLinuxかMacで作った方が早い。
                 </p>
@@ -53,7 +55,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
                     　ターミナル上で実行するコマンドやhtmlのコードは、コードっぽく見えるようにそれらしいスタイルにしたい。それには&lt;pre&gt;タグと&lt;code&gt;タグで囲む。
                 </p>
                 <pre class="coding-env"><code>
-htmlのコード
+&lt;!-- htmlのコード -->
 &lt;pre class="pretag"&gt;&lt;code&gt;
 ここにコードを書く。
 スペースやTABもそのまま表現される。
@@ -64,11 +66,11 @@ htmlのコード
                     preタグの中に「class="pretag"」と書いたので、それを使ってスタイルシートでスタイルを書く。
                 </p>
                 <pre class="coding-env"><code>
-cssのコード
+/* cssのコード */
 .pretag    {
-            color: #ffffff;  #文字色、whiteでもいい
-            background-color: #000000;  #背景色、blackでもいい
-            overflow: scroll; #飛び出る場合はスクロールを可能にする
+            color: #ffffff;  /* 文字色、whiteでもいい */
+            background-color: #000000;  /* 背景色、blackでもいい */
+            overflow: scroll; /* 飛び出る場合はスクロールを可能にする */
 }
                 </code></pre>
                 <p>
@@ -99,7 +101,7 @@ cssのコード
                     こういうよく使うツールは人によって相性があると思うし、いろいろ使ってみて自分に合った物を選ぶのがベストだろうと思う。自分はQuickEditを気にってしまったので、しばらくは飽きることなく使えそう。
                 </p>
                 <a href="https://play.google.com/store/apps/details?id=com.rhmsoft.edit" target="_blank">QuickEdit</a><br>
-                リンクはQuickEdit無料版のGooglePlay（PC)<br>
+                リンクはQuickEdit無料版のGooglePlay<br>
                 <a href="./index.html#menu" class="button">目次へ戻る</a><br>
                 <a href="#top" class="button">先頭へ</a>
             </div>
@@ -148,8 +150,8 @@ cssのコード
                         <li>$ is not denied →12行目の$のこと</li>
                         <li>Mixed content →混合コンテンツ</li>
                     </ul>
-                    リンク先へスクロールさせるためにまずは７行目でjQueryをインポートするのだが、「httpsの中でhttpを読み込んじゃダメ」っていうのが「Mixed content」らしい。そのせいでjQueryを読み込めないから11行目移行を認識できず、$がエラーになる。<br>
-                    7行目のurlを「https://ajax〜」にしたら解決した。
+		    リンク先へスクロールさせるためにまずは７行目でjQueryをインポートするのだが、「httpsの中でhttpを読み込んじゃダメ」っていうのが「Mixed content」らしい。そのせいでjQueryを読み込めないから11行目移行を認識できず、$がエラーになる。7行目のurlを「https://ajax〜」にしたら解決した。<br>
+		    <small>（スクロースさせる部分の記述は、ページが増えてきたので別ファイルから読み込むように変更した 02/Feb/2020）</small>
                 </p>
                 <p>
                     　ちなみに&lt;pre>タグの中にhtmlのコードを書くコツが分かってきた。htmlとして認識されちゃうと表示されなかったり文字化けしたりするので、htmlとかmetaとかscriptの最初のカッコだけエスケープ文字で書けば問題ないみたい。
@@ -229,7 +231,7 @@ cssのコード
                 <p>
                     　実際に動くようになってからもChromeのデベロッパーツールで確認すると404 Errorが出ていた。これはFile Not Foundのエラーだが、カウンタはちゃんと動いている。<br>
                     どういうことかというと、例えばWebページのルートディレクトリの上の階層にdatディレクトリを置いて、その中に保存用count.datファイルを作ったとする。cgiから呼び出すときには相対パスでOKだが、ブラウザから見ると「https://example.com/dat/count.dat」にアクセスしているように見えるので、404になるみたい。<br>
-                    今回はアクセ数数を保存するだけなためみられても構わないファイルなので、とりあえずルート以下にdatティレクトリのシンボリックリンクを置いてエラーを消しておいた。プログラムはこんな感じ。
+		    今回はアクセ数数を保存するだけなためみられても構わないファイルなので、とりあえずルート以下にdatティレクトリのシンボリックリンクを置いてエラーを消しておいた。<small>(同じ名前のダミーのファイルに変えた 02/Feb/2020)</small>プログラムはこんな感じ。
                 </p>
                 <pre class="coding-env"><code>
 #!/usr/bin/Python3

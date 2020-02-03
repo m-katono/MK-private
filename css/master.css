@@ -45,6 +45,12 @@
      background-color: rgba(62, 130, 156, 0.6);
      text-align: center;
 }
+
+a{
+     text-decoration: none;
+     color: blue;
+     font-weight: bold;
+}
 ul	{
        	 background: rgb(62, 130, 156);
  	}

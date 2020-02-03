@@ -67,11 +67,11 @@ $sudo apt install mariadb-server
                     〜省略〜<br>
                     ・<br>
                     ・<br>
-                    &lt;Directory "/PATH/TO/Website/"&gt;<br>
+		    &lt;Directory "/PATH/TO/Website/"><br>
                         Option FollowSymLinks<br>
-                        AllowOverride All       #ここをNoneからAllにする<br>
+                        AllowOverride All          #ここをNoneからAllにする<br>
                         Require all granted<br>
-                    &le;/Directory&gt;
+		    &lt;/Directory>
                 </blockquote>
                 　これで動くと思うが、500 Internal Server Errorになる場合にはApache2のrewriteモジュールが無効になっているかもしれないので、調べて有効にする。
             </p>

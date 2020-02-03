@@ -117,7 +117,18 @@ $sudo systemctl restart apache2
                 　正直なところハードウェアに何らかのトラブルが出ていることを覚悟していた。古いし。でも、セーフモードで起動したら問題が出現せず、再起動したらkernel_taskは正常に戻っていた。めでたし、めでたし。
                 <img src="./photo/activity_monitor.png" alt="activity monitor" width="600px" oncontextmenu="return false;">
             </p>
-                　
+            <p>
+                <mark>＊06//Feb/2020 追記</mark><br>
+                　その後、場合によってはまたkernel_taskが暴走することがあった。起動直後だし真冬なので実際にCPU温度が高い事はありえない。原因究明のためにCPU温度を監視できる環境を準備した。　
+            </p>
+            <pre class="coding-env"><code>
+$sudo gem install iStats -n /usr/local/debian
+$istats all
+            </code></pre>
+            <p>
+                istatsを使うと各部の温度センサの値やファンの回転速度をターミナルからコマンドで表示できる。早速確認したところ、kernel_taskがおかしいときにはCPU温度がずっと<strong>-128.0°C</strong>であることが分かった。セーフモードで起動してもそのまま-128.0°Cのときもあれば、平常の温度に戻るときもある。<br>
+                マザーボード上の温度センサの不具合か温度を読み取るソフト側の不具合だが、どちらにしろ結構厄介な気がする。
+            </p>
             <a href="./index.html#menu" class="button">目次へ戻る</a><br>
             <a href="#top" class="button">先頭へ</a>
 <!--ここがdivの最後-->

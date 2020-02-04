@@ -22,7 +22,14 @@
                     　Webサーバーの使い方を勉強しながら、自分の備忘録的な記事を不定期で書いてゆくつもりです。cgiをPython3で書いてみたり、データベースなんかも使ってみたいと考えています。データベースを何に使うかが決まっていないので、まずは「作りたいもの」を考えます。
                 </p>
                 ＊問題のあるリンク等があればご連絡ください。すぐに削除します。<br>
-                "jj1kmf＠jarl.com"（＠は半角）
+                <h3>テスト運用の送信フォーム</h3>
+                <form action="/cgi-bin/sendmail.py" method="POST">
+                    お名前：<input type="text" name="name" size="30"/><br>
+                    メール：<input type="text" name="address" size="50"/><br>
+                    本　文：<br>
+                    送　信　<textarea type="text" name="text" rows="10" cols="50"></textarea><br>
+                    <input type="submit" value="送信" name="button"/>
+                </form>
                 <div class="coding-env">
                 <h3>環境</h3>
 		                <p>

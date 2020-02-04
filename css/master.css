@@ -73,3 +73,14 @@ h1      {
 img	{
 	max-width: 90%
 }
+
+textarea    {
+         width: 250;
+         height: 100;
+         overflow: aputo;
+         background-color: #ffffff;
+         border: 1px #999999 solid;
+         scrollbar-base-color: #9999dd;
+         scrollbar-arrow-color: #ffa500;
+         color: #000000;
+}

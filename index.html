@@ -25,12 +25,12 @@
                 <h3>テスト運用の送信フォーム</h3>
                 <form action="/cgi-bin/sendmail.py" method="POST">
 		    <label for="name">お名前：</label>
-                    <input type="text" name="name" id="name" size="20" maxlength="30" required/><br>
+                    <input type="text" name="name" id="name" size="20" maxlength="30" placeholder="your name" required/><br>
 		    <label for="email">メール：</label>
-                    <input type="email" name="address" id="email" size="20" maxlength="50" required/><br>
+                    <input type="email" name="address" id="email" size="20" maxlength="50" placeholder="mail@example.com" required/><br>
                     <br>
 		    <p><label for="body">本　文</label></p>
-                    <textarea type="text" name="text" id="body" rows="10" cols="30" maxlength="500" required></textarea><br>
+                    <textarea type="text" name="text" id="body" rows="10" cols="32" maxlength="500" placeholder="text area" required></textarea><br>
 		    <p><input type="submit" value="送信" name="button" width="30" height="10"/></p>
                 </form>
                 <div class="coding-env">

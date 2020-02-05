@@ -24,13 +24,13 @@
                 ＊問題のあるリンク等があればご連絡ください。すぐに削除します。<br>
                 <h3>テスト運用の送信フォーム</h3>
                 <form action="/cgi-bin/sendmail.py" method="POST">
-		    <label for="name">お名前：</label>
+			<label for="name">お名前：</label><br>
                     <input type="text" name="name" id="name" size="20" maxlength="30" placeholder="your name" required/><br>
-		    <label for="email">メール：</label>
+		    <label for="email">メール：</label><br>
                     <input type="email" name="address" id="email" size="20" maxlength="50" placeholder="mail@example.com" required/><br>
-		    <p><label for="body">本　文</label></p>
+		    <label for="body">本　文：</label><br>
                     <textarea type="text" name="text" id="body" rows="10" cols="31" maxlength="500" placeholder="text area" required></textarea><br>
-		    <p><input type="submit" value="送信" name="button" width="30" height="10"/></p>
+		    <p><input type="submit" value="送　信" name="button"/></p>
                 </form>
                 <div class="coding-env">
                 <h3>環境</h3>

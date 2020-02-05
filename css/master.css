@@ -14,7 +14,7 @@
          color: #ffffff;
          background-color: #000000;
          overflow: scroll;
-	 border-radius: 10px;
+	 border-radius: 5px;
         }
 
 .button	{
@@ -54,9 +54,6 @@ a{
      font-weight: bold;
      text-shadow: 2px 2px 3px black;
 }
-ul	{
-       	 background: rgb(62, 130, 156);
- 	}
 
 body    {color: #000000;
 	     word-wrap:break-word;
@@ -65,7 +62,7 @@ body    {color: #000000;
          background-attachment: fixed;
  }
 
-h1      {
+h1,form,ul,blockquote    {
          color: #000000;
          background-color: rgb(62, 130, 156);
  }
@@ -74,7 +71,7 @@ img	{
 	max-width: 90%
 }
 
-textarea    {
+textarea,input    {
          width: 250;
          height: 100;
          overflow: aputo;
@@ -83,4 +80,5 @@ textarea    {
          scrollbar-base-color: #9999dd;
          scrollbar-arrow-color: #ffa500;
          color: #000000;
+         border-radius: 5px;
 }

@@ -16,10 +16,9 @@
         <div class="top" id="top">
         <h1><a href="https://shangyuanyezhengju.wixsite.com/mkpage" target="_blank"><img src="./photo/icon.jpg" alt="" width="80px" height="80px"></a><a href="https://m-katono.mydns.jp">MK-private</a></h1>
         <div class="menu"><h2>Page 2</h2>
-            <a href="./index.html#menu" class="button">目次へ戻る</a><br>
-            Page <a href="./index.html" class="pagenum">1</a> 2 <a href="./third-page.html" class="pagenum">3</a>
+            Page-<a href="./index.html" class="pagenum">menu</a>-<a href="./first-page.html" class="pagenum">1</a>-2-<a href="./third-page.html" class="pagenum">3</a>-
             <p>
-                コードが長くなるとスクロールが大変なので、５個記事を書いたら違うページに移動することにした。
+                Webフレームワークを使ってみたい。FlaskとかBottleとか。デザインセンス無いから難しいけど。
             </p>
         </div>
 <!--ここから記事-->
@@ -39,13 +38,10 @@
                 <h4>httpsへリダイレクト</h4>
                 <p>
                     　せっかくhttpsが使えるようになったので、httpへのアクセスをhttpsへリダイレクトすることにした。自分の場合は個人で学習・日記目的で運用しているサイトだし、今まで長らくhttpで運用していたわけでも無いので正直不要だが、やってみたかった。やり方としては「.htaccess」というファイルをサイトのルートディレクトリに入れておくらしく、<a href="https://keywordfinder.jp/blog/seo/http-https-redirect/" target="_blank">こちらのサイト</a>を参考にさせていただいた。ありがとうございます。内容はシンプル。
-                </p>
 		<blockquote>
-			<p>
 			RewriteEngine on<br>
 			RewriteCond %{HTTPS} off<br>
 			RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]<br>
-			</p>
 		</blockquote>
                 <p>
                     この内容を.htaccessに書いてアップロードしておけば良いが、Windows上だと「.」から始まるファイル名は保存できないので、アップロードしてからファイル名を変更する。またはLinuxかMacで作った方が早い。
@@ -53,7 +49,6 @@
                 <h4>コード部分を見やすくする</h4>
                 <p>
                     　ターミナル上で実行するコマンドやhtmlのコードは、コードっぽく見えるようにそれらしいスタイルにしたい。それには&lt;pre&gt;タグと&lt;code&gt;タグで囲む。
-                </p>
                 <pre class="coding-env"><code>
 &lt;!-- htmlのコード -->
 &lt;pre class="pretag"&gt;&lt;code&gt;
@@ -62,9 +57,7 @@
 ＜＞＆などはエスケープ文字で書く。
 &lt;/code&gt;&lt;/pre&gt;
                 </code></pre>
-                <p>
                     preタグの中に「class="pretag"」と書いたので、それを使ってスタイルシートでスタイルを書く。
-                </p>
                 <pre class="coding-env"><code>
 /* cssのコード */
 .pretag    {
@@ -73,7 +66,6 @@
             overflow: scroll; /* 飛び出る場合はスクロールを可能にする */
 }
                 </code></pre>
-                <p>
                     シンタックスハイライトなんかもできるみたいだけど、それはまた今度にしようと思う。
                 </p>
                 <a href="./index.html#menu" class="button">目次へ戻る</a><br>
@@ -110,7 +102,6 @@
                 <h3>Chromeでスクロールがおかしい</h3>28/Jan/2020
                 <p>
                     　先日ページ内でスクロールのアニメーションをするためにjQueryを使った。最初はスマホで気付いたのだが、ブラウザによってはちゃんとスクロールするものの、Chromeだとちゃんと動かなかった。「キャッシュが残ってるからかな？」くらいに思っていたが、PCでもChromeでは動かなかったので対策することにした。<br>今までのコードはこんな感じ。
-                </p>
                 <pre class="coding-env"><code>
 1 &lt;!DOCTYPE html>
 2 &lt;html lang="ja" dir="ltr">
@@ -169,7 +160,7 @@
                         <li>Apache2.4</li>
                         <li>Python3.7.3</li>
                     </ul>
-                </p>
+
                 <pre class="coding-env"><code>
 # /etc/apache2/conf-availalble/serve-cgi-bin.confの一部を編集。
 〜省略〜
@@ -195,13 +186,12 @@
     $ apache2ctl -M | grep cgi
     cgid_module (shared)
                 </code></pre>
-                <p>
                     　そして設定したディレクトリに「cgi-bin」というディレクトリを作り、中に実行ファイルを入れてパーミッションは755にしておく。これでちゃんと動いたが、最初にWebルートティレクトリにcgi-binを置いてしまってセキュリティ上よくない気がしたので、場所を移した。そうしたらパーミッションエラーやタイプミスやいろいろな失敗とともになぜかシンタックスエラーで.pemファイルが読み込めなくなり、２時間ハマった。404とか500なんかのエラーや、cgiのコードがそのまま表示されるなどして苦しんだが、ほとんどタイプミスだった。。。
                 </p>
                 <p>
                     　今回はhtmlページにフォームを置いて、それを受け取ったcgiが別のページを表示するだけの簡単なサンプルを作成した。
                 </p>
-                <p>
+
                 Sample：入力した文字を別ページで表示する<br>
                 <form action="/cgi-bin/test.py" method="POST">
                     <input type="text" name="text" value="Input here"/>
@@ -232,7 +222,7 @@
                     　実際に動くようになってからもChromeのデベロッパーツールで確認すると404 Errorが出ていた。これはFile Not Foundのエラーだが、カウンタはちゃんと動いている。<br>
                     どういうことかというと、例えばWebページのルートディレクトリの上の階層にdatディレクトリを置いて、その中に保存用count.datファイルを作ったとする。cgiから呼び出すときには相対パスでOKだが、ブラウザから見ると「https://example.com/dat/count.dat」にアクセスしているように見えるので、404になるみたい。<br>
 		    今回はアクセ数数を保存するだけなためみられても構わないファイルなので、とりあえずルート以下にdatティレクトリのシンボリックリンクを置いてエラーを消しておいた。<small>(同じ名前のダミーのファイルに変えた 02/Feb/2020)</small>プログラムはこんな感じ。
-                </p>
+
                 <pre class="coding-env"><code>
 #!/usr/bin/Python3
 
@@ -290,7 +280,6 @@ with open(dat, mode='w') as f:
 # htmlを出力
 print(count_code % (count))
                 </code></pre>
-                <p>
                 　index.htmlの方からは&lt;iframe>&lt;/iframe>でsrcにcgiのパスを指定し、widthとheight属性で大きさを決めて表示している。
             </p>
             <a href="./index.html#menu" class="button">目次へ戻る</a><br>

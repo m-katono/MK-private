@@ -5,7 +5,6 @@
 }
 
 .menu_list label {
-    font-size: 2em;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.5s;

@@ -10,6 +10,9 @@
          background-color: rgba(62, 130, 156, 0.8);
 	     width:100%;
      }
+.menu label{
+         font-weight: bold;
+}
 .coding-env {
          color: #ffffff;
          background-color: #000000;

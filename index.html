@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="./css/master.css" type="text/css">
+        <link rel="stylesheet" href="./css/menu.css" type="text/css">
         <title>MK-private</title>
     </head>
         <body>
@@ -52,9 +53,12 @@
 
 -->
         <p>
-            <div class="menu" id="menu">
-            <h2>目次</h2>
-            <ul class="menu-class" type="none">
+        <div class="menu_list" id="menu">
+        <label for="menu_title">目次</label>
+        ↑クリックして展開↑
+        <input type="checkbox" id="menu_title" class="menu_check" />
+        <div class="menus">
+        <ul class="menu-class" type="none">
 		<h3>Page 1</h3>
                 <li><a href="./first-page.html#i1">#1-エディタを選ぶ 22/Jan/2020</a>
                 <li><a href="./first-page.html#i2">#2-Raspberry pi zero側の準備 24/Jan/2020</a>
@@ -74,6 +78,7 @@
                 <li><a href="./third-page.html#i14">#14-送信フォームを作る　06/Feb/2020</a></li>
                 <li><a href="./third-page.html#i15">#15-Apache2.4の設定ファイルについて　07/Feb/2020</a></li>
             </ul>
+        </div>
             Page-menu-<a href="first-page.html" class="pagenum">1</a>-<a href="./second-page.html" class="pagenum">2</a>-<a href="./third-page.html" class="pagenum">3</a>-
             <p>
                 ＊今のところは、Topページの目次から各記事にリンクする形です。そのうち不便になってきたらメニューを作るかもしれません。

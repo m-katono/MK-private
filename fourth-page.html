@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="jp" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./css/master.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+        <div class="top" id="top">
+            <h1><a href="https://shangyuanyezhengju.wixsite.com/mkpage" target="_blank" rel="noopener"><img src="./photo/icon.jpg" alt="" width="80px" htight="80px"></a><a href="https://m-katono.mydns.jp">MK-private</a></h1>
+            <div class="menu"><h2>Page 4</h2>
+            Page-<a href="./index.html#menu" class="pagenum">menu</a>-<a href="./index.html" class="pagenum">1</a>-<a href="./second-page.html" class=pagenum>2</a>-<a href="./third-page.html" class="pagenum">3</a>-4-
+            <p>
+                　htmlタグをスマホで書くのがめんどくさいので、MarkDown記法を使ってみることにする。
+            </p>
+            </div>
+<!--cssを修正してみる-->
+                <div class="menu" id="i16">
+                    <h3>cssを修正してみる</h3>08/Feb/2020
+                    <p>
+                        　今まではサイト内へのリンクをクリックしたときにsmooth scrollする動きを<strong>jQuery</strong>で実装していた。htmlファイル内でjQueryを読み込んで、スクロールの動きも別ファイルで作成して読み込んでいた。新しいページを作るたびに両方読み込むので、ヘッダーの記述が毎回長くなって面倒くさかった。
+                    </p>
+                    <p>
+                        　他の方法をネットで調べていたら、最近は<strong>css</strong>だけで実装できることが書いてあった。しかもたったの1行追加するだけ。もちろん、複雑な動きを作るにはjavascriptを使うのがいいが、それでも昔よりずっと少ないコードで実現できるみたい。自分の場合は飽きないよつにちょっと動きを付けたいだけなのでcssで十分。
+                    </p>
+                    <pre class="coding-env"><code>
+/* cssのコード */
+html{
+    scroll-behavior: smooth;
+}
+</code></pre>
+                    <p>
+                        たったこれだけでよくあるページ内の「#」に飛ぶリンクはsmooth scrollになる。ただMicrosoft IEやApple Safariは対応していないようだが、Microsoft EdgeもChromiumベースになったことだし、今後はみんなが使うだろう。
+
+                    </p>
+                    <p>
+                        　それと、無計画に記事を書いていたらどんどん目次が長くなってしまったので、cssをイジったついでにメニューの表示を変えた。クリックで展開するようなメニューも最近はjQueryに頼らずにcssで作れるらしいので、早速挑戦した。ここにコードを掲載するにはちょっと長いので、参考にさせていただいたサイトのリンクを貼っておく。<a href="https://saruwakakun.com/html-css/reference/accordion" target="blank" rel="noopener">こちらのサイト</a>を見ながら勉強した。ありがとうございます。
+                    </p>
+                    <p>
+                        　今後はcssでのアニメーションなんかを学んでも面白いのかもしれない。本当はBASIC認証とMySQLを使ったログインシステムで会員サービス的なやつをやってみたいが、サービスの内容が全然思い浮かばない。
+                    </p>
+                    <a href="./index.html#menu" class="button">目次へ戻る</a><br>
+                    <a href="#top" class="button">先頭へ</a>
+                </div>
+
+<!--マークダウンで書いてみる-->
+                <div class="menu" id="i17">
+
+                    <h3 id="markdownで書いてみる">MarkDownで書いてみる</h3>
+                    <p>09/Feb/2020</p>
+                    <p>　<strong>マークダウン記法</strong>というのが便利だというのは以前から聞いたことがあったが、新しい書き方を覚えるのが嫌で無視していた。しかしあまりにもマークダウンを称賛する意見が多いのでしばらく使ってみることにした。</p>
+                    <p>　幸い環境は整っていて、MacではAtom、androidではQuickEditでプレビューやシンタックスハイライトができる。あとは文法を覚えるだけだが、そんなに複雑ではなさそう。スマホで文章を書くときにはhtmlのタグがかなり煩わしいが、マークダウンだと普通の文章を書く感覚で作成できるので手軽な感じ。しかもAtomだとhtmlタグやcssのコードを混在させてもいいらしいので、マークダウンだけで表現できない時にはhtmlで書けば良い。</p>
+                    <p>　ちなみに、MarkDown記法の書き方で「```」で囲ってコードを書いてコピペするとこんな感じで表示される。</p>
+                    <pre class="editor-colors lang-python"><div class="line"><span class="syntax--source syntax--python"><span class="syntax--comment syntax--line">#/usr/bin/Python3</span></span></div><div class="line"><span class="syntax--source syntax--python"><span class="syntax--keyword syntax--control">if</span> __name__ <span class="syntax--keyword syntax--operator">==</span> <span class="syntax--string syntax--quoted">'__main__'</span>:</span></div><div class="line"><span class="syntax--source syntax--python"><span class="leading-whitespace">    </span><span class="syntax--support syntax--function">print</span>(<span class="syntax--string syntax--quoted">"hello world!"</span>)</span></div></pre>
+                    <p>あんまり見やすくない。Atom内でのプレビューに使われるシンタックスハイライトの設定も書いてあるので、ソースは実際の表示よりもかなりとても長い。</p>
+                    <p>　しばらくはマークダウンで書いてコピペする方法でガンバッテミタイト思う。</p>
+                    <a href="./index.html#menu" class="button">目次へ戻る</a><br>
+                    <a href="#top" class="button">先頭へ</a>
+
+                </div>
+<!--ここが記事の最後-->
+        </div>
+    </body>
+</html>

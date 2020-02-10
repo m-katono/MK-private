@@ -54,12 +54,8 @@
 .top_menu   {
      position: fixed;
      text-align: right;
-}
-
-header  {
-     width: 100%;
-     padding: 15px 0;
-     margin: 0 auto;
+     width: 50%;
+     margin-left: auto;
 }
 
 html	{

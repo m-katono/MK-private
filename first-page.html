@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="top" id="top">
-        <h1><a href="https://shangyuanyezhengju.wixsite.com/mkpage" target="_blank"><img src="./photo/icon.jpg" alt="" width="80px" height="80px"></a><a href="https://m-katono.mydns.jp">MK-private</a></h1>
+        <h1><a href="https://shangyuanyezhengju.wixsite.com/mkpage" target="_blank" rel="noopener"><img src="./photo/icon.jpg" alt="" width="80px" height="80px"></a><a href="https://m-katono.mydns.jp">MK-private</a></h1>
         <div class="menu"><h2>Page 1</h2>
             Page-<a href="./index.html#menu" class="pagenum">menu</a>-1-<a href="./second-page.html" class="pagenum">2</a>-<a href="third-page.html" class="pagenum">3</a>-<a href="./fourth-page.html">4</a>-
             <p>
@@ -38,7 +38,7 @@
 	    <li>vim-mode-plus（操作をVim風に）</li>
 	    </ul>
             日本語化した場合は「環境設定ーインストール」からプラグイン名で検索すると簡単にインストールできる。</p>
-            <a href="https://atom.io/" target="_blank">Atomダウンロードサイト</a><br>
+            <a href="https://atom.io/" target="_blank" rel="noopener">Atomダウンロードサイト</a><br>
 	    <br>
             <a href="./index.html#menu" class="button">目次へ戻る</a><br>
             <a href="#top" class="button">先頭へ</a>
@@ -47,7 +47,7 @@
             <div class="menu" id="i2">
             <h3>Raspberrypi zero whの準備</h3>24/Jan/2020
             <p>
-            　Raspberrypi zero whはネットショッピングで購入した。GPIOピンが半田付け済みで16GBのマイクロSDカードがセットになったやつにした。（→<a href="https://www.amazon.co.jp/Raspberry-GPIO%E3%83%94%E3%83%B3%E3%83%98%E3%83%83%E3%83%80%E3%83%BC-%E3%83%8F%E3%83%B3%E3%83%80%E4%BB%98%E3%81%91%E6%B8%88%E3%81%BF-Wi-Fi-Bluetooth%E4%BD%9C%E5%8B%95%E7%A2%BA%E8%AA%8D%E6%B8%88%EF%BC%88%E3%83%92%E3%83%BC%E3%83%88%E3%82%B7%E3%83%B3%E3%82%AF%E3%80%81%EF%BC%B3%EF%BC%A4%E3%82%AB%E3%83%BC%E3%83%89%E4%BB%98%E3%81%8D/dp/B07PHPK8CP/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&keywords=raspberry+pi+zero+wh&qid=1579869523&sr=8-1" target="_blank">こんなやつ</a>）    GUI環境だとマシンスペックが不足だしどうせターミナルばっかり使うのでCUIのみの「Lite」にした。付属のSDカードにはNOOBSというインストーラーが入っていたが、容量がもったいないので消した。不要な物は無い方が気分が良い。モニターとキーボードを繋がずにセットアップするには下準備がいくつか必要になるが今回は割愛する。なんとなくの流れは「OSイメージを<a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank">ダウンロード</a>→SDカードをフォーマット→ddコマンドでOSイメージを書き込む→.sshディレクトリを作る→Wi-Fiの接続設定を書き込む」までやってからラズパイにSDカードを差して起動し、SSHで他のPCから初期設定する。日本語フォントを入れたりもする。
+            　Raspberrypi zero whはネットショッピングで購入した。GPIOピンが半田付け済みで16GBのマイクロSDカードがセットになったやつにした。（→<a href="https://www.amazon.co.jp/Raspberry-GPIO%E3%83%94%E3%83%B3%E3%83%98%E3%83%83%E3%83%80%E3%83%BC-%E3%83%8F%E3%83%B3%E3%83%80%E4%BB%98%E3%81%91%E6%B8%88%E3%81%BF-Wi-Fi-Bluetooth%E4%BD%9C%E5%8B%95%E7%A2%BA%E8%AA%8D%E6%B8%88%EF%BC%88%E3%83%92%E3%83%BC%E3%83%88%E3%82%B7%E3%83%B3%E3%82%AF%E3%80%81%EF%BC%B3%EF%BC%A4%E3%82%AB%E3%83%BC%E3%83%89%E4%BB%98%E3%81%8D/dp/B07PHPK8CP/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&keywords=raspberry+pi+zero+wh&qid=1579869523&sr=8-1" target="_blank" rel="noopener">こんなやつ</a>）    GUI環境だとマシンスペックが不足だしどうせターミナルばっかり使うのでCUIのみの「Lite」にした。付属のSDカードにはNOOBSというインストーラーが入っていたが、容量がもったいないので消した。不要な物は無い方が気分が良い。モニターとキーボードを繋がずにセットアップするには下準備がいくつか必要になるが今回は割愛する。なんとなくの流れは「OSイメージを<a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank" rel="noopener">ダウンロード</a>→SDカードをフォーマット→ddコマンドでOSイメージを書き込む→.sshディレクトリを作る→Wi-Fiの接続設定を書き込む」までやってからラズパイにSDカードを差して起動し、SSHで他のPCから初期設定する。日本語フォントを入れたりもする。
             <pre class="coding-env"><code>
 $sudo apt install apache2
             </code></pre>
@@ -64,7 +64,7 @@ $sudo ufw status
             みたいな感じ。ルーターの方のポート開放もしないとWAN側からアクセスできないので必ず設定しておく。自分の学習用のサイトなのでずっとIPアドレスでアクセスしていても良かったが、DNSというのも使ってみたくなってMyDNSを利用することにした。登録は思ったよりも簡単で、一通りの設定を終えたらすぐにドメイン名でアクセスできるようになった。ちょっと感動。<br>
             　動的なグローバルIPアドレスは不意にアドレスが変わってしまうことがあるので、いつでもアクセスできるようにするには別途対策が必要。あとでIPアドレスをMyDNSに通知するシェルスクリプトを作ってcronに登録しておこうと思う。
             </p>
-            <a href="https://www.mydns.jp/" target="_blank">MyDNSのサイト</a><br>
+            <a href="https://www.mydns.jp/" target="_blank" re="noopener">MyDNSのサイト</a><br>
 	    <br>
             <a href="./index.html#menu" class="button">目次へ戻る</a><br>
             <a href="#top" class="button">先頭へ</a>
@@ -76,7 +76,7 @@ $sudo ufw status
             　Webサーバー構築の記事をネットで色々見ていたら<mark>「https」</mark>の話がたくさん出ていた。そういえば何年か前からhttps://から始まるサイトが多いと思っていたけれどそんなに気にしていなかった。よくよく調べるとhttpsの「s」はセキュアの「s」らしいので、「このご時世、結構大事じゃん」と思うようになった。たまたま外出中だったが「思い立ったが吉日」主義なので、スマホで作業を始めた。（のは失敗だった。）
             </p>
             <p>
-            　基本的には<a href="https://github.com/disco-v8/DirectEdit/" target="_blank">ココ</a>の通りにやれば良いらしいが、他の方の親切なサイトも参考にさせていただいた。幸いMyDNSでhttpsする記事はいくつも見つかる。残念ながらSSLもPHPも使ったことないので書いてある手順通りに進める。まずはPHPとcertbotが必要だと書いてあるのでインストール。<br>
+            　基本的には<a href="https://github.com/disco-v8/DirectEdit/" target="_blank" rel="noopener">ココ</a>の通りにやれば良いらしいが、他の方の親切なサイトも参考にさせていただいた。幸いMyDNSでhttpsする記事はいくつも見つかる。残念ながらSSLもPHPも使ったことないので書いてある手順通りに進める。まずはPHPとcertbotが必要だと書いてあるのでインストール。<br>
             <pre class="coding-env"><code>
 $sudo apt install php
 $sudo apt install certbot
@@ -100,8 +100,8 @@ $sudo apt install certbot
             <pre class="coding-env"><code>
 $sudo apt install php_mbstring
             </code></pre>
-            やっぱりaptは便利。そして<a href="https://github.com/disco-v8/DirectEdit/" target="_blank" oncontextmenu="return false;">昨日のサイト</a>を参考にダウンロード→unzip→cerbotコマンドと続けるが、またエラー。。。今度は落ち着いてエラーの内容を読むと、何やらacmeがダメです的なエラー。ログファイルを見るとやっぱりacmeなんちゃらで404と出ていた。ということはサバーに接続できないエラーのようなのでｃertbotを実行した時の長いオプションの中にあるurlが怪しいと思って確認したら、directoryをderectoryと打っていた。くだらない。<br>
-            　ドキドキしながらもう一度certbotコマンドを実行したらやっとSSL証明書の作成に成功した。これで今日の目的は達成したも同然と思いapache2を再起動してhttps://で<a href="https://m-katono.mydns.jp" target="_blank">自分のサイト</a>にアクセスしてみたがまた繋がらなかった。ブラウザに表示される「保護されていない通信」がやっと消えると思ったのにガックリ。</p>
+            やっぱりaptは便利。そして<a href="https://github.com/disco-v8/DirectEdit/" target="_blank" rel="noopener" oncontextmenu="return false;">昨日のサイト</a>を参考にダウンロード→unzip→cerbotコマンドと続けるが、またエラー。。。今度は落ち着いてエラーの内容を読むと、何やらacmeがダメです的なエラー。ログファイルを見るとやっぱりacmeなんちゃらで404と出ていた。ということはサバーに接続できないエラーのようなのでｃertbotを実行した時の長いオプションの中にあるurlが怪しいと思って確認したら、directoryをderectoryと打っていた。くだらない。<br>
+            　ドキドキしながらもう一度certbotコマンドを実行したらやっとSSL証明書の作成に成功した。これで今日の目的は達成したも同然と思いapache2を再起動してhttps://で<a href="https://m-katono.mydns.jp" target="_blank" rel="noopener">自分のサイト</a>にアクセスしてみたがまた繋がらなかった。ブラウザに表示される「保護されていない通信」がやっと消えると思ったのにガックリ。</p>
             <p>
             　気を取り直して最初から手順を確認してみたらまずルーターのポート転送をしていなかった。ポートの設定をして一応再起動したら「インターネットの接続を確認してください」から「接続が拒否されました」に変わったので一歩前進した。今のところhttp://では繋がるがhttps://だとダメなので443ポートを読んでいない可能性が高い。次はapache2.conf→conf.d内→sites-avairable内という感じで順番に設定を確認して行ったが問題なさそう。ちゃんとListen443とかSSLEngin onとか書いてある。でもnetstat -lnしてみてもListen443してない。なんだこりゃ。
             <img src="./photo/error.png" alt="Beer" width="600px" oncontextmenu="return false;"><br>

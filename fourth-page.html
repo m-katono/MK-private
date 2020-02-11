@@ -12,7 +12,7 @@
         <div class="top" id="top">
 
 		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
-	
+
             <h1><a href="https://shangyuanyezhengju.wixsite.com/mkpage" target="_blank" rel="noopener"><img src="./photo/icon.jpg" alt="" width="40px" height="40px"></a><a href="https://m-katono.mydns.jp">MK-private</a></h1>
             <div class="menu"><h2>Page 4</h2>
             Page-<a href="./index.html#menu" class="pagenum">menu</a>-<a href="./index.html" class="pagenum">1</a>-<a href="./second-page.html" class=pagenum>2</a>-<a href="./third-page.html" class="pagenum">3</a>-4-
@@ -59,6 +59,26 @@ html{
                     <p>あんまり見やすくない。Atom内でのプレビューに使われるシンタックスハイライトの設定も書いてあるので、ソースは実際の表示よりもかなりとても長い。</p>
                     <p>　しばらくはマークダウンで書いてコピペする方法でガンバッテミタイト思う。</p>
 
+                </div>
+<!--固定メニューを作る-->
+                <div class="menu" id="i18">
+
+                    <h3 id="固定メニューを作る">固定メニューを作る</h3>
+<p>11/Feb/2020</p>
+<p>　Webサイトを作るにあたって、最近はスマホでの読みやすさを考えて縦長のデザインになる場合が多いように思う。スマホは縦長の画面だし、スクロールが高速だからだろう。ただ、ページの途中で先頭に戻りたくなったり、メニューに戻りたくなったりすることがよくある。そのために所々にページのトップに戻るボタンとメニューに戻るボタンを設置していたが、同じページ内で同じコードを何度も書くことになるのでとっても非効率な気がしていた。</p>
+<p>　ということで、ページのスクロールに影響されないように固定のボタンを設置することにした。固定するだけなら簡単で、htmlとcssだけですぐにできる。</p>
+<blockquote>
+<p>position: fixed;</p>
+</blockquote>
+<p>これだけで要素を固定できる。htmlの固定したい要素に指定するだけで良い。小さいボタンを二つ設置して背景を透明にしておけば邪魔にならないだろう。</p>
+<p><img width="600" alt="scroll" src="./photo/scroll.jpg"></p>
+
+<p>　本当はスクロールに合わせて出現するような動的なボタンを作りたいが、ネットで調べたところやはりjavascriptを使わなければならない。とくにjQueryを使っている例が多いが、どんどん複雑になっていくのでなるべく使いたくない。</p>
+<p>何か別の方法がないかと思っていろいろ試したところ、適当なサイズの&lt;iframe&gt;を置くとその分だけ固定した部分もスクロールすることが分かった。ただ、この現象はAndroidスマホのChromeとSleipnirでは確認できたが、PCのブラウザでは出現せずに固定されたままだった。</p>
+<pre class="coding-env"><code>
+&lt;p>&lt;iframe width="400" height="30" frameborder="0">&lt;/iframe>&lt;/p>
+</code></pre>
+<p>こんな感じで空っぽの&lt;iframe&gt;を置いておくと、そのheightの分だけ画面上部に設置したボタンも一緒に動くので、スクロールに合わせてボタンを隠すことができた。これでスマホの狭い画面でも多少見やすくなったし、PCではちょっと違う動作をするがPCの画面は広いので問題ない。</p>
                 </div>
 <!--ここが記事の最後-->
         </div>

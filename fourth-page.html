@@ -91,18 +91,18 @@ html{
             <li>未入力のチェックはできるが、送信できたかどうかのチェックはできない。</li>
             </ul>
             <p>これを解決するためにcgiの方で入力漏れが無いかチェックしてから送信し、送信できたら完了画面、できなかったらエラー画面に遷移するようにする。また、cgiの処理には少し時間がかかるので画面遷移までの間は「送信中」の表示にする。<br><img alt="送信中" width="600" src="./photo/sending-display.png"></p>
-            <pre class="coding-env"><code>
-              htmlファイル
-                    |
-             送信ボタンを押す
-    -------------------------
-        cgiの処理    |      &gt;処理完了で
-                /       \  「送信中」表示
-                |       |  （元の表示に被せている）
-    -------------------------
-        エラー画面　　完了画面 &gt;cgiで出力した
-                                htmlを表示する
-            </code></pre>
+	    <pre class="coding-env">
+	    htmlファイル
+	    	|
+	   送信ボタンを押す  ↓cgiの処理
+    -------------------------------------
+	        |          &gt;処理完了で
+	    /       \      「送信中」表示
+       	    |        |      （元の表示に被せている）
+    ------------------------------------
+     エラー        完了       &gt;cgiで出力した
+                                    htmlを表示する
+            </pre>
             <p>　送信中表示はそんなにオシャレにするつもりはないので<strong>jQuery</strong>とかは使わない。htmlの中に「送信中」の要素を書いておいて、初期値は非表示にしておく。<strong>&lt;form&gt;</strong>のボタンの<strong>onclick</strong>イベントからjavascriptの関数を呼び出して、スタイルシートの<strong>display</strong>を<strong>none</strong>から<strong>block</strong>にする。処理が終わるとcgiから出力した画面に切り替わって終了。</p>
             <pre class="coding-env editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text">@javascript "UTF-8"</span></span></div><div class="line"></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text">function sendingDisplay() {</span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="leading-whitespace">    </span><span class="syntax--meta syntax--paragraph syntax--text">document.getElementById('sending').style.display='block';</span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text">}</span></span></div></pre>
             <p>htmlのコードの中に書いた「送信中」部分のタグのidを<strong>sending</strong>にした場合、javascriptのコードはこんな感じになる。</p>

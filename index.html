@@ -5,9 +5,15 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="./css/master.css" type="text/css">
         <link rel="stylesheet" href="./css/menu.css" type="text/css">
+	<link rel="stylesheet" href="./css/sending.css" type="text/css">
+    <script src="./javascript/sending.js"></script>
         <title>MK-private</title>
     </head>
         <body>
+		<!--送信中-->
+	<div id="sending" class="sending">
+		送信中
+	</div>
 
 		<!-- 浮いてるメニュー -->
         <div class="top_menu">
@@ -29,12 +35,12 @@
                 <h3>テスト運用の送信フォーム</h3>
                 <form action="/cgi-bin/sendmail.py" method="POST">
 			<label for="name">お名前：</label><br>
-                    <input type="text" name="name" id="name" size="20" maxlength="30" placeholder="your name" required/><br>
+                    <input type="text" name="name" id="name" size="20" maxlength="30" placeholder="your name"/><br>
 		    <label for="email">メール：</label><br>
-                    <input type="email" name="address" id="email" size="20" maxlength="50" placeholder="mail@example.com" required/><br>
+                    <input type="email" name="address" id="email" size="20" maxlength="50" placeholder="mail@example.com"/><br>
 		    <label for="body">本　文：</label><br>
-                    <textarea type="text" name="text" id="body" rows="10" cols="31" maxlength="500" placeholder="text area" required></textarea><br>
-		    <p><input type="submit" value="送　信" name="button"/></p>
+                    <textarea type="text" name="text" id="body" rows="10" cols="31" maxlength="500" placeholder="text area"></textarea><br>
+		    <p><input type="submit" value="送　信" name="button" onclick="sendingDisplay()"/></p>
                 </form>
                 <div class="coding-env">
                 <h3>環境</h3>

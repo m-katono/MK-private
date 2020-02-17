@@ -107,6 +107,9 @@ html{
             <pre class="coding-env editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text">@javascript "UTF-8"</span></span></div><div class="line"></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text">function sendingDisplay() {</span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="leading-whitespace">    </span><span class="syntax--meta syntax--paragraph syntax--text">document.getElementById('sending').style.display='block';</span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text">}</span></span></div></pre>
             <p>htmlのコードの中に書いた「送信中」部分のタグのidを<strong>sending</strong>にした場合、javascriptのコードはこんな感じになる。</p>
             <p>どうしてもjQueryを使ったカッコイイアニメーションの例が多い中、今回は<a rel="noopener" href="https://www.officequattro.com/jpn/technet/contents/tnet_17.html" target='_blank'>こちらのサイト</a>を参考にさせていただきました。ありがとうございます。</p>
+	    <p><mark>17/Feb/2020 追記</mark><br>
+	    　「送信中」画面の表示には成功したが、ブラウザによって多少挙動が違うことが分かった。エラー画面から戻る際は<strong>javascript:history.back()</strong>で入力内容を残して戻り、送信完了画面から戻る際にはトップページへリンクしたのだが、Safariでだけエラー画面から戻ったときに「送信中」画面が表示されたままになってしまう。でもエラー画面から戻ったときには前回入力した内容が残っていて欲しいのでhistory.back()は使いたい。仕方がないので、「送信中」画面に<strong>「送信中」を消す</strong>ボタンを設置して手動で消せるようにした。かっこ悪いけどしばらくはこれで行く。
+	    </p>
                 </div>
 <!--ここが記事の最後-->
         </div>

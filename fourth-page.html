@@ -146,6 +146,16 @@ html{
                 </ul>
                 普段はUbuntu 18.04 LTS をインストールして使っている。Windowsのコマンドプロントには慣れていないので、Puppy Linuxを持ち歩けるととても便利な気がする。
             </p>
+
+            <p><mark>28/Feb/2020　追記</mark><br>
+            　今までは<strong>Fullインストール</strong>して使っていたのだが、LegacyモードのないUEFIではうまく起動できなかった。最近のパソコンはUEFIで64bitが普通なのでちょっと不便。なぜFullインストールなのかというと、「Fullだから大は小を兼ねる的な感じで良いだろう」くらいの軽い気持ちだった。たた、よくよく調べると<strong>Frugalインストール</strong>の方が推奨らしいのでFrugalでインストールしなおしてみた。
+            </p>
+            <p>
+            　今回は<a href="https://www.google.com/amp/s/gamp.ameblo.jp/gokurakuhaze/entry-12440408582.html" target="_blank" rel="noopener">こちら</a>を参考にさせていただきました。ありがとうございます。私がインストールしたのは普通の<strong>bioncpup64-8.0</strong>で、PuppyLinux内のツールを利用しただけ。あとはUEFIの「Legacyな設定を読み込む」的な設定をオフにしておけば起動できた。帰ったらMacBookAirでも起動させてみようと思う。
+            </p>
+            <p>
+            　ちなみにファイルシステムをext4にしたら「非推奨」と言われたので「vfat」にした。あと、インストール中に「LegacyなBIOSでも起動できるようにしますか」的な質問が出たので「Yes」にしておいた。
+            </p>
         </div>
 <!--ここが記事の最後-->
         </div>

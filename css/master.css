@@ -99,3 +99,7 @@ textarea,input    {
          color: #000000;
          border-radius: 5px;
 }
+
+code	{
+	background-color: rgb(62, 130, 156);
+}

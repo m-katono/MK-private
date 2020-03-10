@@ -101,5 +101,6 @@ textarea,input    {
 }
 
 code	{
-	background-color: rgb(62, 130, 156);
+	background-color: #000000;
+	color: #FFFFFF;
 }

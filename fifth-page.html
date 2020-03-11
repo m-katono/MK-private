@@ -25,7 +25,7 @@
         </div>
 
         <div class="menu" id="i21">
-            <h3>Puppy Linuxチョー快適</h3>03/Feb/2020
+            <h3>Puppy Linuxチョー快適</h3>03/Mar/2020
             <p>
                 　Puppy Linuxを使い始めてから何日か経過したけどチョー快適。手持ちのノートPC全てで起動できることが確認できたし、会社のPCでも大丈夫だった。最初は１０年前のNEC VersaProだとハードウェアを認識できておらずインターネットに接続できなかったが、いつの間にか繋がるようになった。ネットでドライバを探してもすでにメーカーのWebサイトがリンク切れになっていて諦めていたのでとても嬉しかった。
             </p>
@@ -39,7 +39,7 @@
         </div>
 <!--Raspberry pi 3B+の調子が悪い-->
 	<div class="menu" id="i22">
-		<h3>Raspberry pi 3B+の調子が悪い</h3>08/Feb/2020
+		<h3>Raspberry pi 3B+の調子が悪い</h3>08/Mar/2020
 		<p>
 		　Raspberry pi 3B+が起動しなくなってしまった。たいしたことには使っていなかったが、不要になった2.5インチHDDをケースに入れてUSBで繋いでNAS的な感じで使っていた。久しぶりに<code>'sudo apt update'</code>をした後に再起動したら、ネットワーク上からアクセスできなくなってしまった。sshでも繋がらない。はじめはネットワークの設定の問題かと思ってモニターとキーボードを繋いで起動したところ、起動画面で<code>'boot.main'</code>と表示されて止まっている。幸い<code>'Ctrl+Alt+T'</code>でコンソール画面に入れたので<code>'startx'</code>でXwindowを起動したが、シングルユーザーモードになってしまった。
 		</p>
@@ -50,10 +50,28 @@
 		　<strong>samba</strong>でファイル共有できないと結構めんどくさいことになる。小さいデータはGoogleDriveやOneDriveでやり取りすればよいが、大きめのデータは扱いづらい。HDDは取り外して別の用途に使うことにして、代わりに手元に余っていた64GBのUSBメモリを繋いで設定した。HDDと違って寿命が心配なので長期間のバックアップ用としては使えないが、一時的にデータを保存しておくための外部ストレージ的に使うことにした。スマホやPCからガシガシとファイルを保存して、後でまとめてHDDにバックアップすれば良いかもしれない。
 		</p>
 		<p>
-		<mark>10/Feb/2020　追記</mark><br>
+		<mark>10/Mar/2020　追記</mark><br>
 		　<strong>'sudo apt update'</strong>をした後で、何故か有線LANが不通になってしまった。<code>SSH</code>でログインして作業していたのでwi-fiをオフにしたらシャットダウンもできなくなってしまった。かなり嫌だったが、シャットダウンせずに遠隔で電源をオフにした。家に帰ってから色々調べたがなかなか分からず困ってしまった。特に今回は外付けHDDの電力不足でOSを起動できなかったのと重なったので、最初はそれぞれ別の事象であることに気づかなかった。結果的にはいつも<code>eth0</code>だったNIC名が勝手に長い名前に変わっていて、<strong>/etc/dhcpcd.conf</strong>に書いた設定と合わなくなったのが原因っぽい。
 		</p>
 	</div>
+<!--Raspberry pi 3B+が重い-->
+    <div class="menu" id="i23">
+        <h3>Raspberry pi 3B+が重い</h3>11/Mar/2020
+        <p>
+            　最近またラズパイをいじり始めたが、やたら動作が重いのが気になる。起動してChromiumでYouTUBEを再生し始めるとすぐに<strong>swap</strong>領域を使い始める。CPUの負荷はまだ余裕があるので、このリソース不足が原因い違いない。何とかならないものか。
+        </p>
+        <p>
+            　考えてみるとYouTUBEの再生やWebサイトの閲覧なんかはスマホを使った方がよっぽど快適なので、わざわざラズパイで動かしてVNCでリモート接続する必要はない。モニターもキーボードも付けていない状態でファイルサーバーとして動かしているだけなので、GUIが必要な場面など皆無。セキュリティーを考えて<strong>samba</strong>にはLAN内からしかつながらないようにしているが、外でどうしてもファイルを取り出したいときには<code>scp</code>コマンドを使えばいい。
+        </p>
+        <p>
+            　ということで、CLIで起動することにした。設定はGUIの<strong>Raspberry piの設定</strong>からもできるが、<code>sudo raspi-config</code>からやった。メニューに書いてある通りに選択していくだけなので簡単(英語)。
+        </p>
+        <img src="./photo/raspi-config.png" width="600" alt="raspi-config" oncontextmenu="return false;">
+        <img src="./photo/top.png" width="600" alt="top command" oncontextmenu="return false;">
+        <p>
+            　こんな感じで<code>top</code>コマンドを使ってメモリの使用量を確認してみるとかなり余裕があるのが分かる。<strong>swap</strong>を使うこともなくなりそうなので、SDカードが長持ちするかもしれない。
+        </p>
+    </div>
 <!--ここまでがTOP-->
         </div>
     </body>

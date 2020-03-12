@@ -41,17 +41,17 @@
 	<div class="menu" id="i22">
 		<h3>Raspberry pi 3B+の調子が悪い</h3>08/Mar/2020
 		<p>
-		　Raspberry pi 3B+が起動しなくなってしまった。たいしたことには使っていなかったが、不要になった2.5インチHDDをケースに入れてUSBで繋いでNAS的な感じで使っていた。久しぶりに<code>'sudo apt update'</code>をした後に再起動したら、ネットワーク上からアクセスできなくなってしまった。sshでも繋がらない。はじめはネットワークの設定の問題かと思ってモニターとキーボードを繋いで起動したところ、起動画面で<code>'boot.main'</code>と表示されて止まっている。幸い<code>'Ctrl+Alt+T'</code>でコンソール画面に入れたので<code>'startx'</code>でXwindowを起動したが、シングルユーザーモードになってしまった。
+		　Raspberry pi 3B+が起動しなくなってしまった。たいしたことには使っていなかったが、不要になった2.5インチHDDをケースに入れてUSBで繋いでNAS的な感じで使っていた。久しぶりに<code class="coding-env">sudo apt update</code>をした後に再起動したら、ネットワーク上からアクセスできなくなってしまった。sshでも繋がらない。はじめはネットワークの設定の問題かと思ってモニターとキーボードを繋いで起動したところ、起動画面で<strong>'boot.main'</strong>と表示されて止まっている。幸い<strong>'Ctrl+Alt+T'</strong>でコンソール画面に入れたので<strong>'startx'</strong>でXwindowを起動したが、シングルユーザーモードになってしまった。
 		</p>
 		<p>
-		　まずはやっぱりネットワークかと思って<code>'/etc/dhcpcd.conf'</code>を確認してみたが、特に変わったところはないように見える。そういえばいつも画面の右上に「稲妻マーク」が出ていたので、USBで繋いだHDDへの電源供給が足りていないのには気づいていたが、起動時にマウントするはずのHDDはマウントされていなかった。<code>'sudo fdist -l'とか'lsusb'</code>で確認したが、全く認識されていない様子。ためしに<code>'/etc/fstab'</code>の設定に<strong>nofail</strong>を追加したら起動できた。取り外したHDDを別のPCにつなぐと正常に動作するので、やっぱり電力不足で認識しなくなったみたい。アップデートUSB周りの動作が変わったのかもしれない。
+		　まずはやっぱりネットワークかと思って<strong>'/etc/dhcpcd.conf'</strong>を確認してみたが、特に変わったところはないように見える。そういえばいつも画面の右上に「稲妻マーク」が出ていたので、USBで繋いだHDDへの電源供給が足りていないのには気づいていたが、起動時にマウントするはずのHDDはマウントされていなかった。<code class="coding-env">sudo fdist -l</code>とか<code class="coding-env">lsusb</code>で確認したが、全く認識されていない様子。ためしに<strong>'/etc/fstab'</strong>の設定に<strong>nofail</strong>を追加したら起動できた。取り外したHDDを別のPCにつなぐと正常に動作するので、やっぱり電力不足で認識しなくなったみたい。アップデートUSB周りの動作が変わったのかもしれない。
 		</p>
 		<p>
 		　<strong>samba</strong>でファイル共有できないと結構めんどくさいことになる。小さいデータはGoogleDriveやOneDriveでやり取りすればよいが、大きめのデータは扱いづらい。HDDは取り外して別の用途に使うことにして、代わりに手元に余っていた64GBのUSBメモリを繋いで設定した。HDDと違って寿命が心配なので長期間のバックアップ用としては使えないが、一時的にデータを保存しておくための外部ストレージ的に使うことにした。スマホやPCからガシガシとファイルを保存して、後でまとめてHDDにバックアップすれば良いかもしれない。
 		</p>
 		<p>
 		<mark>10/Mar/2020　追記</mark><br>
-		　<strong>'sudo apt update'</strong>をした後で、何故か有線LANが不通になってしまった。<code>SSH</code>でログインして作業していたのでwi-fiをオフにしたらシャットダウンもできなくなってしまった。かなり嫌だったが、シャットダウンせずに遠隔で電源をオフにした。家に帰ってから色々調べたがなかなか分からず困ってしまった。特に今回は外付けHDDの電力不足でOSを起動できなかったのと重なったので、最初はそれぞれ別の事象であることに気づかなかった。結果的にはいつも<code>eth0</code>だったNIC名が勝手に長い名前に変わっていて、<strong>/etc/dhcpcd.conf</strong>に書いた設定と合わなくなったのが原因っぽい。
+		　<code class="coding-env">sudo apt update</code>をした後で、何故か有線LANが不通になってしまった。<strong>SSH</strong>でログインして作業していたのでwi-fiをオフにしたらシャットダウンもできなくなってしまった。かなり嫌だったが、シャットダウンせずに遠隔で電源をオフにした。家に帰ってから色々調べたがなかなか分からず困ってしまった。特に今回は外付けHDDの電力不足でOSを起動できなかったのと重なったので、最初はそれぞれ別の事象であることに気づかなかった。結果的にはいつも<strong>eth0</strong>だったNIC名が勝手に長い名前に変わっていて、<strong>/etc/dhcpcd.conf</strong>に書いた設定と合わなくなったのが原因っぽい。
 		</p>
 	</div>
 <!--Raspberry pi 3B+が重い-->
@@ -61,16 +61,49 @@
             　最近またラズパイをいじり始めたが、やたら動作が重いのが気になる。起動してChromiumでYouTUBEを再生し始めるとすぐに<strong>swap</strong>領域を使い始める。CPUの負荷はまだ余裕があるので、このリソース不足が原因い違いない。何とかならないものか。
         </p>
         <p>
-            　考えてみるとYouTUBEの再生やWebサイトの閲覧なんかはスマホを使った方がよっぽど快適なので、わざわざラズパイで動かしてVNCでリモート接続する必要はない。モニターもキーボードも付けていない状態でファイルサーバーとして動かしているだけなので、GUIが必要な場面など皆無。セキュリティーを考えて<strong>samba</strong>にはLAN内からしかつながらないようにしているが、外でどうしてもファイルを取り出したいときには<code>scp</code>コマンドを使えばいい。
+            　考えてみるとYouTUBEの再生やWebサイトの閲覧なんかはスマホを使った方がよっぽど快適なので、わざわざラズパイで動かしてVNCでリモート接続する必要はない。モニターもキーボードも付けていない状態でファイルサーバーとして動かしているだけなので、GUIが必要な場面など皆無。セキュリティーを考えて<strong>samba</strong>にはLAN内からしかつながらないようにしているが、外でどうしてもファイルを取り出したいときには<strong>scp</strong>コマンドを使えばいい。
         </p>
         <p>
-            　ということで、CLIで起動することにした。設定はGUIの<strong>Raspberry piの設定</strong>からもできるが、<code>sudo raspi-config</code>からやった。メニューに書いてある通りに選択していくだけなので簡単(英語)。
+            　ということで、CLIで起動することにした。設定はGUIの<strong>Raspberry piの設定</strong>からもできるが、<code class="coding-env">sudo raspi-config</code>からやった。メニューに書いてある通りに選択していくだけなので簡単(英語)。
         </p>
         <img src="./photo/raspi-config.png" width="600" alt="raspi-config" oncontextmenu="return false;">
         <img src="./photo/top.png" width="600" alt="top command" oncontextmenu="return false;">
         <p>
             　こんな感じで<code>top</code>コマンドを使ってメモリの使用量を確認してみるとかなり余裕があるのが分かる。<strong>swap</strong>を使うこともなくなりそうなので、SDカードが長持ちするかもしれない。
         </p>
+    </div>
+<!--Raspberry pi 3B+にファンを付けた-->
+    <div class="menu" id="i24">
+        <h3>Raspberry pi 3B+にファンを付けた</h3>12/Mar/2020
+        <p>
+            　GUIで使用しているときには強く感じるのだが、ちょっと負荷がかかるとすぐに動作が重くなるような気がする。リソース不足のせいだと思っていたけど、ネットで調べてみると温度上昇によるCPUのクロック周波数の低下が影響している模様。確かに起動して数分でかなり熱くなるので心配ではあった。
+        </p>
+        <p>
+            　ちなみに、今までは温度についてあまり気にしていなかったので比較対象がないが、起動から数分のCPU温度が大体30°C、負荷がかかっているときには60°Cを超えると思う（気温14°C、湿度49%）。夏場の高負荷時には80°Cを超えるだろう。ABOXのキットに付いてきたケースを使っているため空きスペースが小さいので、ラズパイ向けの2.5cm薄型ファン（5V 0.15A）を注文した。電子部品屋さんが近くにあれば100円くらいで買えそうだが、田舎に住んでいるのでネット通販で送料込み551円で取り寄せた。<br>
+            <br>
+            <a href="https://store.shopping.yahoo.co.jp/sky-group/10959.html" target="_blank" rel="noopener">CPU 冷却ファン DC 5V ブラシレス ラズベリーパイ モデルB Pi 2用 ネジ付 修理 交換 冷却パーツ</a>
+        </p>
+        <img src="./photo/fan_top.jpg" width="600" alt="Raspberry pi" oncontextmenu="return false;">
+        <img src="./photo/fan_under.jpg" width="600" alt="fan" oncontextmenu="return false;">
+        <p>
+            　ファンの大きさに合わせてケースの蓋に穴を開けて付属のボルト＆ナットで取り付けた。GPIOピンの配置は公式ドキュメントの画像ですぐに分かる。図で言うと4番に＋、6番にーの線でオーケー。電源ONとともに無事に作動した。
+        </p>
+        <img src="./photo/gpio.png" width="600" alt="gpio" oncontextmenu="return false;">
+        <p>
+            　せっかくファンを付けたので負荷時の温度を計ってみたい。GUIは使っていないのでコマンドラインで負荷をかける方法を調べたら<strong>stress</strong>コマンドを使っている例が多かったが、わざわざこのためだけに新たにインストールするのは嫌だ。そのままネットサーフィンしていたら標準で<strong>yes</strong>という変わったコマンドがあることが分かったので使ってみた。
+<pre class="coding-env"><code>
+$ yes > /dev/null
+
+</code></pre>
+            このまま15分くらい放置して温度を調べたら37°Cくらいまでしか上昇していなかった。夏場でも60°C以下に収まりそうな気がするので気持ちが落ち着く。CPU温度を調べるときは下のどちらかを使う人が多い。catの方は1000倍の数字で表示される。
+<pre class="coding-env"><code>
+$ vcgencmd measure_temp
+
+$ cat /sys/class/thermal/chermal_zone0/temp
+
+</code></pre>
+        </p>
+        <img src="./photo/cpu_temp.png" width="600" alt="cpu temp" oncontextmenu="return false;">
     </div>
 <!--ここまでがTOP-->
         </div>

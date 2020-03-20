@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./css/master.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+<!--  浮いてるメニュー  -->
+<div class="top_menu">
+        <a href="#top" class="pagenum">top</a>-<a href="./index.html#menu" class="pagenum">menu</a>
+</div>
+
+        <div class="top" id="top">
+
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+
+            <h1><a href="https://shangyuanyezhengju.wixsite.com/mkpage" target="_blank" rel="noopener"><img src="./photo/icon.jpg" alt="" width="40px" height="40px"></a><a href="https://m-katono.mydns.jp">MK-private</a></h1>
+            <div class="menu"><h2>Page 6</h2>
+            Page-<a href="./index.html#menu" class="pagenum">menu</a>-<a href="./index.html" class="pagenum">1</a>-<a href="./second-page.html" class=pagenum>2</a>-<a href="./third-page.html" class="pagenum">3</a>-<a href="./fourth-page.html" class="pagenum">4</a>-<a href="./fifth-page.html" class="pagenum">5</a>-6-
+            <p>
+                　MarkDownからhtmlへ変換すると余計なタグがたくさん混じって見づらいのでやめた。
+            </p>
+            </div>
+            <div class="menu" id="i26">
+                <h3>外付けHDD（1TB）を買った</h3>20/Mar/2020
+                <p>
+                    　先日までRaspberry pi 3B+に取り付けていたUSBバスパワーのHDDが使えなくなったため64GBのUSBメモリで代用していたが耐久性に不安がある気がしていた。そこでヤ◯オクで外部電源のHDDを買うことにした。中古だと安い金額でたくさんの商品が出品されているので迷ってしまうが、今後の耐用年数を考慮して使用時間が少ないものを選んだ。
+                    <ul>
+                        <a href="https://www.elecom.co.jp/products/ELD-CED010UWH.html" target="_blank" oncontextmenu="noopener"><h4>ELECOM ELD-CED010UWH</h4></a>
+                        <li>買ったのはホワイト。在庫限りらしい。</li>
+                        <li>定価は税込み¥12,980-</li>
+                        <li>購入価格は¥3,000-</li>
+                        <li>使用時間は299時間</li>
+                        <li>USB3.0、1TB。</li>
+                    </ul>
+                    最近は2TB以上のモデルが主流で、1TB以下のものはかなりお買い得になっているらしい。
+                </p>
+                <p>
+                    　そんなに古い商品ではないので接続すればすぐに使えると思っていたが、予想外に苦労したので備忘録として記録しておく。
+                </p>
+                    <ol>
+                        <li>はじめにDELLのInspiron 3162(Ubuntu18.04)に繋いでみた。
+                            <ul>
+                                <li>自動認識はしない。</li>
+                                <li><code class="coding-env">fdisk -l</code>や<code class="coding-env">df</code>コマンドでは出てこないみたい。</li>
+                                <li><code class="coding-env">lsusb</code>にはELECOMなんとかって出てくる。</li>
+                            </ul>
+                        </li>
+                        <li>テレビ（東芝REGZA）に繋いでみた。
+                            <ul>
+                                <li>「初期化しますか？」的なメニューが表示されるので認識しているみたい。</li>
+                            </ul>
+                        </li>
+                        <li>NEC VersaPro(Windows10)に繋いでみた。
+                            <ul>
+                                <li>ドライブ一覧には表示されていない。</li>
+                                <li>デバイスドライバでは「USB大容量記憶装置」として認識されている。</li>
+                                <li>「ディスクの管理」で見るとやっと見えた。３つのパーティションに分かれているみたい。</li>
+                            </ul>
+                        </li>
+                    </ol>
+                <p>
+                    　「ディスクの管理」でパーティションが見えたので、そのまま全部消して新しくNTFSのパーティションを作成したところ、ドライブ一覧にも表示された。どうやらテレビ用のファイルシステムはパソコンでうまく認識できないらしい。今度はUbuntu PCで改めてパーティションを作り直そうとしたが、別の問題が発生した。USB3.0ポートに繋いだところマウントしたりアンマウントしたりを何度も繰り返して、最終的にはHDDの電源が落ちた。どうやら相性の問題らしくUSB2.0ポートに繋いだら正常に認識したので、やっとext4でパーティションを作成しなおしてRaspberry pi 3B+で動作させることができた。
+                </p>
+                <p>
+                    　今回は自分の知識不足で余計な時間をかけてしまったが、ディスク管理関係のコマンドを何回も使ったので勉強になった。特に、今までは<code class="coding-env">fdisk</code>しか使っていなかったが<code class="coding-env">parted</code>コマンドを使ってみたらとても使いやすかった。
+                </p>
+            </div>
+<!--ここまでがTOP-->
+        </div>
+    </body>
+</html>

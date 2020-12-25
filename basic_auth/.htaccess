@@ -1,6 +1,4 @@
 AuthUserfile /var/www/dat/.htpasswd
-AuthGroupfile /dev/null
-AuthName "Please enter your ID and password"
+AuthName "ID and Password"
 AuthType Basic
 require valid-user
-

@@ -1,4 +1,0 @@
-AuthUserfile /var/www/dat/.htpasswd
-AuthName "ID and Password"
-AuthType Basic
-require valid-user

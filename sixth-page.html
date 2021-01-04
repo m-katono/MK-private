@@ -194,7 +194,7 @@ Command (m for help) : w	// 書き込んで終了
 # timedatectl set-ntp true
 
 // baseパッケージをインストール
-# pacstrap /mnt base base-devel linux vim git dhcpcd network-manager wpa_supplicant grub efibootmgr
+# pacstrap /mnt base base-devel linux linux-firmware vim git dhcpcd network-manager wpa_supplicant grub efibootmgr
 
 // fstabを作成。
 # genfstab -U /mnt >> /mnt/etc/fstab

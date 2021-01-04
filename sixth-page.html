@@ -135,9 +135,115 @@
 	<p>
 	　ちなみに今まではハードオフのジャンクコーナーに売っていた５００円のキーボードを使っていたのだが、最近あまり調子が良くないのとデカすぎるので新調することに決めた。とはいえまた中古で物色したのだが、ずっと使ってみたかったPFUのHHKBシリーズを買うことにした。個人的にはあの独特のキー配置に興味があって、みんなが褒める打鍵感はどうでも良い。また某オクで検索していると、HHKB lite2（US配列）の未使用品なるものが出てきたので、こちらは３０００円で即決購入した。
 	</p>
-	</dev>
+	</div>
 	
+	<div class="menu" id="i29">
+		<p>
+		　先日オークションで落札していたHHKBが今日の午前中に届いた。試しに繋いで使ってみたらとても良い感触で、何か文字入力をしたくなってしまった。最近は立て続けにArchLinuxをインストールしているが、まだ手順を覚えられないので調べながらやっている。人によって必要なパッケージが違ったりもして自分にとって不要な説明もあったりするので、この際だから自分流のインストール手順をメモっておくことにする。
+		</p>
+		<p>
+		　まずは、Live起動用のUSBメモリを作成する。手元にあったTranscendの古い１GBがあったので、Ubuntuから<code class="coding-env">dd</code>コマンドで書き込んだ。サイズは600MBちょっとなのでダウンロードも書き込みもサクサク進む。<a href="https://www.archlinux.jp/download" target="_blank">JPサイト</a>からダウンロードするのがわかりやすいかもしれない。出来上がったUSBメモリをPCに挿して起動し、まずはキーボードの設定→インターネット接続→パーティション作成→フォーマット→マウントまで。
+		</p>
+		<pre class="coding-env"><code>
+// 日本語キーボードの場合
+# loadkeys jp106
 
+// 今回はwi-fi環境
+# ip link show		// インターフェース名を調べる
+# ip link set wlan0 up	// インターフェースを有効に
+# iwlist wlan0 scanning | grep SSID	// アクセスポイントを調べる
+
+// 接続する。どこかにpingしてつながればOK。
+# wpa_supplicant -B -i wlan0 -c <(wpa_passphrase ESSID PASSPHRASE)
+
+// パーティション作成　＆　フォーマット
+// まずはEFI System。partedコマンドのほうがスマートだったかも。。。
+# fdisk -l		// インストールするディスクを間違えないように
+# fdisk /dev/sda		// 今回はsdaだった
+Command (m for help) : n	// 新規にパーティションを作成
+Partition number : 1		// 1　もしくは　Enter
+First sector :			// Enterで良い
+Last sector : 512M		// 要100MiB以上
+Do you want to remove the signature? : y
+
+Command (m for help) : t	// Selected partition 1
+Partition type (type L to list all types) : 1	// Changed type of partition 'Linux filesystem' to 'EFI System'.
+Command (m for help) : w	// 書き込む
+
+// その他はあんまり細かく分けたくない
+# fdisk /dev/sda
+Command (m for help) : n	// 新しいパーティション。Enterを押していけば良い。
+Command (m for help) : w	// 書き込んで終了
+
+// 作ったパーティションをフォーマット
+# mkfs.fat -F32 /dev/sda1
+# mkfs.ext4 /dev/sda2
+
+// マウント
+# mount /dev/sda2 /mnt
+# mkdir /mnt/boot
+# mount /dev/sda1 /mnt/boot
+		</code></pre>
+		<p>
+		　ここからインストールに進む。pacman用にミラーの設定→システムクロック設定→baseパッケージをインストール。LiveUSB環境とインストール先の環境には結構違いがあり、セットアップに必要になりそうなパッケージはここでインストールしておいたほうが良さそう（dhcpcdやエディタなど）。
+		</p>
+		<pre class="coding-env"><code>
+// /etc/pacman.d/mirrorlist を開き、日本のサーバーを上段に移動しておく。
+// 時計を合わせる
+# timedatectl set-ntp true
+
+// baseパッケージをインストール
+# pacstrap /mnt base base-devel linux vim git dhcpcd network-manager wpa_supplicant grub efibootmgr
+
+// fstabを作成。
+# genfstab -U /mnt >> /mnt/etc/fstab
+
+// ファイルシステムへ入る
+# arch-chroot /mnt
+
+// ここからは細かい設定
+# ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime/	// タイムゾーンの設定
+# hwclock --systohc --utc
+
+# vim /etc/locale.gen	// ロケールの設定
+     以下２つのコメントアウトを外す
+     en_US.UTF-8 UTF-8
+     ja_JP.UTF-8 UTF-8
+
+# locale-gen		// ロケールを反映させる
+# echo LANG=en_US.UTF-8 > /etc/locale.conf	// 今のところは英語にしておく
+# echo KEYMAP=jp106 > /etc/vconsole.conf	// 日本語配列キーボードの場合
+
+// ホストネームを設定
+# echo foo > /etc/hostname
+// /etc/hostsの中を編集
+# vim /etc/hosts
+     127.0.0.1 localhost
+     ::1       localhost
+     127.0.0.1 foo.localhdomain foo
+
+// rootのパスワードを設定する
+# passwd
+
+// grubとEFIブートマネージャーをインストール
+# grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub
+# grub-mkconfig -o /boot/grub/grub.cfg
+
+// ユーザーも作成しておく
+# useradd -m -g wheel hoge	// wheelグループに入れておく
+# passwd hoge		// パスワードを設定
+# EDITOR=vim visudo	// sudoresファイルを編集
+   以下をコメントアウト
+   %wheel ALL=(ALL) ALL	// suduできるようになる
+
+// chrootから抜けて再起動する。USBメモリは抜く。
+# exit
+# reboot
+		</code></pre>
+		<p>
+		　一般ユーザーでログイン＆再度インターネットに接続できれば成功。USBで起動していたときとは環境が違うので、ワイヤレスデバイス名が違ったりパッケージが足りなかったりしてエラーが出るかもしれない。そのときは落ち着いてエラーを読んで対処すれば大丈夫だった。このあとはデスクトップ環境をインストールしたりその他の必要なソフトをインストールしたりするが、長くなったので次回に持ち越し。
+		</p>
+	</div>
 <!--ここまでがTOP-->
         </div>
     </body>

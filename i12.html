@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!--独自エラーページを作る-->
+        <div class="menu" id="i12">
+            <h3>#12-独自のエラーページを作る</h3>03/Feb/2020
+            <p>
+                　Apache標準の簡素なエラ〜ページから独自のページに変更する記事がネット上にたくさん出ているので真似してみた。とはいえそんなに凝るつもりはないので、メインページのデザインを踏襲した感じで言葉だけ変えた。ディレクトリ構造は「サイトのルート/error/ファイル名.html」とした。
+            </p>
+            <p>
+                　他のサイトにも書いてある通り、独自エラーページを作るにはエラーの種類に相当するページを作っておいて、.htaccessファイルに設定を記述する。
+                <blockquote>
+                    .htaccessの記述<br>
+                    〜省略〜<br>
+                    ・<br>
+                    ・<br>
+                    ErrorDocument 401 /error/ファイル名.html<br>
+                    ErrorDocument 403 /error/ファイル名.html<br>
+                    ErrorDocument 404 /error/ファイル名.html<br>
+                    ErrorDocument 500 /error/ファイル名.html<br>
+                </blockquote>
+                こんな感じで、作成したエラーページまでのパスを指定する。相対パスでも絶対パス（URL）でもいいらしい。あと、.htaccessの使用が有効になっていない場合は有効にする。（ディレクトリの設定を変える）
+                <blockquote>
+                    /etc/apach2/apache2.conf内<br>
+                    〜省略〜<br>
+                    ・<br>
+                    ・<br>
+		    &lt;Directory "/PATH/TO/Website/"><br>
+                        Option FollowSymLinks<br>
+                        AllowOverride All          #ここをNoneからAllにする<br>
+                        Require all granted<br>
+		    &lt;/Directory>
+                </blockquote>
+                　これで動くと思うが、500 Internal Server Errorになる場合にはApache2のrewriteモジュールが無効になっているかもしれないので、調べて有効にする。
+            <pre class="coding-env"><code>
+$sudo a2enmod rewrite
+$sudo systemctl restart apache2
+            </code></pre>
+                　サイトの中の存在しないページを表示させてみて、自分で作ったエラーページが表示されれば成功。<br>
+                https://m-katono.mydns.jp/aaa.htmlにアクセスしてみる。<br>
+                <img src="./photo/error-photo.png" alt="error photo" width="600px" oncontextmenu="return false;">
+            </p>
+        </div>
+	</div>
+    </body>
+</html>

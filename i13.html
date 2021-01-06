@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!--MacBookAirの冷却ファンについて-->
+        <div class="menu" id="i13">
+            <h3>#13-MacBook Airの冷却ファンについて</h3>04/Feb/2020
+            <p>
+                　MacBook Airを使い始めてから２週間がたった。某オークションの商品説明では「ファンが高速で回り続ける」とあったが、確かに高速で回り続けている。ファンがうるさい間は動作がモッサリしていて、古いパソコンを使っているような感覚。よくある「SMCリセット」をしても改善されない。
+            </p>
+            <p>
+                 ただ、数時間の間使用し続けているとファンが静かになってくる時がある。そうなると急にサクサク動き出して、「これが本来のMacBookAirか〜」と思えるような動作になる。
+            </p>
+            <p>
+                 ファンが高速回転している間は「kernel_task」というのが活発に動いていて、CPUの温度管理などもしているらしいが、とても動作が重くなる。アクティビティーモニタで確認すると、kernel_taskのCPU使用率はいつも200%以上になっている。サクサク動いているときには「kernel_task」はあまり動いていない。ここをどうにかすればいつでも快適にMacを使えるのに、対策方法は見つかっていない。
+            </p>
+            <p>
+                <mark>＊　05/Feb/2020　解決記事を追記</mark><br>
+                　MacBookのkernel_taskが暴走する事例はかなり多いらしく、たくさんの記事がネット上に見られた。原因は様々だがハードウェアのトラブルに見舞われる人も多く、バッテリー交換やトラックパッド交換で解決する人もいるようだ。自分なりの解決方法を探していくつか試してみた。
+                <ol>
+                    <li>OSクリーンインストール</li>
+                    <li>SMCリセット</li>
+                    <li>NVRAMリセット</li>
+                    <li>セーフモードで起動</li>
+                </ol>
+                　OSのクリーンインストールは、手に入れてからすぐに行っていた。改めて実施したのはSMCリセット以降になる。どの操作もまずは電源を切ってから行う。モデルによって操作が異なるようだが、MacBookAir(11inch,Mid2013)の場合には以下かの操作を行う。
+                <blockquote>
+                    SMCリセット：control+shift+option+電源を10秒以上長押ししてから離し、その後電源を入れる。<br>
+                    NVRAMリセット：電源を入れたらすぐにcommand+option+P+Rを押し続け、２度目の起動音がなったら離す。<br>
+                    セーフモード：shiftを押しながら電源を入れ、起動したら離す。<br>
+                </blockquote>
+                　正直なところハードウェアに何らかのトラブルが出ていることを覚悟していた。古いし。でも、セーフモードで起動したら問題が出現せず、再起動したらkernel_taskは正常に戻っていた。めでたし、めでたし。
+                <img src="./photo/activity_monitor.png" alt="activity monitor" width="600px" oncontextmenu="return false;">
+            </p>
+            <p>
+                <mark>＊06/Feb/2020 追記</mark><br>
+                　その後、場合によってはまたkernel_taskが暴走することがあった。起動直後だし真冬なので実際にCPU温度が高い事はありえない。原因究明のためにCPU温度を監視できる環境を準備した。　
+            <pre class="coding-env"><code>
+$sudo gem install iStats -n /usr/local/debian
+$istats all
+            </code></pre>
+                istatsを使うと各部の温度センサの値やファンの回転速度をターミナルからコマンドで表示できる。早速確認したところ、kernel_taskがおかしいときにはCPU温度がずっと<strong>-128.0°C</strong>であることが分かった。セーフモードで起動してもそのまま-128.0°Cのときもあれば、平常の温度に戻るときもある。<br>
+                マザーボード上の温度センサの不具合か温度を読み取るソフト側の不具合だが、どちらにしろ結構厄介な気がする。
+            </p>
+        </div>
+	</div>
+    </body>
+</html>

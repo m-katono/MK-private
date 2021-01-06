@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!--Raspberry pi 3B+の調子が悪い-->
+	<div class="menu" id="i22">
+		<h3>#22-Raspberry pi 3B+の調子が悪い</h3>08/Mar/2020
+		<p>
+		　Raspberry pi 3B+が起動しなくなってしまった。たいしたことには使っていなかったが、不要になった2.5インチHDDをケースに入れてUSBで繋いでNAS的な感じで使っていた。久しぶりに<code class="coding-env">sudo apt update</code>をした後に再起動したら、ネットワーク上からアクセスできなくなってしまった。sshでも繋がらない。はじめはネットワークの設定の問題かと思ってモニターとキーボードを繋いで起動したところ、起動画面で<strong>'boot.main'</strong>と表示されて止まっている。幸い<strong>'Ctrl+Alt+T'</strong>でコンソール画面に入れたので<strong>'startx'</strong>でXwindowを起動したが、シングルユーザーモードになってしまった。
+		</p>
+		<p>
+		　まずはやっぱりネットワークかと思って<strong>'/etc/dhcpcd.conf'</strong>を確認してみたが、特に変わったところはないように見える。そういえばいつも画面の右上に「稲妻マーク」が出ていたので、USBで繋いだHDDへの電源供給が足りていないのには気づいていたが、起動時にマウントするはずのHDDはマウントされていなかった。<code class="coding-env">sudo fdist -l</code>とか<code class="coding-env">lsusb</code>で確認したが、全く認識されていない様子。ためしに<strong>'/etc/fstab'</strong>の設定に<strong>nofail</strong>を追加したら起動できた。取り外したHDDを別のPCにつなぐと正常に動作するので、やっぱり電力不足で認識しなくなったみたい。アップデートUSB周りの動作が変わったのかもしれない。
+		</p>
+		<p>
+		　<strong>samba</strong>でファイル共有できないと結構めんどくさいことになる。小さいデータはGoogleDriveやOneDriveでやり取りすればよいが、大きめのデータは扱いづらい。HDDは取り外して別の用途に使うことにして、代わりに手元に余っていた64GBのUSBメモリを繋いで設定した。HDDと違って寿命が心配なので長期間のバックアップ用としては使えないが、一時的にデータを保存しておくための外部ストレージ的に使うことにした。スマホやPCからガシガシとファイルを保存して、後でまとめてHDDにバックアップすれば良いかもしれない。
+		</p>
+		<p>
+		<mark>10/Mar/2020　追記</mark><br>
+		　<code class="coding-env">sudo apt update</code>をした後で、何故か有線LANが不通になってしまった。<strong>SSH</strong>でログインして作業していたのでwi-fiをオフにしたらシャットダウンもできなくなってしまった。かなり嫌だったが、シャットダウンせずに遠隔で電源をオフにした。家に帰ってから色々調べたがなかなか分からず困ってしまった。特に今回は外付けHDDの電力不足でOSを起動できなかったのと重なったので、最初はそれぞれ別の事象であることに気づかなかった。結果的にはいつも<strong>eth0</strong>だったNIC名が勝手に長い名前に変わっていて、<strong>/etc/dhcpcd.conf</strong>に書いた設定と合わなくなったのが原因っぽい。
+		</p>
+	</div>
+	</div>
+    </body>
+</html>

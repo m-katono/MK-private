@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!--MySQLを触って見る準備-->
+		<div class="menu" id="i11">
+			<h3>#11-MySQLを触ってみる準備（の代わりにMariaDB）</h3>02/Feb/2020
+			<p>
+			　今のところはDB（データベース）が必要な用事は無いのだが、Web関連の学習をするにあたってDBも使って見るべきだと思った。今までに触ったことがあるのは「やさしいJava　活用編」に出てきたDerbyと、Androidアプリを作った際に使用したSQLiteだけだった。どちらもザックリと触ってみただけなので、完全初心者だ。SQL文についての知識はほぼ０なので、ここは一番メジャーなMySQLを使ってみたいと思う。とはいえ、どんなデータを保存したいか決めなければ使いようがないので、とりあえずインストールだけすることにした。
+			<pre class="coding-env"><code>
+$sudo apt install mysql-server
+			</code></pre>
+			　あとは標準の文字コードをUTF-8に変更するくらいの事はしておいた方がいいらしいので、設定ファイルを編集しておくだけ。
+			と思ったが、「パッケージが見つからない」的なエラーになった。ネットで調べたら<a href="https://www.codeflow.site/ja/article/how-to-install-the-latest-mysql-on-debian-10" target="_blank" rel="noopener">このへん</a>に書いてあったが、どうやら.debのパッケージをダウンロードしてインストールするしか無いみたい。でも代わりにMariaDBというのが推奨されているらしいので、そちらをインストールする。
+			<pre class="coding-env"><code>
+$sudo apt install mariadb-server
+			</code></pre>
+			これでインストールできたが、思ったより迷ってしまった。その後の設定方法は<a href="https://www.codeflow.site/ja/article/how-to-install-mariadb-on-debian-10" target="_blank" rel="noopener">ここ</a>に書いてある。ちょっとめんどくさいけどオススメ通りにやっておくのが安全そう。
+			</p>
+		</div>
+	</div>
+    </body>
+</html>

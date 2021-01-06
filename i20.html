@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!--PUPPY Linuxを使ってみる-->
+        <div class="menu" id="i20">
+            <h3>#20-Puppy Linuxを使ってみる</h3>26/Feb/2020
+            <p>
+                　使わないUSBメモリが余っていたので、何かOSでもインストールして使ってみようと思った。USBメモリを差し替えていろいろなPCで同じ環境を使えたら便利そう。書き込み速度が速いUSB3.0ならば何とか使用に堪えるだろうと思った。まずは「軽い」とウワサの<strong>Linux Mint Xfce 19.3</strong>をインストールしてみた。Debian系だから使い慣れているし、初めから日本語環境でインストールできる。でも実際に使ってみると場合によっては耐えがたいほど重くなってしまった。<code class="coding-env">sudo apt upgrade</code>をしたら一晩かかってしまった。
+                　これでは使いにくいので別のOSを物色していると<strong>Puppy Linux</strong>というのがあった。今回の目的にぴったりの特徴をもっているみたい。
+                <ul>
+                    <li>最新版の8.0でも容量500MB以下。</li>
+                    <li>Ubuntu系。</li>
+                    <li>データを全部RAMに読み込んでOSを起動する。</li>
+                    <li>必要最低限のソフトは軽量な奴が入っている。</li>
+                </ul>
+                起動時にメモリに全部データを読み込むのでちょっと時間がかかるが、起動した後はメモリ上で動作するので超高速。シャットダウン時に変更したデータを別ファイルに保存しておく仕組みらしい。重たい作業はできないが、持ち歩き環境にはぴったり。ただ、気に入らないところもいくつかあった。
+                <ul>
+                    <li>dpkgが使えないのでソフトのインストールがめんどくさい。</li>
+                    <li>日本語化が別途必要。（難しくはない）</li>
+                </ul>
+                　Puppy Linux独自のパッケージマネージャーがあるので、それを利用してVimやPython3.6をインストールした。Puppy Linux向けの<strong>.pep</strong>や<strong>.sfs</strong>のパッケージでいろいろインストールできるし、Debian向けのパッケージもインストールできる。日本語化はネットで<strong>lang_pack_ja-2.1.sfs</strong>をダウンロードしてインストールすると表示できるようになり、Puppyパッケージマネージャーで<strong>scim-anthy_1.2.7-7</strong>をインストールして設定すると入力できるようになる。
+            </p>
+            <p>
+                設定にあったっては次のサイトを参考にさせていただきました。ありがとうございます。<br>
+                <a href="http://puppylinux.com/download.html" target="_blank" rel="noopener">Puppy Linux Downloads</a><br>
+                <a href="https://pc-freedom.net/basic/puppy-linux-bionicpub-8-0-japanese/" target="_blank" rel="noopener">日本語化</a>
+            </p>
+            <p>
+                <mark>27/Feb/2020　追記</mark><br>
+                　古いPCでも動作するように32bitをインストールしたかったが、自分の環境では動作しなかった。OSが立ち上がる寸前まで進むが、デスクトップが立ち上がらずにブラックアウトしてしまう。諦めて64bitをインストールしなおした。
+                <ul>
+                    <h4>テストした環境</h4>
+                    <li>Dell Inspiron 3162</li>
+                    <li>Celeron N3060</li>
+                    <li>DDR3-4GB</li>
+                </ul>
+                普段はUbuntu 18.04 LTS をインストールして使っている。Windowsのコマンドプロントには慣れていないので、Puppy Linuxを持ち歩けるととても便利な気がする。
+            </p>
+
+            <p><mark>28/Feb/2020　追記</mark><br>
+            　今までは<strong>Fullインストール</strong>して使っていたのだが、LegacyモードのないUEFIではうまく起動できなかった。最近のパソコンはUEFIで64bitが普通なのでちょっと不便。なぜFullインストールなのかというと、「Fullだから大は小を兼ねる的な感じで良いだろう」くらいの軽い気持ちだった。たた、よくよく調べると<strong>Frugalインストール</strong>の方が推奨らしいのでFrugalでインストールしなおしてみた。
+            </p>
+            <p>
+            　今回は<a href="https://www.google.com/amp/s/gamp.ameblo.jp/gokurakuhaze/entry-12440408582.html" target="_blank" rel="noopener">こちら</a>を参考にさせていただきました。ありがとうございます。私がインストールしたのは普通の<strong>bioncpup64-8.0</strong>で、PuppyLinux内のツールを利用しただけ。あとはUEFIの「Legacyな設定を読み込む」的な設定をオフにしておけば起動できた。帰ったらMacBookAirでも起動させてみようと思う。
+            </p>
+            <p>
+            　ちなみにファイルシステムをext4にしたら「非推奨」と言われたので「vfat」にした。あと、インストール中に「LegacyなBIOSでも起動できるようにしますか」的な質問が出たので「Yes」にしておいた。
+            </p>
+        </div>
+	</div>
+    </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!-- ArchLinux　をインストール -->
+            <div class="menu" id="i27">
+                <h3>#27-ArchLinux をインストール</h3>19/Dec/2020
+                <p>（＊ここではインストール方法は説明しないが、参考にしたサイトを紹介したり感想をかいたりする。）
+                </p>
+
+                <h4>なぜArchLinuxか</h4>
+                <p>　MacOSを使ってみたくてしばらくはMacBookAir(2011 Mid)を使用していたが、思ったほど快適ではなかったので売ってしまった。Windowsよりは自由度が高いような気がするし、オシャレなので嫌いではなかった。でも普段からUbuntuを使っているとLinuxのほうが分かりやすいし、動作が軽い気がして好きだ。主にDellの安いラップトップにUbuntuを入れて使っていたが、低スペック(Celeron N3060, DDR3L-4GB)なのであまり重い作業はできないし、購入から１年でストレージ(32GB-eMMC)の90%が埋まってしまって限界が近くなっていた。
+                </p>
+                <p>　最近はPuppyLinuxやRaspberryPiOSなんかをよく使うのでOSのインストールには慣れていたし、いっそうのことリフレッシュしようと思ってLinuxMint(MATE)を入れてみた。Ubuntuよりも軽快だし、良い意味で「普通」に動く。が、Ubuntuを使っていたときと同等の環境を作るとストレージの半分以上が埋まってしまった。
+                </p>
+                <p>　動作に関してはPuppyが最軽量だと思うが、ちょっと特殊なので使用用途を選ぶ感じがする。Puppyに匹敵するくらい快適に動作するディストリビューションはないものかと思ってネットを徘徊していると、ArchLinuxというのに行き着いた。なんでも、中・上級者向けだとか、インストーラーが無いだとか、自分好みの環境を作れるとかでとても魅力的に感じた。自分のスキルでは不足していると思ったが、解説してくれているサイトがいくつかあるし、公式ドキュメントが充実しているのでなんとかなるんじゃないかと思ってインストールすることにした。
+                </p>
+
+                <h4>インストール</h4>
+                　インストールするにあたって、主に２つのサイトを参考にさせていただいた。まずは最小限の構成でインストールしてから後でデスクトップ環境を整えるという順番で、できるだけ新しい記事を参考に進め、他にもいろいろなサイトを見ながら、自分に必要なところだけ組み合わせてインストールした。
+                <ul>
+                    <li><a href="https://qiita.com/TsutomuNakamura/items/b60518f8788e5e998744" target="_blank" rel="noopener">https://qiita.com/TsutomuNakamura/items/b60518f8788e5e998744</a>(Arch Linux インストール俺々式完全版)</li>
+                    <li><a href="https://qiita.com/j8takagi/items/235e4ae484e8c587ca92" target="_blank" rel="noopener">https://qiita.com/j8takagi/items/235e4ae484e8c587ca92</a>(Arch Linuxの最小限インストール)</li>
+                </ul>
+まずは他のディストリビューションと同じで<a href="https://www.archlinux.jp/download/" target="_blank" rel="noopener">公式サイト</a>からイメージをダウンロードしてUSBメモリに書き込んで起動する。インストーラーが無いので順番にコマンドを打って実行していくが、焦らずに進めればそれほど難しくはなっかた。インストーラーがやっていることを手動で進めていくだけなので「何をするコマンドなのか」を考えながら進めれば迷うことはないが、インストールする環境によって少しずつ違うと思うので必ずエラーが出ると思う。エラーのコメントやログをじっくり読んで解決すればどうにかインストールできる感じ。大抵は「~~~ is not found」とかなので不足のパッケージを<code class="coding-env">pacman -S</code>でインストールすれば解決できることが多い。私の環境ではUSBメモリから起動してネットにつなぐのは問題なかったが、インストールコマンドを実行して<code class="coding-env">arch-chroot /mnt</code>した後に、新しい環境からインターネットに繋ごうとするとダメだった。dhcpcd が見つからないのが原因だったが、USBメモリの方には入っていたのにインストール後のArchLinuxにはdhcpcdが無いようで、すぐに気づくことができずにちょっとハマった。ちなみに、なるべく小さくまとめたかったのでデスクトップはXfce4にした。
+                <h4>（今のところ）良かったこと</h4>
+                <ol>
+                    <li>とても勉強になった。普段GUIばかり使っていると諸々のプログラムがほとんど自動で動くので、Xwindowシステム、ネットワーク、bluetoothなどをCLIから手動で起動してみるとなんとなく仕組みがわかった気になる。</li>
+                    <li>動作が軽い。OSの起動は電源ボタンを押してから15秒位でログイン画面まで進む。eMMCはHDDとそれはど速度が変わらないことを考えると、とても速い。</li>
+                    <li>小さい。インストールイメージは600MBちょっと。CLI状態で2.5GBくらいだった気がする。デスクトップ環境、openJDK12、rust、IntelliJ IDEA、LibleOffice、Chromium、Thunderbird、その他のパッケージをインストールしても8.6GB。</li>
+                    <li>ローリング・リリース。OSのバージョンなんか気にしなくていい。パッケージマネージャのPacmanも結構使いやすい。</li>
+                </ol>
+                <h4>気になるところ</h4>
+                インストールしてすぐは、本当に最低限の環境だけ。ほしい機能があれば自分でパッケージをインストールしなければならない。Linuxのターミナルに慣れていれば全く苦にならないが、WindowsからいきなりArchLinuxに移行するのは不可能に近い。他のメジャーなディストロを経験してからチャレンジするべきと思われる。
+        <br>
+        <br>
+        <img src="./photo/screen.png" alt="df -h" width="600px" oncontextmenu="return false;"><br>
+        <img src="./photo/desktop.png" alt="desktop" width="600px" oncontextmenu="return false;"><br>
+        <br>
+	<mark>20/Dec/2020　追記</mark>
+        <p>　細かく必要そうなパッケージをダウンロードして現在は下の写真のスタイル。Xfce4にダークテーマがあったので変えてみた。右上のタスクバーに音量、Bluetooth、ネットワークのアイコンが追加されたので、使い勝手は他のディストリビューションと変わらない。今のところ動作が非常に安定していて不具合はないので、インストール作業に慣れれは自分にとってはベストチョイス。ただ、GUIインストーラーがあるManjoroもどんな感じか気になる。
+        </p>
+        <img src="./photo/os_version.jpg" alt="desktop_dark theme" width="600px" oncontextmenu="return false;"><br>
+        使用にあたってのメモ<br>
+        ネットワーク設定ツール > nmtui、nmcli<br>
+        音量コントロール > alsamixer、もしくはGUI<br>
+        パッケージの古いキャッシュを削除 > paccache -r<br>
+        <br>
+        <br>
+        </div>
+	</div>
+    </body>
+</html>

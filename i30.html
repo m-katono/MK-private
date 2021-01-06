@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!-- ArchLinuxのいストール手順　その２ -->
+    <div class="menu" id="i30">
+
+<h3>#30-ArchLinuxのインストール手順　その２</h3>05/Jan/2021
+<p>
+　続いてデスクトップ環境をインストールしていく。余計な機能が無くて軽いのがベストなのでXfce4が良い。
+</p>
+<pre class="coding-env"><code>
+// とりあえず、パッケージを更新
+$ sudo pacman -Sy
+
+// 必要なものをインストール
+$ sudo pacman -S xfce4 xfce4-notifyd xorg-server xorg-xinit lightdm lightdm-gtk-greeter
+
+// lightdmを有効にする
+$ sudo systemctl enable lightdm
+
+// 日本語入力に必要なものと好きなフォント
+$ sudo pacman -S fctix-mozc fctix-im fctix-configtool noto-fonts noto-fonts-cjk noto-fonts-emoji
+</code></pre>
+<p>
+　再起動してGUIのログイン画面が表示されればOK。フォントは入れなくてもいいが、もともと入ってるやつだと少し違和感がある。ログインしたらネットに繋いで、あとはどんどん必要なパッケージをインストールしていく。
+</p>
+<h4>インストールしたやつら</h4>
+<ul style="list-style-type:none">
+    <li>chromium：Webブラウザ</li>
+    <li>thunderbird：Mailクライアント</li>
+    <li>palseaudio：サウンドサーバ</li>
+    <li>xfce4-palseaudio-plugin：pulseaudioのシステムトレイアイコン</li>
+    <li>pavucontrol：GUIのボリュームコントロール</li>
+    <li>xfce4-screenshooter：スクリーンショット</li>
+    <li>htop：CLIリソース管理</li>
+    <li>vlc：メディア再生</li>
+    <li>libreoffice-still：オフィスソフト</li>
+    <li>libreoffice-still-ja：libreoffice日本語化</li>
+    <li>intellij-idea-community-edition：統合開発環境</li>
+    <li>rust：プログラミング言語</li>
+    <li>sshfs：ネットワーク越しにマウント</li>
+    <li>gvfs：ゴミ箱を使うのに必要</li>
+    <li>gvfs-backends：thunarでsambaを参照するのに必要</li>
+    <li>gvfs-smb：こちらもsamba参照に必要</li>
+    <li>network-manager-applet：システムトレイにネットワークのアイコン</li>
+    <li>bluez-utils：bluetooth</li>
+    <li>blueman：bluetooth関連ユーティリティー</li>
+    <li>pacman-contrib：paccacheが使える</li>
+</ul>
+<p>
+　日本語入力のためにfctixを使う設定を<code class="coding-env">~/.bash_profile</code>に書き込む必要がある。bluetoothとnetworkmanagerはsystemdで起動するようにしておく。あとの設定はだいたいGUIからできるので分かりやすい。
+</p>
+<pre class="coding-env"><code>
+// fcitxを使う設定。
+$ echo "export GTK_IM_MODULE DEFAULT=fcitx" > ~/.xprofile
+$ echo "export QT_IM_MODULE DEFAULT=fcitx" >> ~/.xprofile
+$ export "export XMODIFIERS DEFAULT=@im=fcitx" >> ~/.xprofile
+
+// ネットワークとbluetooth
+$ sudo systemctl enable NetworkManager
+$ sudo systemctl enable bluetooth
+
+// 一度再起動して日本語入力やネットワークが正常ならば終わり
+$ reboot
+</code></pre>
+<p>
+　東芝REGZAの３２インチテレビをモニターにしているので大きくて明るいし音も良いが、ちょっと眩しいのでダークテーマで使っている。コマンドラインのプロンプトやvimの設定は他のPCから持ってきた。あとは今後のパッケージ管理をできるだけ分かりやすくしたいので、aurヘルパーのyayとpaccacheを使うことにした。
+</p>
+    </div>
+	</div>
+    </body>
+</html>

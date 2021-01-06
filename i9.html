@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!--python3とapache2でcgiを動かして見る-->
+            <div class="menu" id="i9">
+                <h3>#9-python3とapache2でcgiを動かしてみる</h3>29/Jan/2020
+                <p>
+                    　いよいよpythonでcgiを動かす環境を整えてみたいと思いapache2の設定をした。raspbianにaptでapache2をインストールした場合、/etc/apache2/conf-available/serve-cgi-bin.confの設定を書き換える。<br>
+                    ちなみに、環境は以下の通り。
+                    <ul>
+                        <li>Apache2.4</li>
+                        <li>Python3.7.3</li>
+                    </ul>
+
+                <pre class="coding-env"><code>
+# /etc/apache2/conf-availalble/serve-cgi-bin.confの一部を編集。
+〜省略〜
+    10     &lt;IfDefine ENABLE_USR_LIB_CGI_BIN>
+            # ↓ScriptAlias /URL上のディレクトリ/ /実際のディレクトリ/   ←最後に/
+    11         ScriptAlias /cgi-bin/ /PATH/TO/cgi-bin/
+            # ↓Directory "実際のディレクトリ"    ←最後に/なし
+    12         &lt;Directory "/PATH/TO/cgi-bin">
+    13             AddHandler cgi-script .cgi .py   ←cgiとして動かす拡張子を登録
+    14             AllowOverride None
+    15             Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+    16             Require all granted
+    17         &lt;/Directory>
+    18     &lt;/IfDefine>
+〜省略〜
+
+# cgidを動かすコマンドを実行（シンボリックリンクを作るらしい）
+# そしてapache2を再起動
+    $ a2enmod cgid
+    $ sudo systemctl restart apache2
+
+# cgiのモジュールを読み込んでいるか確認
+    $ apache2ctl -M | grep cgi
+    cgid_module (shared)
+                </code></pre>
+                    　そして設定したディレクトリに「cgi-bin」というディレクトリを作り、中に実行ファイルを入れてパーミッションは755にしておく。これでちゃんと動いたが、最初にWebルートティレクトリにcgi-binを置いてしまってセキュリティ上よくない気がしたので、場所を移した。そうしたらパーミッションエラーやタイプミスやいろいろな失敗とともになぜかシンタックスエラーで.pemファイルが読み込めなくなり、２時間ハマった。404とか500なんかのエラーや、cgiのコードがそのまま表示されるなどして苦しんだが、ほとんどタイプミスだった。。。
+                </p>
+                <p>
+                    　今回はhtmlページにフォームを置いて、それを受け取ったcgiが別のページを表示するだけの簡単なサンプルを作成した。
+                </p>
+
+                Sample：入力した文字を別ページで表示する<br>
+                <form action="/cgi-bin/test.py" method="POST">
+                    <input type="text" name="text" value="Input here"/>
+                    <input type="submit" name="submit"/>
+                </form>
+                <br>
+            </div>
+	</div>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!--「送信中」表示する-->
+                <div class="menu" id="i19">
+                    <h3 id="「送信中」表示する">#19-「送信中」表示する</h3>
+            <p>16/Feb/2020</p>
+            <p>　この前作った送信フォームの入力チェックには<strong>&lt;input&gt;</strong>の<strong>reqired属性</strong>でやっていた。設定しておくと未入力の際にはポップアップが出るし、<strong>type="email"</strong>とかにすればemailアドレスっぽい文字が入力されたかどうかチェックしてくれる。</p>
+            <p>　ただ、正しく入力して送信ボタンを押してからcgiの処理が終わるまでの数秒間が気になる。どうしても「戻る」ボタンを押したり、送信を連打したくなってしまう。他にも次のような問題が考えられる。  </p>
+            <ul>
+            <li>HTML5に非対応の古いブラウザでは機能しない。</li>
+            <li>未入力のチェックはできるが、送信できたかどうかのチェックはできない。</li>
+            </ul>
+            <p>これを解決するためにcgiの方で入力漏れが無いかチェックしてから送信し、送信できたら完了画面、できなかったらエラー画面に遷移するようにする。また、cgiの処理には少し時間がかかるので画面遷移までの間は「送信中」の表示にする。<br><img alt="送信中" width="600" src="./photo/sending-display.png"></p>
+	    <pre class="coding-env">
+	    htmlファイル
+	    	|
+	   送信ボタンを押す  ↓cgiの処理
+    -------------------------------------
+	        |          &gt;処理完了まで
+	    /       \      「送信中」表示
+       	    |        |      （元の表示に被せている）
+    ------------------------------------
+     エラー        完了       &gt;cgiで出力した
+                                    htmlを表示する
+            </pre>
+            <p>　送信中表示はそんなにオシャレにするつもりはないので<strong>jQuery</strong>とかは使わない。htmlの中に「送信中」の要素を書いておいて、初期値は非表示にしておく。<strong>&lt;form&gt;</strong>のボタンの<strong>onclick</strong>イベントからjavascriptの関数を呼び出して、スタイルシートの<strong>display</strong>を<strong>none</strong>から<strong>block</strong>にする。処理が終わるとcgiから出力した画面に切り替わって終了。</p>
+<pre class="coding-env"><code>
+@javascript "UTF-8"
+function sendingDisplay() {
+                document.getElementById('sending').style.display='block';
+            }
+</code></pre>
+            <p>htmlのコードの中に書いた「送信中」部分のタグのidを<strong>sending</strong>にした場合、javascriptのコードはこんな感じになる。</p>
+            <p>どうしてもjQueryを使ったカッコイイアニメーションの例が多い中、今回は<a rel="noopener" href="https://www.officequattro.com/jpn/technet/contents/tnet_17.html" target='_blank'>こちらのサイト</a>を参考にさせていただきました。ありがとうございます。</p>
+	    <p><mark>17/Feb/2020 追記</mark><br>
+	    　「送信中」画面の表示には成功したが、ブラウザによって多少挙動が違うことが分かった。エラー画面から戻る際は<code class="coding-env">javascript:history.back()</code>で入力内容を残して戻り、送信完了画面から戻る際にはトップページへリンクしたのだが、Safariでだけエラー画面から戻ったときに「送信中」画面が表示されたままになってしまう。でもエラー画面から戻ったときには前回入力した内容が残っていて欲しいのでhistory.back()は使いたい。仕方がないので、「送信中」画面に<strong>「送信中」を消す</strong>ボタンを設置して手動で消せるようにした。かっこ悪いけどしばらくはこれで行く。
+	    </p>
+                </div>
+	</div>
+    </body>
+</html>

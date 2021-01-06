@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!--Raspberry pi 3B+が重い-->
+    <div class="menu" id="i23">
+        <h3>#23-Raspberry pi 3B+が重い</h3>11/Mar/2020
+        <p>
+            　最近またラズパイをいじり始めたが、やたら動作が重いのが気になる。起動してChromiumでYouTUBEを再生し始めるとすぐに<strong>swap</strong>領域を使い始める。CPUの負荷はまだ余裕があるので、このリソース不足が原因い違いない。何とかならないものか。
+        </p>
+        <p>
+            　考えてみるとYouTUBEの再生やWebサイトの閲覧なんかはスマホを使った方がよっぽど快適なので、わざわざラズパイで動かしてVNCでリモート接続する必要はない。モニターもキーボードも付けていない状態でファイルサーバーとして動かしているだけなので、GUIが必要な場面など皆無。セキュリティーを考えて<strong>samba</strong>にはLAN内からしかつながらないようにしているが、外でどうしてもファイルを取り出したいときには<strong>scp</strong>コマンドを使えばいい。
+        </p>
+        <p>
+            　ということで、CLIで起動することにした。設定はGUIの<strong>Raspberry piの設定</strong>からもできるが、<code class="coding-env">sudo raspi-config</code>からやった。メニューに書いてある通りに選択していくだけなので簡単(英語)。
+        </p>
+        <img src="./photo/raspi-config.png" width="600" alt="raspi-config" oncontextmenu="return false;">
+        <img src="./photo/top.png" width="600" alt="top command" oncontextmenu="return false;">
+        <p>
+            　こんな感じで<code>top</code>コマンドを使ってメモリの使用量を確認してみるとかなり余裕があるのが分かる。<strong>swap</strong>を使うこともなくなりそうなので、SDカードが長持ちするかもしれない。
+        </p>
+    </div>
+	</div>
+    </body>
+</html>

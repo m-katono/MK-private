@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!--Apache2.4の設定ファイルについて-->
+        <div class="menu" id="i15">
+            <h3>#15-Apache2.4の設定ファイルについて</h3>07/Feb/Feb2020
+            <p>
+                　独自のエラーページを表示させたり、httpへのアクセスをhttpsにリダイレクトしたりするのに<strong>.htaccess</strong>ファイルを使用していたが、ディレクトリ階層が深くなるにつれてパフォーマンスが落ちてくるというのを知ったので、「.conf」ファイルに全て書くように変更しようと思った。ネット上にたくさんの解説サイトがあるが圧倒的にCentOS上で説明している記事が多く、CentOSだと<strong>httpd.conf</strong>にほとんどの設定を書けば良いらしく、追加するコードの一部を解説している人がほとんど。Debian系のOSにaptでインストールした場合は<strong>apache2.conf</strong>というファイルがその代わりになるので、サンプルコードを真似してそのまま書いてみた。
+            </p>
+            <p>
+                　何も心配していなかったが、いざapacheを再起動しようとしたところエラーになった。書き方を間違ったかと思っていろいろ書き直してみたがなかなかうまくいかない。Apacheのファイルがあるディレクトリを眺めていると、「.conf」の設定ファイルがたくさんあることに気づいた。たぶん環境によって異なると思うが、raspbianの場合はそれぞれの設定ファイルに分けて書かなければならないらしい。
+            </p>
+            <p>
+                　まずは<strong>apache2.conf</strong>ファイルで「.htaccess」を無効にする。
+                <blockquote>
+                    &lt;Directory "/var/www/html"><br>
+                        Options Indexes FollowSymLinks<br>
+                        AllowOverride None&nbsp;&nbsp;&nbsp;&nbsp;#ここがNoneだと.htaccess無効<br>
+                        Order allow,deny<br>
+                        Allow from all<br>
+                    &lt;/Directory><br>
+                </blockquote>
+                httpからhttpsへのリダイレクトはポート80の設定のところに書くので、「/etc/apache2/siteｓ-available/000-default.conf」に書く。
+                <blockquote>
+                    ・<br>
+                    ・<br>
+                    〜省略〜<br>
+                    RewriteEngine on<br>
+                    LogLevel alert rewrite:trace3<br>
+                    RewriteCond %{HTTPS} off<br>
+                    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L]<br>
+                    〜省略〜<br>
+                    ・<br>
+                    ・<br>
+                </blockquote>
+                独自エラーページについては「/etc/apache2/conf-available/localized-error-pages.conf」に詳しく説明が書いてあるので、それを読みながら設定していく。すでに表示するhtmlファイルを作ってあったので、そのパスを指定する設定だけ書いておいた。
+                <blockquote>
+                    ErrorDocument 403 /error/作ったページ.html<br>
+                    ・<br>
+                    ・<br>
+                    # 作った分だけ書く<br>
+                </blockquote>
+                こんな感じでApacheを再起動したらちゃんと動いた！
+                <pre class="coding-env"><code>
+$sudo systemctl restart apache2
+                </code></pre>
+            </p>
+	</div>
+	</div>
+    </body>
+</html>

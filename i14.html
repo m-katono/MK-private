@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!--送信フォームを作る-->
+        <div class="menu" id="i14">
+            <h3>#14-送信フォームを作る</h3>06/Feb/2020
+            <p>
+                　このサイトは誰に見せるために作ったわけでもないが、誰がみているか分からない。サイトに問題がある場合に備えて連絡をもらう手段を用意しておかなければならないので最初はメールアドレスを書いておいた。でも、世の中にはどんな悪い奴がいるか分からないのでメールアドレスを晒しておくのはちょっと嫌な気もする。
+            </p>
+            <p>
+                　メルアドを晒さない定番の方法は送信フォームを作ることらしい。それならば送信フォームを作ろうということで、早速作り方を調べてみた。だいたいお決まりの３パターンがあるらしい。
+                <ol>
+                    <h4>送信フォームの３パターン</h4>
+                    <li>htmlのformから入力を受け付け、cgiを使ってsendmailで送信する。</li>
+                    <li>htmlのformから入力を受け付けて、ファイルに保存しておく。</li>
+                    <li>htmlのformから入力を受け付け、sendmail以外の方法で送信する。</li>
+                </ol>
+                １番が定番みたいだが、ラズパイには標準でsendmailがインストールされていないので今回はやめておく。２番は保存したファイルを定期的に確認しなきゃならないのでめんどくさい。消去法で３番に決まった。
+            </p>
+            <p>
+                　ちょうどpythonでcgiの勉強中なので、smtplibを使ってpythonで作ることにした。アクセスカウンターの時よりはやや複雑だが、そんなに難しくはないので詳細は他のサイトを参考にして欲しい。流れとしては、<br>
+                <blockquote>
+                件名、宛先アドレス、送信者アドレス、cc、bcc、本文で送信データを作る。<br>
+                ↓<br>
+                ユーザーID、パスワード、送信データを送信する。</blockquote>
+                こんな流れで送信できた。
+            </p>
+            <p>
+                　ただ、cgiのコードの中にログインIDが書いてあるのはいただけない。cgiのファイル自体は外から見えないところにおいてあるが、万一サーバーの設定を間違うとソースコードがそのまま表示される恐れがある。念のためパスワードは別ファイルから読み込むことにしたが、そこでちょっとハマった。プログラムが最後まで動かずに「Internal Server Error」になってしまったが、結論から言うとテキストファイルの<strong>改行コード</strong>を取り除くのを忘れていた。
+            <pre class="coding-env"><code>
+# ファイルから読み込む部分
+file_path = "相対パス/ファイル"
+with open(file_path, 'r') as f:
+    # strip()で空白や改行コードを取り除ける
+    password = f.readline().strip()
+            </code></pre>
+                　夜中に布団に入ったままスマホでコーディングしていたせいか、改行コードに気づくのにかなり時間がかかってしまった。プログラミングはパソコンでやったほうがいい。
+            </p>
+        </div>
+	</div>
+    </body>
+</html>

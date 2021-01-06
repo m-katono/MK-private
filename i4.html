@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!--https成功！-->
+            <div class="menu" id="i4">
+            <h3>#4-https成功！</h3>26/Jan/2020
+            <p>
+            　なんだかやる気が出てきたので、さっそくPCに向かって昨日の続きをやってみた。昨日は元に戻して終わったのでまずはphpやcertbot、それに忘れていたphp_mbstringをインストールするところから始める。一度やった作業なのでかなりスムーズ。<br>
+            <pre class="coding-env"><code>
+$sudo apt install php_mbstring
+            </code></pre>
+            やっぱりaptは便利。そして<a href="https://github.com/disco-v8/DirectEdit/" target="_blank" rel="noopener" oncontextmenu="return false;">昨日のサイト</a>を参考にダウンロード→unzip→cerbotコマンドと続けるが、またエラー。。。今度は落ち着いてエラーの内容を読むと、何やらacmeがダメです的なエラー。ログファイルを見るとやっぱりacmeなんちゃらで404と出ていた。ということはサバーに接続できないエラーのようなのでｃertbotを実行した時の長いオプションの中にあるurlが怪しいと思って確認したら、directoryをderectoryと打っていた。くだらない。<br>
+            　ドキドキしながらもう一度certbotコマンドを実行したらやっとSSL証明書の作成に成功した。これで今日の目的は達成したも同然と思いapache2を再起動してhttps://で<a href="https://m-katono.mydns.jp" target="_blank" rel="noopener">自分のサイト</a>にアクセスしてみたがまた繋がらなかった。ブラウザに表示される「保護されていない通信」がやっと消えると思ったのにガックリ。</p>
+            <p>
+            　気を取り直して最初から手順を確認してみたらまずルーターのポート転送をしていなかった。ポートの設定をして一応再起動したら「インターネットの接続を確認してください」から「接続が拒否されました」に変わったので一歩前進した。今のところhttp://では繋がるがhttps://だとダメなので443ポートを読んでいない可能性が高い。次はapache2.conf→conf.d内→sites-avairable内という感じで順番に設定を確認して行ったが問題なさそう。ちゃんとListen443とかSSLEngin onとか書いてある。でもnetstat -lnしてみてもListen443してない。なんだこりゃ。
+            <img src="./photo/error.png" alt="Beer" width="600px" oncontextmenu="return false;"><br>
+            　もう一度apache2の設定ファイルを順番に確認していたらsites-enableの中になければならないはずのSSL関係のファイルが無いみたい。ここにはsites-avairableからシンボリックリンクを置けば良いらしいので、ln -sでリンクを置いてみたところ、意外なことにダメだった。途方に暮れてグーグル先生に頼っていたらa2ensiteっていう見慣れないコマンドが出てきたのでダメ元で使ってみた。sites-avairable移動して、<br>
+            <pre class="coding-env"><code>
+$sudo a2ensite default-ssl.conf
+            </code></pre>
+            これで<br>
+            やっと<br>
+            できた。。。午前２時９分。。。おやすみなさい
+            </p>
+            </div>
+	</div>
+    </body>
+</html>

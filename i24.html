@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!--Raspberry pi 3B+にファンを付けた-->
+    <div class="menu" id="i24">
+        <h3>#24-Raspberry pi 3B+にファンを付けた</h3>12/Mar/2020
+        <p>
+            　GUIで使用しているときには強く感じるのだが、ちょっと負荷がかかるとすぐに動作が重くなるような気がする。リソース不足のせいだと思っていたけど、ネットで調べてみると温度上昇によるCPUのクロック周波数の低下が影響している模様。確かに起動して数分でかなり熱くなるので心配ではあった。
+        </p>
+        <p>
+            　ちなみに、今までは温度についてあまり気にしていなかったので比較対象がないが、起動から数分のCPU温度が大体30°C、負荷がかかっているときには60°Cを超えると思う（気温14°C、湿度49%）。夏場の高負荷時には80°Cを超えるだろう。ABOXのキットに付いてきたケースを使っているため空きスペースが小さいので、ラズパイ向けの2.5cm薄型ファン（5V 0.15A）を注文した。電子部品屋さんが近くにあれば100円くらいで買えそうだが、田舎に住んでいるのでネット通販で送料込み551円で取り寄せた。<br>
+            <br>
+            <a href="https://store.shopping.yahoo.co.jp/sky-group/10959.html" target="_blank" rel="noopener">CPU 冷却ファン DC 5V ブラシレス ラズベリーパイ モデルB Pi 2用 ネジ付 修理 交換 冷却パーツ</a>
+        </p>
+        <img src="./photo/fan_top.jpg" width="600" alt="Raspberry pi" oncontextmenu="return false;">
+        <img src="./photo/fan_under.jpg" width="600" alt="fan" oncontextmenu="return false;">
+        <p>
+            　ファンの大きさに合わせてケースの蓋に穴を開けて付属のボルト＆ナットで取り付けた。GPIOピンの配置は公式ドキュメントの画像ですぐに分かる。図で言うと4番に＋、6番にーの線でオーケー。電源ONとともに無事に作動した。
+        </p>
+        <img src="./photo/gpio.png" width="600" alt="gpio" oncontextmenu="return false;">
+        <p>
+            　せっかくファンを付けたので負荷時の温度を計ってみたい。GUIは使っていないのでコマンドラインで負荷をかける方法を調べたら<strong>stress</strong>コマンドを使っている例が多かったが、わざわざこのためだけに新たにインストールするのは嫌だ。そのままネットサーフィンしていたら標準で<strong>yes</strong>という変わったコマンドがあることが分かったので使ってみた。
+<pre class="coding-env"><code>
+$ yes > /dev/null
+
+</code></pre>
+            このまま15分くらい放置して温度を調べたら37°Cくらいまでしか上昇していなかった。夏場でも60°C以下に収まりそうな気がするので気持ちが落ち着く。CPU温度を調べるときは下のどちらかを使う人が多い。catの方は1000倍の数字で表示される。
+<pre class="coding-env"><code>
+$ vcgencmd measure_temp
+
+$ cat /sys/class/thermal/chermal_zone0/temp
+
+</code></pre>
+        </p>
+        <img src="./photo/cpu_temp.png" width="600" alt="cpu temp" oncontextmenu="return false;">
+    </div>
+	</div>
+    </body>
+</html>

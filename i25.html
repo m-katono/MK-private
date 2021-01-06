@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!--LinuxでPPPoE接続してみる-->
+    <div class="menu" id="i25">
+	    <h3>#25-Puppy LinuxでPPPoE接続してみる</h3>14/Mar/2020
+	<p>
+	    　自宅のネット環境はフレッツ光＋OCNで、ブロードバンドルーターでWi-Fi環境を整えている。今のところは何の問題もないがいつかルーターを買い換えたり、調子が悪くなって再設定する必要があるかも知れない。でも、契約時に送られてきた書類をなくしてしまったので接続時に使うパスワードが分からなくなってしまった。ISPに連絡して書類を再発行してもらえば簡単だが、それではつまらないので自分で調べることにする。LAN内のPCのブラウザからルーターの設定画面に入ってPPPoE接続の現在の設定の修正画面を開くと接続IDはすぐに分かる。パスワードは伏せ字になっていて読めない。伏せ字を読めるというフリーソフトを使ってみても読めない。仕方がないのでソースから地道に読んで調べたが、それが本当に合っているのか心配に思ったので確認することにした。LANケーブルをルーターから抜いて直接PCに差し、PPPoE接続してみれば分かる。Windowsではよく使っていたPPPoEなので簡単だが、せっかくなのでPuppyLinuxでやってみることにする。
+	</p>
+	<p>
+	　LinuxでPPPoE接続はやったことが無いので1から調べた。ネット上には新旧の様々なディストリビューション向けの情報が入り乱れているので簡単には解決できない。以前のPuppyにはGUIで設定するツールがあったようだが、今はインストールされていなかった（ver8.0）。ざっと調べただけでも関係がありそうなコマンドは<code class="coding-env">adsl-setup</code>、<code class="coding-env">pppoe-setup</code>、<code class="coding-env">ifup</code>、<code class="coding-env">ifdown</code>、<code class="coding-env">ifconfig</code>、<code class="coding-env">ip addr</code>などなどたくさんあるし、設定ファイルも<strong>resolv.conf</strong>、<strong>pppoe.conf</strong>、<strong>dhcpcd.conf</strong>などディストロによって触るファイルが異なる。Puppyの場合は<mark>pppoeコマンド</mark>で設定や接続・切断をすればいいみたい。
+	</p>
+	<p>
+	　Puppyの場合だけなのかLinux全般なのかは分からないが、<code class="coding-env">pppoe-setup</code>で色々と設定してさっそく<code class="coding-env">pppoe-start</code>でスターとしようとしてもエラーになる。まずは<strong>eth0</strong>を起動（？）してから<code class="coding-env">pppoe-start</code>しないとダメみたい。<strong>メニュー&gt;セットアップ&gt;インターネット接続ウィザード</strong>で<strong>eth0</strong>の接続をするとIPアドレスが割り振られている。そして<code class="coding-env">pppoe-stat</code>をすると<strong>Connected!</strong>と表示される。設定はこんな感じで進める。ちょっと長い。
+	</p>
+<pre class="coding-env"><code>
+$pppoe-setup
+
+Welcome to the Reoaring Penguin PPPoE client setup.  First, I will run
+some checks on your system to make sure the PPPoE client is installed
+properly...
+
+Looks good!  Now, please enter some information:
+
+USER NAME
+
+&gt;&gt;&gt; Enter your PPPoE user name (default root):　　　　　　←←←プロバイダの接続ID
+
+INTERFACE
+
+&gt;&gt;&gt; Enter the Ethernet interface connected to the DSL modem
+For Solaris, this is likely to be something like /dev/hme0.
+For Linux, it will be ethn, where 'n' is a number.
+(default eth0): eth0
+
+Do you want the link to come up on demand, or stay up continuously?
+If you want it to come up on demand, enter the idle time in seconds
+after which the link should be dropped.  If you want the link to
+stay up permanently, enter 'no' (two letters, lower-case.)
+NOTE: Demand-activated links do not interact well with dynamic IP
+addresses.  You may have some problems with demand-activated links.
+&gt;&gt;&gt; Enter the demand value (default no): no　　　　　　　←←←私は'no'
+
+DNS
+
+Please enter the IP address of your ISP's primary DNS server.
+If your ISP claims that 'the server will provide DNS addresses',
+enter 'server' (all lower-case) here.
+If you just press enter, I will assume you know what you are
+doing and not modify your DNS setup.
+&gt;&gt;&gt; Enter the DNS information here: XXX.XXX.XXX.XXX　　　　←←←プライマリDNSアドレスを入力
+Please enter the IP address of your ISP's secondary DNS server.
+If you just press enter, I will assume there is only one DNS server.
+&gt;&gt;&gt; Enter the secondary DNS server address here: YYY.YYY.YYY.YYY　←←←セカンダリDNSアドレス
+
+PASSWORD
+
+&gt;&gt;&gt; Please enter your PPPoE password:                      ←←←パスワードを2回入力
+&gt;&gt;&gt; Please re-enter your PPPoE password:
+
+FIREWALLING
+
+Please choose the firewall rules to use.  Note that these rules are
+very basic.  You are strongly encouraged to use a more sophisticated
+firewall setup; however, these will provide basic security.  If you
+are running any servers on your machine, you must choose 'NONE' and
+set up firewalling yourself.  Otherwise, the firewall rules will deny
+access to all standard servers like Web, e-mail, ftp, etc.  If you
+are using SSH, the rules will block outgoing SSH connections which
+allocate a privileged source port.
+
+
+The firewall choices are:
+0 - NONE: This script will not set any firewall rules.  You are responsible
+for ensuring the security of your machine.  You are STRONGLY
+recommended to use some kind of firewall rules.
+1 - STANDALONE: Appropriate for a basic stand-alone web-surfing workstation
+2 - MASQUERADE: Appropriate for a machine acting as an Internet gateway
+for a LAN
+&gt;&gt;&gt; Choose a type of firewall (0-2): 0                    ←←←ファイアーウォールの設定
+
+** Summary of what you entered **
+
+Ethernet Interface: eth0
+User name:          接続ID
+Activate-on-demand: No
+Primary DNS:        XXX.XXX.XXX.XXX
+Secondary DNS:      YYY.YYY.YYY.YYY
+Firewalling:        NONE
+
+&gt;&gt;&gt; Accept these settings and adjust configuration files (y/n)? y
+Adjusting /etc/ppp/pppoe.conf
+Adjusting /etc/resolv.conf
+/usr/sbin/pppoe-setup: line 318: /etc/resolv.conf: Too many levels of symbolic links
+/usr/sbin/pppoe-setup: line 319: /etc/resolv.conf: Too many levels of symbolic links
+/usr/sbin/pppoe-setup: line 321: /etc/resolv.conf: Too many levels of symbolic links
+Adjusting /etc/ppp/pap-secrets and /etc/ppp/chap-secrets
+(But first backing it up to /etc/ppp/pap-secrets-bak)
+(But first backing it up to /etc/ppp/chap-secrets-bak)
+
+
+Congratulations, it should be all set up!
+
+Type 'pppoe-start' to bring up your PPPoE link and 'pppoe-stop' to bring
+it down.  Type 'pppoe-status' to see the link status.
+
+</code></pre>
+	<p>
+	    　この後、<code class="coding-env">pppoe-start</code>で接続して<code class="coding-env">pppoe-stop</code>で切断できた。最後の方の<strong>resolv.conf</strong>の読み込みがおかしいけどそのうち考える。最初はDNSの設定を<strong>server</strong>にしたけど自動で読み込めず、適当なDNSアドレスを入れたら名前解決できた。
+	</p>
+    </div>
+	</div>
+    </body>
+</html>

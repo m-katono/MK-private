@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="./css/master.css" type="text/css">
+        <link rel="stylesheet" href="./css/menu.css" type="text/css">
+	<link rel="stylesheet" href="./css/sending.css" type="text/css">
+    <script src="./javascript/sending.js"></script>
+        <title>MK-private</title>
+    </head>
+        <body>
+		<div style="text-align: right;"><a href="./basic_auth/searchIP.html" class="no-color-change"><font size=3 color="white" font-weight=100>data</font></a>
+</div>
+
+		<!--送信中-->
+		<div id="sending" class="sending">
+		<p class="charSending">送信中</p>
+		<p><a href="javascript:void(0)" onclick="deleteSending()" class="button">「送信中」を消す</a></p>
+	</div>
+	<!-- 浮いているメニュー -->
+        <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="#menu" class="pagenum">menu</a>
+        </div>
+
+<div class="top">
+
+            <div class="menu"><h2>〜目的〜</h2>
+                2020年１月２２日から運用
+		        <p>
+                    　Webサーバーの使い方を勉強しながら、自分の備忘録的な記事を不定期で書いてゆくつもりです。cgiをPython3で書いてみたり、データベースなんかも使ってみたいと考えています。データベースを何に使うかが決まっていないので、まずは「作りたいもの」を考えます。
+                </p>
+                ＊問題のあるリンク等があればご連絡ください。すぐに削除します。<br>
+                <h3>テスト運用の送信フォーム</h3>
+                <form action="/cgi-bin/sendmail.py" method="POST">
+			<label for="name">お名前：</label><br>
+                    <input type="text" name="name" id="name" size="20" maxlength="30" placeholder="your name"/><br>
+		    <label for="email">メール：</label><br>
+                    <input type="email" name="address" id="email" size="20" maxlength="50" placeholder="mail@example.com"/><br>
+		    <label for="body">本　文：</label><br>
+                    <textarea type="text" name="text" id="body" rows="10" cols="31" maxlength="500" placeholder="text area"></textarea><br>
+		    <p><input type="submit" value="送　信" name="button" onclick="sendingDisplay();"/></p>
+                </form>
+                <div class="coding-env">
+                <h3>環境</h3>
+		                <p>
+	                            <h4>コーディング</h4>
+				    OS：ArchLinux+Xfce4<br>
+				    PC：DELL inspiron 3162 11inch<br>
+                                    Celeron N3060, 4GB(DDR3L-1600MHz), 32GB eMMC<br>
+                                <br>
+		                        <h4>サーバー</h4>
+                                OS：Raspbian buster Lite(Raspberry pi zero wh)<br>
+                                Webサーバー：Apache2(v2.4.38)
+                        </p>
+            </div>
+<!--
+        ここからメニュー
+        全ページの「目次へ戻る」は
+        ここへリンクさせている。
+
+-->
+        <p>
+        <div class="menu_list" id="menu">
+        <label for="menu_title" class="button">目次</label>↑クリックして開閉↑
+	<input type="checkbox" id="menu_title" class="menu_check" />
+        <div class="menus">
+        <ul class="menu-class" type="none">
+		<li><a href="./i1.html">#1-エディタを選ぶ 22/Jan/2020</a></li>
+		<li><a href="./i2.html">#2-Raspberry pi zero側の準備 24/Jan/2020</a></li>
+		<li><a href="./i3.html">#3-https対応 25/Jan/2020</a></li>
+		<li><a href="./i4.html">#4-https成功！ 26/Jan/2020</a></li>
+		<li><a href="./i5.html">#5-Raspberry pi zeroのSDカードをバックアップ 27/Jan/2020</a></li>
+                <li><a href="./i6.html">#6-Webページを微調整 28/Jan/2020</a></li>
+                <li><a href="./i7.html">#7-Android用のテキストエディタ 28/Jan/2020</a></li>
+                <li><a href="./i8.html">#8-Chromeでスクロールがおかしい 28/Jan/2020</a></li>
+                <li><a href="./i9.html">#9-python3とapache2でcgiを動かしてみる 29/Jan/2020</a></li>
+                <li><a href="./i10.html">#10-アクセスカウンタを設置する 31/Jan/2020</a></li>
+		<li><a href="./i11.html">#11-MySQLを触ってみる準備（の代わりにMariaDB）　02/Feb/2020</a></li>
+                <li><a href="./i12.html">#12-独自エラ〜ページを作る　03/Feb2020</a></li>
+                <li><a href="./i13.html">#13-MacBook Airの冷却ファンについて　04/Feb/2020</a></li>
+                <li><a href="./i14.html">#14-送信フォームを作る　06/Feb/2020</a></li>
+                <li><a href="./i15.html">#15-Apache2.4の設定ファイルについて　07/Feb/2020</a></li>
+                <li><a href="./i16.html">#16-cssを修正してみる　08/Feb/2020</a></li>
+                <li><a href="./i17.html">#17-MarkDownで書いてみる　09/Feb/2020</a></li>
+                <li><a href="./i18.html">#18-固定メニューを作る　11/Feb/2020</a></li>
+                <li><a href="./i19.html">#19-「送信中」表示する　16/Feb/2020</a></li>
+                <li><a href="./i20.html">#20-Puppy Linuxを使ってみる　26/Feb/2020</a></li>
+                <li><a href="./i21.html">#21-Puppy Linuxチョー快適　03/Mar/2020</a></li>
+		<li><a href="./i22.html">#22-Raspberry pi 3B+の調子が悪い　08/Mar/2020</a></li>
+                <li><a href="./i23.html">#23-Rasberry pi 3B+が重い　11/Mar/2020</a></li>
+                <li><a href="./i24.html">#24-Rasberry pi 3B+にファンを付けた　12/Mar/2020</a></li>
+		<li><a href="./i25.html">#25-Puppy LinuxでPPPoE接続してみる　14/Mar/2020</a></li>
+                <li><a href="./i26.html">#26-外付けHDD（1TB)を買った　20/Mar/2020</a></li>
+                <li><a href="./i27.html">#27-ArchLinux をインストール　19/Dec/2020</a></li>
+		<li><a href="./i28.html">#28-GIGABYTE製のNUCを買う　03/Jan/2021</a></li>
+		<li><a href="./i29.html">#29-ArchLinuxのインストール手順　その１　04/Jan/2021</a></li>
+		<li><a href="./i30.html">#30-ArchLinuxのインストール手順　その２　05/Jan/2021</a></li>
+            </ul>
+        </div>
+            <p>
+                ＊今のところは、Topページの目次から各記事にリンクする形です。そのうち不便になってきたらメニューを作るかもしれません。
+            </p>
+            </div>
+        </p>
+<!--写真の幅なんかを調整してみる-->
+        <div class="menu">
+		</p>
+		写真を貼ってみるテスト。スマホで表示した時のサイズ感とかを調整。<img src="./photo/beer.jpg" alt="Beer" width="600px" oncontextmenu="return false;">
+
+	    <img src="./photo/xt250.jpg" alt="serrow" width="600px" oncontextmenu="return false;"></div>
+
+<!--全体のdivの終わり-->
+        </div>
+    </body>
+</html>

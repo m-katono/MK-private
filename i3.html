@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!--https対応-->
+            <div class="menu" id="i3">
+            <h3>#3-https対応（に失敗）</h3>25/Jan/2020
+            <p>
+            　Webサーバー構築の記事をネットで色々見ていたら<mark>「https」</mark>の話がたくさん出ていた。そういえば何年か前からhttps://から始まるサイトが多いと思っていたけれどそんなに気にしていなかった。よくよく調べるとhttpsの「s」はセキュアの「s」らしいので、「このご時世、結構大事じゃん」と思うようになった。たまたま外出中だったが「思い立ったが吉日」主義なので、スマホで作業を始めた。（のは失敗だった。）
+            </p>
+            <p>
+            　基本的には<a href="https://github.com/disco-v8/DirectEdit/" target="_blank" rel="noopener">ココ</a>の通りにやれば良いらしいが、他の方の親切なサイトも参考にさせていただいた。幸いMyDNSでhttpsする記事はいくつも見つかる。残念ながらSSLもPHPも使ったことないので書いてある手順通りに進める。まずはPHPとcertbotが必要だと書いてあるのでインストール。<br>
+            <pre class="coding-env"><code>
+$sudo apt install php
+$sudo apt install certbot
+            </code></pre>
+            　aptは本当に便利。その後は手順通りに進めたがcertbotを実行したところでエラーが出て進めなくなってしまった。スマホだから画面が小さいしキーボードもないので解決策をしっかり検討する気になれず、テキトーにいじっていたらApacheの動きが怪しくなってきた。もう全部めんどくさくなったのでインストールした物たちをアンインストールして元に戻そうと思ったが、ついにこのサイトを表示することもできなくなってしまった。
+            　しかたないのでApache2を再インストールしたり、ファイルのパーミッションを変えてみたりしたけどサイトにアクセスできず、３０分格闘した挙句にDirectoryの設定がちょっと違っていたことに気づき、やっと元に戻った。
+            </p>
+            <p>
+            　自分には向いていないのでもうやめようとも思ったが、思い出して見るとエラーの内容はファイルの読み書き系のものとか何かの関数が実行できないような類の、PHPのエラーだった気がする。しかも、スマホの画面だったので見落としていたけどREADMEの最初の方にphp_mbstringが必要なことが書いてあるのにインストールした記憶はない。<br>
+            <br>
+            気を取り直して、次回はパソコンがある環境で改めてチャレンジしてみようと思う。
+            </p>
+            </div>
+	</div>
+    </body>
+</html>

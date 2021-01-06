@@ -1,131 +1,19 @@
-<!DOCTYPE html>
+<!DOCTYPE html public"-//w3c//dtd html4.0//en" "http://www.w3.org/TR/html4/frameset.dtd">
 <html lang="ja" dir="ltr">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="stylesheet" href="./css/master.css" type="text/css">
-        <link rel="stylesheet" href="./css/menu.css" type="text/css">
-	<link rel="stylesheet" href="./css/sending.css" type="text/css">
-    <script src="./javascript/sending.js"></script>
         <title>MK-private</title>
     </head>
-        <body>
-		<!--送信中-->
-	<div id="sending" class="sending">
-		<p class="charSending">送信中</p>
-		<p><a href="javascript:void(0)" onclick="deleteSending()" class="button">「送信中」を消す</a></p>
-	</div>
+	<frameset rows="150,*" border="0">
+	
+		<frame src="./title.html" name="title" title="Title" nosize>
+		<frame src="./top.html" name="top" title="Top">
 
-		<!-- 浮いてるメニュー -->
-        <div class="top_menu">
-		<a href="#top" class="pagenum">top</a>-<a href="#menu" class="pagenum">menu</a>
+		<noframes>
+			<body>
+				<h3>このサイトはフレームを使用しています。現在、想定したレイアウトではありません。</h3>
+				<a href="./noframe.html">（フレーム無しのトップページへ）</a>
+			</body>
+		</noframes>
 
-    </div>
-
-<div class="top">
-	<p><iframe src="../cgi-bin/count.py" name="count" width="400" height="30" frameborder="0"></iframe></p>
-
-	<h1><a href="https://shangyuanyezhengju.wixsite.com/mkpage" target="_blank"><img src="./photo/icon.jpg" alt="" width="40px" height="40px"></a><a href="https://m-katono.mydns.jp">MK-private</a></h1><br>
-		<div style="text-align: right;"><a href="./basic_auth/searchIP.html" class="no-color-change"><font size=3 color="white" font-weight=100>data</font></a></div>
-            <div class="menu"><h2>〜目的〜</h2>
-                2020年１月２２日から運用
-		        <p>
-                    　Webサーバーの使い方を勉強しながら、自分の備忘録的な記事を不定期で書いてゆくつもりです。cgiをPython3で書いてみたり、データベースなんかも使ってみたいと考えています。データベースを何に使うかが決まっていないので、まずは「作りたいもの」を考えます。
-                </p>
-                ＊問題のあるリンク等があればご連絡ください。すぐに削除します。<br>
-                <h3>テスト運用の送信フォーム</h3>
-                <form action="/cgi-bin/sendmail.py" method="POST">
-			<label for="name">お名前：</label><br>
-                    <input type="text" name="name" id="name" size="20" maxlength="30" placeholder="your name"/><br>
-		    <label for="email">メール：</label><br>
-                    <input type="email" name="address" id="email" size="20" maxlength="50" placeholder="mail@example.com"/><br>
-		    <label for="body">本　文：</label><br>
-                    <textarea type="text" name="text" id="body" rows="10" cols="31" maxlength="500" placeholder="text area"></textarea><br>
-		    <p><input type="submit" value="送　信" name="button" onclick="sendingDisplay();"/></p>
-                </form>
-                <div class="coding-env">
-                <h3>環境</h3>
-		                <p>
-	                            <h4>コーディング</h4>
-				    OS：ArchLinux+Xfce4<br>
-				    PC：DELL inspiron 3162 11inch<br>
-                                    Celeron N3060, 4GB(DDR3L-1600MHz), 32GB eMMC<br>
-                                <br>
-		                        <h4>サーバー</h4>
-                                OS：Raspbian buster Lite(Raspberry pi zero wh)<br>
-                                Webサーバー：Apache2(v2.4.38)
-                        </p>
-            </div>
-                <p>
-		        <s>＊　DNSサーバーを利用していない上に動的グローバルIPアドレスなので、不定期でアドレスが変わる可能性あり。</s><br>
-                やっぱり毎回グローバルIPアドレスだとめんどくさいので、DDNSサービス（MyDNS)を利用することにした。</p>
-            </div>
-<!--
-        ここからメニュー
-        全ページの「目次へ戻る」は
-        ここへリンクさせている。
-
--->
-        <p>
-        <div class="menu_list" id="menu">
-        <label for="menu_title" class="button">目次</label>↑クリックして開閉↑
-	<input type="checkbox" id="menu_title" class="menu_check" />
-        <div class="menus">
-        <ul class="menu-class" type="none">
-		<h3>Page 1</h3>
-                <li><a href="./first-page.html#i1">#1-エディタを選ぶ 22/Jan/2020</a>
-                <li><a href="./first-page.html#i2">#2-Raspberry pi zero側の準備 24/Jan/2020</a>
-                <li><a href="./first-page.html#i3">#3-https対応 25/Jan/2020</a>
-                <li><a href="./first-page.html#i4">#4-https成功！ 26/Jan/2020</a>
-                <li><a href="./first-page.html#i5">#5-Raspberry pi zeroのSDカードをバックアップ 27/Jan/2020</a>
-		<h3>Page 2</h3>
-                <li><a href="./second-page.html#i6">#6-Webページを微調整 28/Jan/2020</a></li>
-                <li><a href="./second-page.html#i7">#7-Android用のテキストエディタ 28/Jan/2020</a></li>
-                <li><a href="./second-page.html#i8">#8-Chromeでスクロールがおかしい 28/Jan/2020</a></li>
-                <li><a href="./second-page.html#i9">#9-python3とapache2でcgiを動かしてみる 29/Jan/2020</a></li>
-                <li><a href="./second-page.html#i10">#10-アクセスカウンタを設置する 31/Jan/2020</a></li>
-        <h3>Page 3</h3>
-		        <li><a href="./third-page.html#i11">#11-MySQLを触ってみる準備（の代わりにMariaDB）　02/Feb/2020</a></li>
-                <li><a href="./third-page.html#i12">#12-独自エラ〜ページを作る　03/Feb2020</a></li>
-                <li><a href="./third-page.html#i13">#13-MacBook Airの冷却ファンについて　04/Feb/2020</a></li>
-                <li><a href="./third-page.html#i14">#14-送信フォームを作る　06/Feb/2020</a></li>
-                <li><a href="./third-page.html#i15">#15-Apache2.4の設定ファイルについて　07/Feb/2020</a></li>
-        <h3>Page 4</h3>
-                <li><a href="./fourth-page.html#i16">#16-cssを修正してみる　08/Feb/2020</a></li>
-                <li><a href="./fourth-page.html#i17">#17-MarkDownで書いてみる　09/Feb/2020</a></li>
-                <li><a href="./fourth-page.html#i18">#18-固定メニューを作る　11/Feb/2020</a></li>
-                <li><a href="./fourth-page.html#i19">#19-「送信中」表示する　16/Feb/2020</a></li>
-                <li><a href="./fourth-page.html#i20">#20-Puppy Linuxを使ってみる　26/Feb/2020</a></li>
-        <h3>Page 5</h3>
-                <li><a href="./fifth-page.html#i21">#21-Puppy Linuxチョー快適　03/Mar/2020</a></li>
-		        <li><a href="./fifth-page.html#i22">#22-Raspberry pi 3B+の調子が悪い　08/Mar/2020</a></li>
-                <li><a href="./fifth-page.html#i23">#23-Rasberry pi 3B+が重い　11/Mar/2020</a></li>
-                <li><a href="./fifth-page.html#i24">#24-Rasberry pi 3B+にファンを付けた　12/Mar/2020</a></li>
-		        <li><a href="./fifth-page.html#i25">#25-Puppy LinuxでPPPoE接続してみる　14/Mar/2020</a></li>
-        <h3>Page 6</h3>
-                <li><a href="./sixth-page.html#i26">#26-外付けHDD（1TB)を買った　20/Mar/2020</a></li>
-                <li><a href="./sixth-page.html#i27">#27-ArchLinux をインストール　19/Dec/2020</a></li>
-		<li><a href="./sixth-page.html#i28">#28-GIGABYTE製のNUCを買う　03/Jan/2021</a></li>
-		<li><a href="./sixth-page.html#i29">#29-ArchLinuxのインストール手順　その１　04/Jan/2021</a></li>
-		<li><a href="./sixth-page.html#i30">#30-ArchLinuxのインストール手順　その２　05/Jan/2021</a></li>
-            </ul>
-        </div>
-	<p>
-	Page-menu-<a href="first-page.html" class="pagenum">1</a>-<a href="./second-page.html" class="pagenum">2</a>-<a href="./third-page.html" class="pagenum">3</a>-<a href="./fourth-page.html" class="pagenum">4</a>-<a href="./fifth-page.html" class="pagenum">5</a>-<a href="./sixth-page.html" class="pagenum">6</a>-
-	</p>
-            <p>
-                ＊今のところは、Topページの目次から各記事にリンクする形です。そのうち不便になってきたらメニューを作るかもしれません。
-            </p>
-            </div>
-        </p>
-<!--写真の幅なんかを調整して見る-->
-        <div class="menu">
-		</p>
-		写真を貼ってみるテスト。スマホで表示した時のサイズ感とかを調整。<img src="./photo/beer.jpg" alt="Beer" width="600px" oncontextmenu="return false;">
-
-	    <img src="./photo/xt250.jpg" alt="serrow" width="600px" oncontextmenu="return false;"></div>
-
-<!--全体のdivの終わり-->
-        </div>
-    </body>
+	</frameset>
 </html>

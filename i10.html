@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!--counterを設置する-->
+            <div class="menu" id="i10">
+                <h3>#10-アクセスカウンタを設置する</h3>31/Jan/2020
+                <p>
+                    　<mark>python3でcgiを動かす</mark>練習の一環として、アクセスカウンタを作って見ることにした。python2系での資料がネット上にたくさんあるので、まずはそれを参考に作ってみた。まずは単純にアクセス数の数字だけを表示する目的で、テキストファイルを用意して読み書きするようにした。<br>
+                    プログラムの流れとしては、
+                    <ol>
+                        <li>fcntlとcgiのライブラリをimportする</li>
+                        <li>ファイルをロックする</li>
+                        <li>テキストファイルから数字を読み込む</li>
+                        <li>数字をインクリメントする</li>
+                        <li>増えた数字を上書き保存する</li>
+                        <li>ファイルのロックを解除する</li>
+                        <li>新しい数字をhtmlコードに埋め込んで出力する</li>
+                    </ol>
+                    このような流れで良いと思う。注意点は保存用ファイルのパスの指定を間違わないことと、出力するhtmlコード中の「%s」以外に「%」を使わないこと。様々な間違いで「500 Internal Server Error」が出るので、問題を特定するのが難しかった。忘れがちなのがパーミッションで、自分はWebページのルートディレクトリとは違うところに保存ファイルを置いているのだが、保存ファイルとそのディレクトリも読み書きを許可しておかないとcgiから読んだときにパーミッションエラーになってしまうようだ。気づくまでに結構な時間を費やした。
+                </p>
+                <p>
+                    　実際に動くようになってからもChromeのデベロッパーツールで確認すると404 Errorが出ていた。これはFile Not Foundのエラーだが、カウンタはちゃんと動いている。<br>
+                    どういうことかというと、例えばWebページのルートディレクトリの上の階層にdatディレクトリを置いて、その中に保存用count.datファイルを作ったとする。cgiから呼び出すときには相対パスでOKだが、ブラウザから見ると「https://example.com/dat/count.dat」にアクセスしているように見えるので、404になるみたい。<br>
+		    今回はアクセ数数を保存するだけなためみられても構わないファイルなので、とりあえずルート以下にdatティレクトリのシンボリックリンクを置いてエラーを消しておいた。<small>(同じ名前のダミーのファイルに変えた 02/Feb/2020)</small>プログラムはこんな感じ。
+
+                <pre class="coding-env"><code>
+#!/usr/bin/Python3
+
+import fcntl, cgi
+
+# カウントファイルのパス
+dat = "PATH/TO/dat/count.dat"
+# 表示用html
+count_code = """Content-Type:text/html
+
+&lt;html>
+&lt;head>
+&lt;meta charset="UTF-8"/>
+&lt;meta name="viewport" content="width=device-width, initial-scale=1"/>
+&lt;style>
+body {
+    color: white;
+    font-size: 1em;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100px;
+    margin-left: 5px;
+}
+&lt;/style>
+&lt;title>count&lt;/title>
+&lt;/head>
+&lt;body>
+You are&lt;br>
+the %s th&lt;br>
+visitor!
+&lt;/body>
+&lt;/html>
+"""
+
+# ファイルを読み込み専門で開く
+with open(dat, mode='r') as f:
+    # ファイルをロック
+    fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+    # ファイルを読み込む
+    str_count = f.read()
+
+# count.datの中にデータが無い場合の対策
+str_count = '0' if len(str_count) == 0 else str_count
+
+# ファイルを上書きモードで開く
+with open(dat, mode='w') as f:
+    # インクリメント（数字にしてから）
+    int_count = int(str_count)
+    int_count += 1
+    # strにして書き込む
+    count = str(int_count)
+    f.write(count)
+    # ファイルのロックを解除
+    fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+
+# htmlを出力
+print(count_code % (count))
+                </code></pre>
+                　index.htmlの方からは&lt;iframe>&lt;/iframe>でsrcにcgiのパスを指定し、widthとheight属性で大きさを決めて表示している。
+            </p>
+	    </div>
+	</div>
+    </body>
+</html>

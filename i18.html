@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!--固定メニューを作る-->
+                <div class="menu" id="i18">
+                    <h3 id="固定メニューを作る">#18-固定メニューを作る</h3>
+<p>11/Feb/2020</p>
+<p>　Webサイトを作るにあたって、最近はスマホでの読みやすさを考えて縦長のデザインになる場合が多いように思う。スマホは縦長の画面だし、スクロールが高速だからだろう。ただ、ページの途中で先頭に戻りたくなったり、メニューに戻りたくなったりすることがよくある。そのために所々にページのトップに戻るボタンとメニューに戻るボタンを設置していたが、同じページ内で同じコードを何度も書くことになるのでとっても非効率な気がしていた。</p>
+<p>　ということで、ページのスクロールに影響されないように固定のボタンを設置することにした。固定するだけなら簡単で、htmlとcssだけですぐにできる。</p>
+<blockquote>
+<p>position: fixed;</p>
+</blockquote>
+<p>これだけで要素を固定できる。htmlの固定したい要素に指定するだけで良い。小さいボタンを二つ設置して背景を透明にしておけば邪魔にならないだろう。</p>
+<p><img width="600" alt="scroll" src="./photo/scroll.jpg"></p>
+
+<p>　本当はスクロールに合わせて出現するような動的なボタンを作りたいが、ネットで調べたところやはりjavascriptを使わなければならない。とくにjQueryを使っている例が多いが、どんどん複雑になっていくのでなるべく使いたくない。</p>
+<p>何か別の方法がないかと思っていろいろ試したところ、適当なサイズの&lt;iframe&gt;を置くとその分だけ固定した部分もスクロールすることが分かった。ただ、この現象はAndroidスマホのChromeとSleipnirでは確認できたが、PCのブラウザでは出現せずに固定されたままだった。</p>
+<pre class="coding-env"><code>
+&lt;p>&lt;iframe width="400" height="30" frameborder="0">&lt;/iframe>&lt;/p>
+</code></pre>
+<p>こんな感じで空っぽの&lt;iframe&gt;を置いておくと、そのheightの分だけ画面上部に設置したボタンも一緒に動くので、スクロールに合わせてボタンを隠すことができた。これでスマホの狭い画面でも多少見やすくなったし、PCではちょっと違う動作をするがPCの画面は広いので問題ない。</p>
+                </div>
+	</div>
+    </body>
+</html>

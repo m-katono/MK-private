@@ -35,6 +35,19 @@ SSLProtcol -all +TLSv1.2
     そして<code class="codingfenv">sudo system apache2 restart</code>でapacheを再起動する。でもまだ表示できず、いくつかのPCから様々なブラウザで試しても変化無し。IPアドレスでアクセスしても「セキュリティー証明書〜」みたいなエラーが出るので詳しく読んでみたら、どうやらDNS関係のエラーらしい。そこでMyDNSのログを確認すると、ipv6アドレスは定期的に更新されているものの、ipv4アドレスはしばらく前のものだった。使い方をちゃんと読んだら、ipv4とipv6それぞれを定期的に更新しないとダメみたいなので、htmlのBASIC認証でそれぞれ接続するやり方に改善した。
 </p>
 <pre class="coding-env"><code>
+シェルスクリプトをcronで１時間に一回実行する
+-------------------------------------------
+#!/bin/bash
+
+# MyDNSのIDとパスワードは別ファイルに書いておいた。
+# ドットコマンドでパスワードのファイルの場所に
+# 移動しないと読み込めないみたい。
+. /home/foo/bar/passwd.txt
+
+# httpのBASIC認証で接続する
+# 'ipv4'のところを'ipv6'にすればipv6アドレスを更新できる。
+wget -O --http-user=$DDNS_USER --http-password=$DDNS_PASSWD http://ipv4.mydns.jp/login.html
+------------------------------------------
 
 </code></pre>
 <p>

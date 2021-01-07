@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+<!--スタイルシートを読み込み-->
+<link rel="stylesheet" href="./css/master.css" type="text/css">
+<link rel="stylesheet" href="./css/menu.css" type="text/css">
+        <title>MK-private</title>
+    </head>
+    <body>
+	    <!--  浮いてるメニュー  -->                                    
+	    <div class="top_menu">
+		<a href="#top" class="pagenum">top</a>-<a href="./top.html#menu" class="pagenum">menu</a>
+	    </div>
+
+        <div class="top">
+		<p><iframe width="400" height="30" frameborder="0"></iframe></p>
+<!--ここから記事-->
+<!-- MyDNSへのIPアドレス通知方法を改善 -->
+<div class="menu" id="i31">
+<h3>MyDNSへのIPアドレス通知方法を改善</h3>06/Jan/2021
+<p>
+　このWebサイトはRaspberry pi zero上のapache2で動いていて、作成も動作確認もLinuxかmacOSで行っている。久しくWindowsで開いていないので、文字コードの違いによる文字化けや不具合があったら嫌だな〜と思って表示を試みたが、そもそも開くことができずに「セキュリティー警告」みたいなのが表示された。そういえば去年どこかからのメールで、「openSSLのふにゃららがなんとかでどーたらこーたら」みたいなこと言ってたなーと思ってググってみたら、TLSv1.2のみにしなきゃだめ的な情報があったので早速対応する。
+</p>
+<pre class="coding-env"><code>
+// ファイル/etc/apache2/apache2.conf内
+// 全部消してTLSv1.2を足す的な書き方
+...
+...
+SSLProtcol -all +TLSv1.2
+...
+</code></pre>
+<p>
+    そして<code class="codingfenv">sudo system apache2 restart</code>でapacheを再起動する。でもまだ表示できず、いくつかのPCから様々なブラウザで試しても変化無し。IPアドレスでアクセスしても「セキュリティー証明書〜」みたいなエラーが出るので詳しく読んでみたら、どうやらDNS関係のエラーらしい。そこでMyDNSのログを確認すると、ipv6アドレスは定期的に更新されているものの、ipv4アドレスはしばらく前のものだった。使い方をちゃんと読んだら、ipv4とipv6それぞれを定期的に更新しないとダメみたいなので、htmlのBASIC認証でそれぞれ接続するやり方に改善した。
+</p>
+<pre class="coding-env"><code>
+
+</code></pre>
+<p>
+　ipv4アドレスを更新したら無事にWindowsからでも繋がった。全然知らなかったのだが、LinuxやAndroidはいつの間にかipv6が優先されていて、Windowsは何も設定しなければipv4で通信しているみたい。これからは気をつけて設定しなければ。
+</p>
+</div>
+	</div>
+    </body>
+</html>

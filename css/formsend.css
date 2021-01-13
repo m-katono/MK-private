@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+
+textarea,input    {
+         font-size: 130%;
+         width: 90%;
+         height: 100;
+         overflow: auto;
+         background-color: #ffffff;
+         border: 1px #999999 solid;
+         scrollbar-base-color: #9999dd;
+         scrollbar-arrow-color: #ffa500;
+         color: #000000;
+         border-radius: 5px;
+}
